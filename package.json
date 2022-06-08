@@ -22,9 +22,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint .",
-    "lint:fix": "eslint --fix .",
-    
-    "prepare": "husky set .husky/pre-commit \"npm run lint\""
+    "lint:fix": "eslint --fix ."
   },
   "eslintConfig": {
     "extends": [
@@ -45,6 +43,7 @@
     ]
   },
   "devDependencies": {
+    
     "@typescript-eslint/eslint-plugin": "^5.23.0",
     "@typescript-eslint/parser": "^5.23.0",
     "eslint": "^8.15.0",
@@ -59,17 +58,23 @@
     "prettier": "^2.6.2"
   },
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint"],
+  "plugins": [
+    "@typescript-eslint"
+  ],
   "overrides": [
     {
-      "files": ["*.ts", "*.tsx"], 
+      "files": [
+        "*.ts",
+        "*.tsx"
+      ],
       "extends": [
         "plugin:@typescript-eslint/recommended",
         "plugin:@typescript-eslint/recommended-requiring-type-checking"
       ],
-
       "parserOptions": {
-        "project": ["./tsconfig.json"]
+        "project": [
+          "./tsconfig.json"
+        ]
       }
     }
   ]
