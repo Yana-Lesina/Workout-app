@@ -1,12 +1,11 @@
 /*eslint no-constant-condition: "warn"*/
 import "./App.css";
+import introImg from "./images/intro-img.png";
 import React, { useState, useEffect } from "react";
 import Container from "./components/Container";
-import { IWorkoutPart } from "./interfaces";
+import StartButton from "./components/StartButton";
 
-// interface AppType {
-//   loggedIn: boolean;
-// }
+import { IWorkoutPart } from "./interfaces";
 
 const App: React.FC = () => {
   // const [error, setError] = useState<any>(null);
@@ -40,10 +39,16 @@ const App: React.FC = () => {
   }, []);
 
   return { isLoaded } ? (
-    <>
-      <p>Workout app!!</p>
+    <div className="wrapper">
+      <div className="img-container">
+        <img src={introImg} alt="intro-img" className="intro-img" />
+      </div>
+      <h4>Day 1</h4>
+      <h1>Morning Flexibility Routine</h1>
+      <h6>Easy 15 min no equipment</h6>
       <Container sections={items?.questions} />
-    </>
+      <StartButton />
+    </div>
   ) : (
     <div> Загрузка... </div>
   );

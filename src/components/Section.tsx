@@ -5,11 +5,13 @@ import Exercise from "./Exercise";
 const Section: React.FC<IQuestion> = ({ title, exercises, muscle_group }) => {
   return (
     <div>
-      <h1>{title}</h1>
+      <h2>{title}</h2>
+      <div>{muscle_group.name}</div>
       <ul>
         {exercises.map((exercise) => {
           return (
             <Exercise
+              key={exercise.id}
               title={exercise.title}
               duration={exercise.duration}
               photo={exercise.photo}
@@ -17,7 +19,6 @@ const Section: React.FC<IQuestion> = ({ title, exercises, muscle_group }) => {
           );
         })}
       </ul>
-      <div>{muscle_group.name}</div>
     </div>
   );
 };

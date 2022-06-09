@@ -3,11 +3,15 @@ import { ExerciseIntro } from "../interfaces";
 
 const Exercise: React.FC<ExerciseIntro> = ({ title, duration, photo }) => {
   return (
-    <div>
-      <div>{title}</div>
-      <div>{duration}</div>
-      <div>
-        <img src={photo} />
+    <div className="exercise-container">
+      <div className="exercise-img-wrapper">
+        <img src={photo} className="exercise-img" />
+      </div>
+      <div className="exercise-info-wrapper">
+        <div className="exercise-title">
+          <b>{title}</b>
+        </div>
+        <div className="exercise-duration">{duration}</div>
       </div>
     </div>
   );

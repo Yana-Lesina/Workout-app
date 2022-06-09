@@ -8,17 +8,18 @@ type ContainerProps = {
 
 const Container: React.FC<ContainerProps> = ({ sections }) => {
   return (
-    <ul>
+    <div className="container">
       {sections?.map((section) => {
         return (
           <Section
+            key={section.title}
             title={section.title}
             exercises={section.exercises}
             muscle_group={section.muscle_group}
           />
         );
       })}
-    </ul>
+    </div>
   );
 };
 
