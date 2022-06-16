@@ -1,11 +1,13 @@
 /*eslint no-constant-condition: "warn"*/
 import "./App.css";
-import introImg from "./images/intro-img.png";
+
 import React, { useState, useEffect } from "react";
-import Container from "./components/Container";
-import StartButton from "./components/StartButton";
+import { Routes, Route } from "react-router-dom";
 
 import { IWorkoutPart } from "./interfaces";
+
+import MainPage from "./pages/MainPage";
+import ExercisePage from "./pages/ExercisePage";
 
 const App: React.FC = () => {
   // const [error, setError] = useState<any>(null);
@@ -36,18 +38,19 @@ const App: React.FC = () => {
         //   setError(error);
         // },
       );
+
+    const exercisesList = React.createContext(items);
   }, []);
 
   return { isLoaded } ? (
     <div className="wrapper">
-      <div className="img-container">
-        <img src={introImg} alt="intro-img" className="intro-img" />
-      </div>
-      <h4>Day 1</h4>
-      <h1>Morning Flexibility Routine</h1>
-      <h6>Easy 15 min no equipment</h6>
-      <Container sections={items?.questions} />
-      <StartButton />
+      <Routes>
+        <Route path="/" element={<MainPage elements={items} />} />
+        {/*<Route path="/get-ready" element={<Preparing />} />*/}
+        <Route path="/exercise" element={<ExercisePage elements={items} />} />
+        {/*<Route path="/completed" element={<Completed />} />*/}
+        <Route path="*" element={<div>Nothing</div>} />
+      </Routes>
     </div>
   ) : (
     <div> Загрузка... </div>
