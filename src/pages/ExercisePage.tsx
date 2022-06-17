@@ -1,28 +1,21 @@
 import "../App.css";
 import React, { useState, useEffect } from "react";
-import Timer from "../components/Timer";
+// import Timer from "../components/Timer";
 // import VideoPlayer from "../components/VideoPlayer";
 
-import { IWorkoutPart } from "../interfaces";
+import { IWorkoutPart, IExercise } from "../interfaces";
 
 // repeat type for MainPageType
 // if nothing changes - create 1 Interface
 type ExercisePageType = {
-  elements: IWorkoutPart | undefined;
+  exercises: IExercise[];
 };
 
-const ExercisePage: React.FC<ExercisePageType> = ({ elements }) => {
+let counter = 0;
+
+const ExercisePage: React.FC<ExercisePageType> = ({ exercises }) => {
   const [time, setTime] = useState<number>(5);
-  const [ifPrepared, setPreparedState] = useState<boolean>(false);
-  const [ifCompleted, setCompletedState] = useState<boolean>(false);
-
-  const counter = 0;
-
-  const exercisesList = elements?.questions.map((section) => {
-    section.exercises.forEach((exercise) => {
-      return exercise;
-    });
-  });
+  const [prepared, setPrepared] = useState<boolean>(false);
 
   useEffect(() => {
     if (time >= 1) {
@@ -33,19 +26,48 @@ const ExercisePage: React.FC<ExercisePageType> = ({ elements }) => {
       // return () => clearTimeout(timer);
     }
 
-    if (time === 0 && ifPrepared === false) {
-      setPreparedState(true);
+    if (time === 0 && prepared === false) {
+      setPrepared(true);
+      setTime(exercises[counter].duration);
     }
-  }, [time]);
+
+    if (time === 0 && prepared === true) {
+      setTime(5);
+      setPrepared(false);
+      counter = counter + 1;
+    }
+  }, [time, counter]);
 
   return (
     <div>
-      {ifPrepared === false && <h1>Get Ready</h1>}
-      {ifPrepared === true && <h1>Just DO it</h1>}
-
-      <div className="timer">{time}</div>
-      {time >= 1 && <div>prepare img</div>}
-      {ifPrepared === true && <div>exercise</div>}
+      {prepared ? (
+        <>
+          <h1>{exercises[counter]?.title}</h1>
+          <div className="timer get-ready-timer">{time}</div>
+          <div>
+            <video
+              id="video-player"
+              controls
+              autoPlay
+              loop
+              poster={exercises[counter]?.photo}
+              src={exercises[counter]?.video}
+            ></video>
+          </div>
+        </>
+      ) : (
+        <>
+          <h1>Get Ready</h1>
+          <div className="timer exercise-timer">{time}</div>
+          <div>
+            <img
+              src={exercises[counter]?.photo}
+              alt="preview image"
+              className="preview-img"
+            />
+          </div>
+        </>
+      )}
     </div>
   );
 };

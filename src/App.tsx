@@ -14,6 +14,21 @@ const App: React.FC = () => {
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const [items, setItems] = useState<IWorkoutPart>();
 
+  // if (isLoaded) {
+  //   console.log(items);
+  // }
+
+  const createExercisesList = (elem: IWorkoutPart | undefined) => {
+    const exerciseList: IExercise[] = [];
+    elem?.questions.forEach((section: { exercises: IExercise[] }) => {
+      section.exercises.forEach((exercise: IExercise) => {
+        exerciseList.push(exercise);
+      });
+    });
+
+    return exerciseList;
+  };
+
   useEffect(() => {
     const getServerData = async () => {
       const serverData = await fetch(
@@ -31,6 +46,7 @@ const App: React.FC = () => {
         (result) => {
           setIsLoaded(true);
           setItems(result.data);
+          // createExercisesList(items);
         },
 
         // (error) => {
@@ -38,20 +54,22 @@ const App: React.FC = () => {
         //   setError(error);
         // },
       );
-  }, [items]);
+  }, []);
 
   return { isLoaded } ? (
     <div className="wrapper">
       <Routes>
         <Route path="/" element={<MainPage elements={items} />} />
-        {/*<Route path="/get-ready" element={<Preparing />} />*/}
-        <Route path="/exercise" element={<ExercisePage elements={items} />} />
+        <Route
+          path="/exercise"
+          element={<ExercisePage exercises={createExercisesList(items)} />}
+        />
         {/*<Route path="/completed" element={<Completed />} />*/}
         <Route path="*" element={<div>Nothing</div>} />
       </Routes>
     </div>
   ) : (
-    <div> Загрузка... </div>
+    <div> Loading... </div>
   );
 };
 

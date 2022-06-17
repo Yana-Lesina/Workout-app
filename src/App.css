@@ -86,3 +86,11 @@ a {
   position: relative;
   margin-top: 15px;
 }
+
+.get-ready-timer {
+  color: rgba(255, 64, 129, 1);
+}
+
+.exercise-timer {
+  color: rgba(29, 233, 182, 1);
+}
