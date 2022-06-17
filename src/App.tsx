@@ -4,14 +4,14 @@ import "./App.css";
 import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 
-import { IWorkoutPart } from "./interfaces";
+import { IWorkoutPart, IExercise } from "./interfaces";
 
 import MainPage from "./pages/MainPage";
 import ExercisePage from "./pages/ExercisePage";
 
 const App: React.FC = () => {
   // const [error, setError] = useState<any>(null);
-  const [isLoaded, setIsLoaded] = useState<any>(false);
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const [items, setItems] = useState<IWorkoutPart>();
 
   useEffect(() => {
@@ -38,9 +38,7 @@ const App: React.FC = () => {
         //   setError(error);
         // },
       );
-
-    const exercisesList = React.createContext(items);
-  }, []);
+  }, [items]);
 
   return { isLoaded } ? (
     <div className="wrapper">
