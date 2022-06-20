@@ -15,15 +15,22 @@
 .intro-img {
   width: 100%;
 }
-
 h1 {
+  font-size: 56px;
+}
+
+h2 {
+  font-size: 32px;
   margin-top: 5px;
   margin-bottom: 0;
 }
 
+h3 {
+  font-size: 24px;
+}
+
 h4 {
-  margin-top: 32px;
-  margin-bottom: 0;
+  font-size: 20px;
 }
 
 h6 {
@@ -50,7 +57,7 @@ h6 {
   padding: 16px;
 }
 
-button.start-button {
+button.action-button {
   position: sticky;
   bottom: 10%;
   height: 56px;
@@ -67,12 +74,12 @@ button.start-button {
   vertical-align: middle;
 }
 
-button.start-button:focus,
-button.start-button:hover {
+button.action-button:focus,
+button.action-button:hover {
   outline: none;
   box-shadow: 0 0 10px 5px rgba(170, 0, 255, 0.4);
 }
-button.start-button:active {
+button.action-button:active {
   background: #69009e;
 }
 
@@ -93,4 +100,13 @@ a {
 
 .exercise-timer {
   color: rgba(29, 233, 182, 1);
+}
+
+/* Exercise page styles */
+#video-player {
+  width: 100%;
+  height: auto;
+}
+.preview-img {
+  width: 100%;
 }

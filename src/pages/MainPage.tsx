@@ -2,7 +2,7 @@ import "../App.css";
 import React from "react";
 import introImg from "../images/intro-img.png";
 import Container from "../components/Container";
-import StartButton from "../components/StartButton";
+import StartButton from "../components/Button";
 import { IWorkoutPart } from "../interfaces";
 
 type MainPageType = {
@@ -16,10 +16,14 @@ const MainPage: React.FC<MainPageType> = ({ elements }) => {
         <img src={introImg} alt="intro-img" className="intro-img" />
       </div>
       <h4>Day 1</h4>
-      <h1>Morning Flexibility Routine</h1>
+      <h2>Morning Flexibility Routine</h2>
       <h6>Easy 15 min no equipment</h6>
       <Container sections={elements?.questions} />
-      <StartButton />
+      <StartButton
+        styles="action-button"
+        link="/exercise"
+        innerText="Start Workout"
+      />
     </>
   );
 };
