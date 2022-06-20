@@ -1,4 +1,5 @@
 import React from "react";
+import Timer from "./Timer";
 
 type ExerciseInnerType = {
   title: string;
@@ -16,7 +17,8 @@ const ExerciseInner: React.FC<ExerciseInnerType> = ({
   return (
     <>
       <h2>{title}</h2>
-      <div className="timer get-ready-timer">{time}</div>
+      <Timer className={"get-ready-timer"} time={time} />
+
       <div>
         <video
           id="video-player"

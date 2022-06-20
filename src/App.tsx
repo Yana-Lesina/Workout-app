@@ -64,7 +64,6 @@ const App: React.FC = () => {
           path="/exercise"
           element={<ExercisePage exercises={createExercisesList(items)} />}
         />
-        {/*<Route path="/completed" element={<Completed />} />*/}
         <Route path="*" element={<div>Nothing</div>} />
       </Routes>
     </div>

@@ -1,3 +1,14 @@
+@font-face {
+  font-family: "SF Pro Display";
+  src: url("./fonts/SFPRODISPLAYMEDIUM.OTF");
+  font-weight: 600;
+}
+@font-face {
+  font-family: "SF Pro Text";
+  src: url("./fonts/SF-Pro-Text-Medium.otf");
+  font-weight: 400;
+}
+
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -5,6 +16,7 @@
   width: 800px;
   margin-left: auto;
   margin-right: auto;
+  font-family: "SF Pro Text", sans-serif;
 }
 
 .img-container {
@@ -20,6 +32,7 @@ h1 {
 }
 
 h2 {
+  font-family: "SF Pro Display", sans-serif;
   font-size: 32px;
   margin-top: 5px;
   margin-bottom: 0;
@@ -109,4 +122,23 @@ a {
 }
 .preview-img {
   width: 100%;
+}
+
+/* back-forward buttons styles */
+.timer-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.back-button,
+.forward-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #aa00ff;
+  border-radius: 8px;
+  width: 74px;
+  height: 48px;
+  cursor: pointer;
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import Timer from "./Timer";
 
 type PreparationInnerType = {
   time: number;
@@ -9,7 +10,7 @@ const PreparationInner: React.FC<PreparationInnerType> = ({ time, photo }) => {
   return (
     <>
       <h2>Get Ready</h2>
-      <div className="timer exercise-timer">{time}</div>
+      <Timer className={"exercise-timer"} time={time} />
       <div>
         <img src={photo} alt="preview image" className="preview-img" />
       </div>
