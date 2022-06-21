@@ -8,25 +8,6 @@
   src: url("./fonts/SF-Pro-Text-Medium.otf");
   font-weight: 400;
 }
-
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  margin-top: 5%;
-  width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-  font-family: "SF Pro Text", sans-serif;
-}
-
-.img-container {
-  width: 800px;
-  align-items: center;
-}
-
-.intro-img {
-  width: 100%;
-}
 h1 {
   font-size: 56px;
 }
@@ -49,6 +30,34 @@ h4 {
 h6 {
   margin-top: 4px;
   margin-bottom: 24px;
+}
+
+.current-exercise-title,
+.get-ready-title {
+  text-align: center;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5%;
+  width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: "SF Pro Text", sans-serif;
+}
+
+.img-container {
+  width: 100%;
+  align-items: center;
+}
+
+.intro-img {
+  width: 100%;
+}
+
+.section-line-separator {
+  border-top: 1px solid rgba(238, 238, 238, 1);
 }
 
 .exercise-container {
@@ -107,15 +116,7 @@ a {
   margin-top: 15px;
 }
 
-.get-ready-timer {
-  color: rgba(255, 64, 129, 1);
-}
-
-.exercise-timer {
-  color: rgba(29, 233, 182, 1);
-}
-
-/* Exercise page styles */
+/* Exercise page styles ================================ */
 #video-player {
   width: 100%;
   height: auto;
@@ -124,11 +125,38 @@ a {
   width: 100%;
 }
 
-/* back-forward buttons styles */
 .timer-wrapper {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+}
+
+.timer-sector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+}
+
+.timer-sector.get-ready-timer {
+  background-color: rgba(29, 233, 182, 1);
+}
+.timer-sector.exercise-timer {
+  background-color: rgba(255, 64, 129, 1);
+}
+
+.timer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+
+  border-radius: 50%;
+  background-color: #ffffff;
 }
 
 .back-button,
@@ -141,4 +169,40 @@ a {
   width: 74px;
   height: 48px;
   cursor: pointer;
+}
+
+/* Workout completed styles ======================== */
+.completed-img-container {
+  margin: auto;
+}
+.completed-img {
+  width: 100%;
+}
+
+.completed-title {
+  text-align: center;
+}
+
+div.result-message {
+  text-align: center;
+  margin: auto;
+}
+
+/* Adaptive ========================================*/
+@media (max-width: 800px) {
+  .wrapper {
+    width: 100%;
+  }
+
+  button.action-button {
+    position: sticky;
+    bottom: 2%;
+    width: 90%;
+    margin: auto;
+  }
+
+  .container,
+  .headers-container {
+    margin: auto 5% auto 5%;
+  }
 }

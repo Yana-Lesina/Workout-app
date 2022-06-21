@@ -15,9 +15,12 @@ const MainPage: React.FC<MainPageType> = ({ elements }) => {
       <div className="img-container">
         <img src={introImg} alt="intro-img" className="intro-img" />
       </div>
-      <h4>Day 1</h4>
-      <h2>Morning Flexibility Routine</h2>
-      <h6>Easy 15 min no equipment</h6>
+      <div className="headers-container">
+        <h4>Day 1</h4>
+        <h2>Morning Flexibility Routine</h2>
+        <h6>Easy 15 min no equipment</h6>
+      </div>
+
       <Container sections={elements?.questions} />
       <StartButton
         styles="action-button"

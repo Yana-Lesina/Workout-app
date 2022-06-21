@@ -5,6 +5,7 @@ import Exercise from "./Exercise";
 const Section: React.FC<IQuestion> = ({ title, exercises, muscle_group }) => {
   return (
     <div>
+      <hr className="section-line-separator" />
       <h2>{title}</h2>
       <div>{muscle_group.name}</div>
       <ul>

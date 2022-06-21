@@ -12,40 +12,41 @@ type ExercisePageType = {
   exercises: IExercise[];
 };
 
-let counter = 20;
+//let counter = 0;
 
 const ExercisePage: React.FC<ExercisePageType> = ({ exercises }) => {
   const [time, setTime] = useState<number>(5);
   const [prepared, setPrepared] = useState<boolean>(false);
   const [completed, setCompleted] = useState<boolean>(false);
+  const [counter, setCounter] = useState<number>(0);
+
+  useEffect(() => {
+    if (time >= 1) {
+      setTimeout(() => {
+        setTime(time - 1);
+      }, 1000);
+    }
+  }, [time]);
 
   useEffect(() => {
     if (exercises.length > counter) {
-      if (time >= 1) {
-        setTimeout(() => {
-          setTime(time - 1);
-        }, 1000);
-        // console.log(time); // ?
-        // return () => clearTimeout(timer);
-      }
-
       // get ready -> exercise
-      if (time === 0 && prepared === false) {
+      if (!time && !prepared) {
         setPrepared(true);
         setTime(exercises[counter].duration);
       }
 
       // exercise -> get ready
-      if (time === 0 && prepared === true) {
+      if (!time && prepared) {
         setTime(5);
         setPrepared(false);
-        counter = counter + 1;
+        setCounter(counter + 1);
       }
       // last exercise -> Workout Completed!
-    } else if (exercises.length <= counter) {
+    } else {
       setCompleted(true);
     }
-  }, [time, counter]);
+  }, [time, counter, prepared]);
 
   return (
     <>
@@ -66,3 +67,31 @@ const ExercisePage: React.FC<ExercisePageType> = ({ exercises }) => {
 };
 
 export default ExercisePage;
+
+// useEffect(() => {
+//   if (exercises.length > counter) {
+//     if (time >= 1) {
+//       setTimeout(() => {
+//         setTime(time - 1);
+//       }, 1000);
+//       console.log(time); // ?
+//       // return () => clearTimeout(timer);
+//     }
+
+//     // get ready -> exercise
+//     if (time === 0 && prepared === false) {
+//       setPrepared(true);
+//       setTime(exercises[counter].duration);
+//     }
+
+//     // exercise -> get ready
+//     if (time === 0 && prepared === true) {
+//       setTime(5);
+//       setPrepared(false);
+//       setCounter(counter + 1);
+//     }
+//     // last exercise -> Workout Completed!
+//   } else {
+//     setCompleted(true);
+//   }
+// }, [time, counter]);

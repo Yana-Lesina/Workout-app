@@ -16,8 +16,8 @@ const ExerciseInner: React.FC<ExerciseInnerType> = ({
 }) => {
   return (
     <>
-      <h2>{title}</h2>
-      <Timer className={"get-ready-timer"} time={time} />
+      <h2 className="current-exercise-title">{title}</h2>
+      <Timer className={"exercise-timer"} time={time} />
 
       <div>
         <video

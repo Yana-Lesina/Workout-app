@@ -14,7 +14,9 @@ const Timer: React.FC<TimerType> = ({ className, time }) => {
       <div className="back-button">
         <img src={BackImg} alt="back-img" className="back-img" />
       </div>
-      <div className={"timer " + className}>{time}</div>
+      <div className={"timer-sector " + className}>
+        <div className="timer ">{time}</div>
+      </div>
       <div className="forward-button">
         <img src={ForwardImg} alt="forward-img" className="forward-img" />
       </div>
