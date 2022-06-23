@@ -121,43 +121,52 @@ a {
   width: 100%;
   height: auto;
 }
+.preview-img-container {
+  width: 800px;
+  height: 450px;
+}
 .preview-img {
   width: 100%;
+  height: auto;
 }
 
+/* ==============================================
+    Timer
+=================================================*/
 .timer-wrapper {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .timer-sector {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
+  position: relative;
 }
 
-.timer-sector.get-ready-timer {
-  background-color: rgba(29, 233, 182, 1);
+circle.circle-progress-line {
+  transform: "rotate(-90 ) translate(-100 0)";
 }
-.timer-sector.exercise-timer {
-  background-color: rgba(255, 64, 129, 1);
+
+circle.exercise-timer {
+  stroke: rgba(255, 64, 129, 1);
+}
+circle.get-ready-timer {
+  stroke: rgba(29, 233, 182, 1);
 }
 
 .timer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100px;
-  height: 100px;
-
-  border-radius: 50%;
-  background-color: #ffffff;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
+
+/* ===================================================== */
 
 .back-button,
 .forward-button {
@@ -204,5 +213,9 @@ div.result-message {
   .container,
   .headers-container {
     margin: auto 5% auto 5%;
+  }
+
+  .preview-img-container {
+    width: 100%;
   }
 }
