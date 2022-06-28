@@ -1,10 +1,13 @@
 import "../App.css";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import { IExercise } from "../interfaces";
 import { WorkoutCompleted } from "../components/WorkoutCompleted";
 import ExerciseInner from "../components/ExerciseInner";
 import PreparationInner from "../components/PreparationInner";
+
+import PlayImg from "../images/play.svg";
+import PauseImg from "../images/pause.svg";
 
 // repeat type for MainPageType
 // if nothing changes - create 1 Interface
@@ -12,28 +15,37 @@ type ExercisePageType = {
   exercises: IExercise[];
 };
 
-//let counter = 0;
-
 const ExercisePage: React.FC<ExercisePageType> = ({ exercises }) => {
   const [time, setTime] = useState<number>(5);
   const [prepared, setPrepared] = useState<boolean>(false);
   const [completed, setCompleted] = useState<boolean>(false);
   const [counter, setCounter] = useState<number>(0);
+  const [ifPlaying, setIfPlaying] = useState<boolean>(true);
+  const changeButton = () => {
+    setIfPlaying(!ifPlaying);
+  };
+
+  let timeoutID: NodeJS.Timeout | undefined;
 
   useEffect(() => {
-    if (time >= 1) {
-      setTimeout(() => {
-        setTime(time - 1);
-      }, 1000);
+    if (!ifPlaying) {
+      clearTimeout(timeoutID);
+    } else {
+      if (time >= 1) {
+        timeoutID = setTimeout(() => {
+          setTime(time - 1);
+        }, 1000);
+      }
     }
-  }, [time]);
+    return () => clearTimeout(timeoutID);
+  }, [ifPlaying, time]);
 
   useEffect(() => {
     if (exercises.length > counter) {
       // get ready -> exercise
       if (!time && !prepared) {
         setPrepared(true);
-        setTime(exercises[counter].duration);
+        setTime(exercises[counter]?.duration);
       }
 
       // exercise -> get ready
@@ -53,13 +65,23 @@ const ExercisePage: React.FC<ExercisePageType> = ({ exercises }) => {
       {completed ? (
         <WorkoutCompleted totalDuration={0} />
       ) : prepared ? (
-        <ExerciseInner
-          title={exercises[counter]?.title}
-          time={time}
-          duration={exercises[counter].duration}
-          photo={exercises[counter]?.photo}
-          videoLink={exercises[counter]?.video}
-        />
+        <>
+          <ExerciseInner
+            title={exercises[counter].title}
+            time={time}
+            duration={exercises[counter].duration}
+            photo={exercises[counter].photo}
+            videoLink={exercises[counter].video}
+            ifPlaying={ifPlaying}
+          />
+          <footer>
+            {ifPlaying ? (
+              <img src={PauseImg} alt="PauseImg" onClick={changeButton} />
+            ) : (
+              <img src={PlayImg} alt="PlayImg" onClick={changeButton} />
+            )}
+          </footer>
+        </>
       ) : (
         <PreparationInner
           time={time}

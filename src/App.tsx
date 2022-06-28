@@ -8,15 +8,12 @@ import { IWorkoutPart, IExercise } from "./interfaces";
 
 import MainPage from "./pages/MainPage";
 import ExercisePage from "./pages/ExercisePage";
+import ErrorPage from "./pages/ErrorPage";
 
 const App: React.FC = () => {
-  // const [error, setError] = useState<any>(null);
+  const [error, setError] = useState<any>(null);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const [items, setItems] = useState<IWorkoutPart>();
-
-  // if (isLoaded) {
-  //   console.log(items);
-  // }
 
   const createExercisesList = (elem: IWorkoutPart | undefined) => {
     const exerciseList: IExercise[] = [];
@@ -46,25 +43,30 @@ const App: React.FC = () => {
         (result) => {
           setIsLoaded(true);
           setItems(result.data);
-          // createExercisesList(items);
         },
 
-        // (error) => {
-        //   setIsLoaded(true);
-        //   setError(error);
-        // },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        },
       );
   }, []);
 
   return { isLoaded } ? (
     <div className="wrapper">
       <Routes>
-        <Route path="/" element={<MainPage elements={items} />} />
-        <Route
-          path="/exercise"
-          element={<ExercisePage exercises={createExercisesList(items)} />}
-        />
-        <Route path="*" element={<div>Nothing</div>} />
+        {error ? (
+          <Route path="/error" element={<ErrorPage />} />
+        ) : (
+          <>
+            <Route path="/" element={<MainPage elements={items} />} />
+            <Route
+              path="/exercise"
+              element={<ExercisePage exercises={createExercisesList(items)} />}
+            />
+            <Route path="*" element={<div>Nothing</div>} />
+          </>
+        )}
       </Routes>
     </div>
   ) : (

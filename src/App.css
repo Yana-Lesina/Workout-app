@@ -156,6 +156,9 @@ circle.exercise-timer {
 circle.get-ready-timer {
   stroke: rgba(29, 233, 182, 1);
 }
+circle.circle-background-line {
+  stroke: #eeeeee;
+}
 
 .timer {
   margin: 0;
@@ -195,6 +198,21 @@ circle.get-ready-timer {
 div.result-message {
   text-align: center;
   margin: auto;
+}
+
+footer {
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  border-top: solid 8px #eeeeee;
+  background: #ffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+footer > img {
+  cursor: pointer;
 }
 
 /* Adaptive ========================================*/

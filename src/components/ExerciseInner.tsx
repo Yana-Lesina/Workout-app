@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Timer from "./Timer";
 import BackImg from "../images/back-img.svg";
 import ForwardImg from "../images/forward-img.svg";
@@ -9,6 +9,7 @@ type ExerciseInnerType = {
   duration: number;
   photo: string;
   videoLink: string;
+  ifPlaying: boolean;
 };
 
 const ExerciseInner: React.FC<ExerciseInnerType> = ({
@@ -17,7 +18,22 @@ const ExerciseInner: React.FC<ExerciseInnerType> = ({
   duration,
   photo,
   videoLink,
+  ifPlaying,
 }) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const handleVideoPlay = () => {
+    if (ifPlaying && videoRef.current !== null) {
+      videoRef.current?.play();
+    } else if (!ifPlaying && videoRef.current !== null) {
+      videoRef.current?.pause();
+    }
+  };
+
+  useEffect(() => {
+    console.log("handleVideoPlay");
+    handleVideoPlay();
+  }, [ifPlaying]);
+
   return (
     <>
       <h2 className="current-exercise-title">{title}</h2>
@@ -35,6 +51,7 @@ const ExerciseInner: React.FC<ExerciseInnerType> = ({
       <div>
         <video
           id="video-player"
+          ref={videoRef}
           controls
           autoPlay
           loop
