@@ -1,4 +1,4 @@
-import "../App.css";
+import "../styles/App.scss";
 import React from "react";
 
 const ErrorPage: React.FC = () => {

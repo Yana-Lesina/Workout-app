@@ -1,13 +1,10 @@
-import "../App.css";
-import React, { useState, useEffect, useRef } from "react";
+import "../styles/App.scss";
+import React, { useState, useEffect } from "react";
 
 import { IExercise } from "../interfaces";
 import { WorkoutCompleted } from "../components/WorkoutCompleted";
 import ExerciseInner from "../components/ExerciseInner";
 import PreparationInner from "../components/PreparationInner";
-
-import PlayImg from "../images/play.svg";
-import PauseImg from "../images/pause.svg";
 
 // repeat type for MainPageType
 // if nothing changes - create 1 Interface
@@ -21,11 +18,12 @@ const ExercisePage: React.FC<ExercisePageType> = ({ exercises }) => {
   const [completed, setCompleted] = useState<boolean>(false);
   const [counter, setCounter] = useState<number>(0);
   const [ifPlaying, setIfPlaying] = useState<boolean>(true);
+
+  let timeoutID: NodeJS.Timeout | undefined;
+
   const changeButton = () => {
     setIfPlaying(!ifPlaying);
   };
-
-  let timeoutID: NodeJS.Timeout | undefined;
 
   useEffect(() => {
     if (!ifPlaying) {
@@ -73,14 +71,8 @@ const ExercisePage: React.FC<ExercisePageType> = ({ exercises }) => {
             photo={exercises[counter].photo}
             videoLink={exercises[counter].video}
             ifPlaying={ifPlaying}
+            onClick={changeButton}
           />
-          <footer>
-            {ifPlaying ? (
-              <img src={PauseImg} alt="PauseImg" onClick={changeButton} />
-            ) : (
-              <img src={PlayImg} alt="PlayImg" onClick={changeButton} />
-            )}
-          </footer>
         </>
       ) : (
         <PreparationInner

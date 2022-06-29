@@ -2,6 +2,9 @@ import React, { useEffect, useRef } from "react";
 import Timer from "./Timer";
 import BackImg from "../images/back-img.svg";
 import ForwardImg from "../images/forward-img.svg";
+import ArrowButton from "./ArrowButton";
+import PlayImg from "../images/play.svg";
+import PauseImg from "../images/pause.svg";
 
 type ExerciseInnerType = {
   title: string;
@@ -10,6 +13,7 @@ type ExerciseInnerType = {
   photo: string;
   videoLink: string;
   ifPlaying: boolean;
+  onClick: any;
 };
 
 const ExerciseInner: React.FC<ExerciseInnerType> = ({
@@ -19,6 +23,7 @@ const ExerciseInner: React.FC<ExerciseInnerType> = ({
   photo,
   videoLink,
   ifPlaying,
+  onClick,
 }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const handleVideoPlay = () => {
@@ -30,7 +35,6 @@ const ExerciseInner: React.FC<ExerciseInnerType> = ({
   };
 
   useEffect(() => {
-    console.log("handleVideoPlay");
     handleVideoPlay();
   }, [ifPlaying]);
 
@@ -39,13 +43,9 @@ const ExerciseInner: React.FC<ExerciseInnerType> = ({
       <h2 className="current-exercise-title">{title}</h2>
 
       <div className="timer-wrapper">
-        <div className="back-button">
-          <img src={BackImg} alt="back-img" className="back-img" />
-        </div>
+        <ArrowButton imgLink={BackImg} />
         <Timer className={"exercise-timer"} time={time} duration={duration} />
-        <div className="forward-button">
-          <img src={ForwardImg} alt="forward-img" className="forward-img" />
-        </div>
+        <ArrowButton imgLink={ForwardImg} />
       </div>
 
       <div>
@@ -59,6 +59,13 @@ const ExerciseInner: React.FC<ExerciseInnerType> = ({
           src={videoLink}
         ></video>
       </div>
+      <footer>
+        {ifPlaying ? (
+          <img src={PauseImg} alt="PauseImg" onClick={onClick} />
+        ) : (
+          <img src={PlayImg} alt="PlayImg" onClick={onClick} />
+        )}
+      </footer>
     </>
   );
 };

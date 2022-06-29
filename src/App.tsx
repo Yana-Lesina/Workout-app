@@ -1,11 +1,9 @@
 /*eslint no-constant-condition: "warn"*/
-import "./App.css";
 
+import "./styles/App.scss";
 import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-
 import { IWorkoutPart, IExercise } from "./interfaces";
-
 import MainPage from "./pages/MainPage";
 import ExercisePage from "./pages/ExercisePage";
 import ErrorPage from "./pages/ErrorPage";

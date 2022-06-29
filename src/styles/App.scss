@@ -1,0 +1,194 @@
+@import "Section.scss";
+@import "Exercise.scss";
+@import "Adaptive.scss";
+
+@font-face {
+  font-family: "SF Pro Display";
+  src: url("../fonts/SFPRODISPLAYMEDIUM.OTF");
+  font-weight: 600;
+}
+@font-face {
+  font-family: "SF Pro Text";
+  src: url("../fonts/SF-Pro-Text-Medium.otf");
+  font-weight: 400;
+}
+h1 {
+  font-size: 56px;
+}
+
+h2 {
+  font-family: "SF Pro Display", sans-serif;
+  font-size: 32px;
+  margin-top: 5px;
+  margin-bottom: 0;
+}
+
+h3 {
+  font-size: 24px;
+}
+
+h4 {
+  font-size: 20px;
+}
+
+h6 {
+  margin-top: 4px;
+  margin-bottom: 24px;
+}
+
+.current-exercise-title,
+.get-ready-title {
+  text-align: center;
+}
+
+// App -------------------------------------
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5%;
+  width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: "SF Pro Text", sans-serif;
+}
+// Main Page -------------------------------
+.img-container {
+  width: 100%;
+  align-items: center;
+  .intro-img {
+    width: 100%;
+  }
+}
+
+// ActionButton component----------------------------------------
+button.action-button {
+  position: sticky;
+  bottom: 10%;
+  height: 56px;
+  left: 0%;
+  right: 0%;
+
+  border: 0px;
+  border-radius: 8px;
+  background: #aa00ff;
+  box-shadow: 0px 16px 32px rgba(170, 0, 255, 0.24);
+  color: #ffffff;
+  cursor: pointer;
+
+  vertical-align: middle;
+  user-select: none;
+}
+
+button.action-button:focus,
+button.action-button:hover {
+  outline: none;
+  box-shadow: 0 0 10px 5px rgba(170, 0, 255, 0.4);
+}
+button.action-button:active {
+  background: #69009e;
+}
+
+a {
+  width: 100%;
+  height: 100%;
+  color: #ffffff;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+  margin-top: 15px;
+}
+
+// PreparationInner component------------------------------------
+.preview-img-container {
+  width: 800px;
+  height: 450px;
+  .preview-img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+// ExerciseInner component------------------------------------------
+.timer-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#video-player {
+  width: 100%;
+  height: auto;
+}
+
+footer {
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  border-top: solid 8px #eeeeee;
+  background: #ffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  img {
+    cursor: pointer;
+    user-select: none;
+  }
+}
+
+//WorkoutCompleted component-----------------------------------
+.completed-img-container {
+  margin: auto;
+  .completed-img {
+    width: 100%;
+  }
+}
+h1.completed-title {
+  text-align: center;
+}
+div.result-message {
+  text-align: center;
+  margin: auto;
+}
+
+// ArrowButton component----------------------------------
+.arrow-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #aa00ff;
+  border-radius: 8px;
+  width: 74px;
+  height: 48px;
+  cursor: pointer;
+  user-select: none;
+}
+
+// Timer component ----------------------------------------
+.timer-sector {
+  position: relative;
+  .timer {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+  circle.circle-progress-line {
+    transform: "rotate(-90 ) translate(-100 0)";
+  }
+
+  circle.exercise-timer {
+    stroke: rgba(255, 64, 129, 1);
+  }
+  circle.get-ready-timer {
+    stroke: rgba(29, 233, 182, 1);
+  }
+  circle.circle-background-line {
+    stroke: #eeeeee;
+  }
+}

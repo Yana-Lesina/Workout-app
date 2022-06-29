@@ -1,0 +1,21 @@
+@media (max-width: 800px) {
+  .wrapper {
+    width: 100%;
+  }
+
+  button.action-button {
+    position: sticky;
+    bottom: 2%;
+    width: 90%;
+    margin: auto;
+  }
+
+  .container,
+  .headers-container {
+    margin: auto 5% auto 5%;
+  }
+
+  .preview-img-container {
+    width: 100%;
+  }
+}

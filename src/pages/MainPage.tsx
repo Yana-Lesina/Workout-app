@@ -1,4 +1,4 @@
-import "../App.css";
+import "../styles/App.scss";
 import React from "react";
 import introImg from "../images/intro-img.png";
 import Container from "../components/Container";

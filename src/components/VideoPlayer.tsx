@@ -1,4 +1,3 @@
-import "../App.css";
 import React from "react";
 
 const VideoPlayer: React.FC = () => {

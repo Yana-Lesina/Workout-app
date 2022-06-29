@@ -1,0 +1,17 @@
+.exercise-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  .exercise-img-wrapper {
+    width: 15%;
+    .exercise-img {
+      width: 100%;
+
+      border-radius: 10px;
+    }
+  }
+  .exercise-info-wrapper {
+    padding: 16px;
+  }
+}
