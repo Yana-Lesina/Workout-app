@@ -10,7 +10,7 @@ import ErrorPage from "./pages/ErrorPage";
 import { url } from "./forEnv";
 
 const App: React.FC = () => {
-  const [error, setError] = useState<any>(null);
+  const [error, setError] = useState<Error | null>(null);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const [items, setItems] = useState<IWorkoutPart>();
 
