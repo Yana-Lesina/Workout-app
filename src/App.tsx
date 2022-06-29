@@ -7,6 +7,7 @@ import { IWorkoutPart, IExercise } from "./interfaces";
 import MainPage from "./pages/MainPage";
 import ExercisePage from "./pages/ExercisePage";
 import ErrorPage from "./pages/ErrorPage";
+import { url } from "./forEnv";
 
 const App: React.FC = () => {
   const [error, setError] = useState<any>(null);
@@ -26,9 +27,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const getServerData = async () => {
-      const serverData = await fetch(
-        "https://rnd.kilohealthservices.com/api/quizzes/workouts?api_token=4bfcebd0-0216-4572-bdb7-939e9600b9b2",
-      );
+      const serverData = await fetch(url);
       return serverData;
     };
 
