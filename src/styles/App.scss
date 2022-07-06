@@ -4,12 +4,12 @@
 
 @font-face {
   font-family: "SF Pro Display";
-  src: url("../fonts/SFPRODISPLAYMEDIUM.OTF");
+  src: url("../assets/fonts/SFPRODISPLAYMEDIUM.OTF");
   font-weight: 600;
 }
 @font-face {
   font-family: "SF Pro Text";
-  src: url("../fonts/SF-Pro-Text-Medium.otf");
+  src: url("../assets/fonts/SF-Pro-Text-Medium.otf");
   font-weight: 400;
 }
 h1 {
@@ -100,7 +100,7 @@ a {
 }
 
 // PreparationInner component------------------------------------
-.preview-img-container {
+.exercise-inner {
   width: 800px;
   height: 450px;
   .preview-img {
@@ -139,6 +139,10 @@ footer {
   }
 }
 
+footer:focus-within {
+  border-top: solid 8px #eeeeee;
+}
+
 //WorkoutCompleted component-----------------------------------
 .completed-img-container {
   margin: auto;
@@ -155,21 +159,32 @@ div.result-message {
 }
 
 // ArrowButton component----------------------------------
-.arrow-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid #aa00ff;
-  border-radius: 8px;
+.arrow-button-wrapper {
   width: 74px;
   height: 48px;
-  cursor: pointer;
-  user-select: none;
+  .arrow-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #aa00ff;
+    border-radius: 8px;
+    width: 74px;
+    height: 48px;
+
+    cursor: pointer;
+    user-select: none;
+  }
+  .extreme-element {
+    display: none;
+  }
 }
 
 // Timer component ----------------------------------------
 .timer-sector {
   position: relative;
+  margin-left: auto;
+  margin-right: auto;
+
   .timer {
     margin: 0;
     position: absolute;

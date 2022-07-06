@@ -1,6 +1,6 @@
 import "../styles/App.scss";
 import React from "react";
-import introImg from "../images/intro-img.png";
+import introImg from "../assets/images/intro-img.png";
 import Container from "../components/Container";
 import StartButton from "../components/Button";
 import { IWorkoutPart } from "../interfaces";

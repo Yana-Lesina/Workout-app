@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from "react";
 import Timer from "./Timer";
-import BackImg from "../images/back-img.svg";
-import ForwardImg from "../images/forward-img.svg";
+import BackImg from "../assets/images/back-img.svg";
+import ForwardImg from "../assets/images/forward-img.svg";
 import ArrowButton from "./ArrowButton";
-import PlayImg from "../images/play.svg";
-import PauseImg from "../images/pause.svg";
+import PlayImg from "../assets/images/play.svg";
+import PauseImg from "../assets/images/pause.svg";
 
 type ExerciseInnerType = {
   title: string;
@@ -12,8 +12,9 @@ type ExerciseInnerType = {
   duration: number;
   photo: string;
   videoLink: string;
-  ifPlaying: boolean;
+
   onClick: any;
+  switchToPage: any;
 };
 
 const ExerciseInner: React.FC<ExerciseInnerType> = ({
@@ -22,30 +23,37 @@ const ExerciseInner: React.FC<ExerciseInnerType> = ({
   duration,
   photo,
   videoLink,
-  ifPlaying,
   onClick,
+  switchToPage,
 }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [ifPaused, setIfPaused] = React.useState(true);
+
   const handleVideoPlay = () => {
-    if (ifPlaying && videoRef.current !== null) {
-      videoRef.current?.play();
-    } else if (!ifPlaying && videoRef.current !== null) {
-      videoRef.current?.pause();
+    if (ifPaused && videoRef.current !== null) {
+      videoRef.current.play();
+    } else if (!ifPaused && videoRef.current !== null) {
+      videoRef.current.pause();
     }
   };
 
   useEffect(() => {
     handleVideoPlay();
-  }, [ifPlaying]);
+  }, [ifPaused]);
 
   return (
     <>
       <h2 className="current-exercise-title">{title}</h2>
 
       <div className="timer-wrapper">
-        <ArrowButton imgLink={BackImg} />
+        <ArrowButton
+          imgLink={BackImg}
+          onClick={() => {
+            switchToPage;
+          }}
+        />
         <Timer className={"exercise-timer"} time={time} duration={duration} />
-        <ArrowButton imgLink={ForwardImg} />
+        <ArrowButton imgLink={ForwardImg} onClick={switchToPage} />
       </div>
 
       <div>
@@ -60,7 +68,7 @@ const ExerciseInner: React.FC<ExerciseInnerType> = ({
         ></video>
       </div>
       <footer>
-        {ifPlaying ? (
+        {ifPaused ? (
           <img src={PauseImg} alt="PauseImg" onClick={onClick} />
         ) : (
           <img src={PlayImg} alt="PlayImg" onClick={onClick} />

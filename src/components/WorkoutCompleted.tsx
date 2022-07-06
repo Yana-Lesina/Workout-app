@@ -1,6 +1,6 @@
 import React from "react";
 import SaveButton from "../components/Button";
-import CompletedImage from "../images/completed-img.svg";
+import CompletedImage from "../assets/images/completed-img.svg";
 
 type WorkoutCompletedType = {
   totalDuration: number;
