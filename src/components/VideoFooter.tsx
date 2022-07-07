@@ -22,21 +22,9 @@ const VideoFooter: React.FC<VideoFooterType> = ({
   return (
     <footer ref={buttonRef} tabIndex={0} onKeyPress={onKeyPress}>
       {!ifPaused ? (
-        <img
-          src={PauseImg}
-          alt="PauseImg"
-          onClick={() => {
-            onClick();
-          }}
-        />
+        <img src={PauseImg} alt="PauseImg" onClick={onClick} />
       ) : (
-        <img
-          src={PlayImg}
-          alt="PlayImg"
-          onClick={() => {
-            onClick();
-          }}
-        />
+        <img src={PlayImg} alt="PlayImg" onClick={onClick} />
       )}
     </footer>
   );

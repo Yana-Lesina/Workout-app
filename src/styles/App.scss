@@ -85,7 +85,7 @@ button.action-button:hover {
   box-shadow: 0 0 10px 5px rgba(170, 0, 255, 0.4);
 }
 button.action-button:active {
-  background: #69009e;
+  filter: brightness(85%);
 }
 
 a {
@@ -100,12 +100,55 @@ a {
 }
 
 // PreparationInner component------------------------------------
+
 .exercise-inner {
+  position: relative;
   width: 800px;
   height: 450px;
+  margin-top: 1.5rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
   .preview-img {
+    width: auto;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .pause-informer {
+    z-index: 10;
+    position: absolute;
+    backdrop-filter: blur(8px);
+    // background: #212121;
+    // opacity: 0.64;
     width: 100%;
-    height: auto;
+    height: 100%;
+    color: #212121;
+
+    .leave-workout-button {
+      width: 256px;
+      height: 48px;
+      margin-left: auto;
+      margin-right: auto;
+      border: 2px solid #212121;
+      border-radius: 8px;
+      color: #212121;
+      cursor: pointer;
+      user-select: none;
+
+      padding-right: auto;
+      padding-left: auto;
+    }
+    .leave-workout-button:hover {
+      background-color: #a8a8a859;
+    }
+    .leave-workout-button:active {
+      filter: brightness(85%);
+    }
   }
 }
 
@@ -119,12 +162,14 @@ a {
   margin-bottom: 20px;
 }
 
-#video-player {
+video#video-player {
   width: 100%;
   height: auto;
+  object-fit: cover;
 }
 
 footer {
+  z-index: 20;
   position: sticky;
   bottom: 0;
   width: 100%;
@@ -139,9 +184,9 @@ footer {
   }
 }
 
-footer:focus-within {
-  border-top: solid 8px #eeeeee;
-}
+// footer:focus-within {
+//   border-top: solid 8px #eeeeee;
+// }
 
 //WorkoutCompleted component-----------------------------------
 .completed-img-container {
@@ -156,6 +201,12 @@ h1.completed-title {
 div.result-message {
   text-align: center;
   margin: auto;
+}
+
+.goToHomepage-button {
+  width: 7rem;
+  height: 1rem;
+  cursor: pointer;
 }
 
 // ArrowButton component----------------------------------

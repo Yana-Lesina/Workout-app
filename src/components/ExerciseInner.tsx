@@ -43,7 +43,7 @@ const ExerciseInner: React.FC<ExerciseInnerType> = ({
 
   return (
     <>
-      <h2 className="current-exercise-title">{title}</h2>
+      {/* <h2 className="current-exercise-title">{title}</h2>
 
       <div className="timer-wrapper">
         <ArrowButton
@@ -73,7 +73,7 @@ const ExerciseInner: React.FC<ExerciseInnerType> = ({
         ) : (
           <img src={PlayImg} alt="PlayImg" onClick={onClick} />
         )}
-      </footer>
+      </footer> */}
     </>
   );
 };

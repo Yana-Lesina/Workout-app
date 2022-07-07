@@ -2,17 +2,44 @@ import React from "react";
 
 type TimerType = {
   className: string;
-  time: number;
   duration: number;
+  ifPaused: boolean;
+  switchFunc: any;
 };
 
-const Timer: React.FC<TimerType> = ({ className, time, duration }) => {
+const Timer: React.FC<TimerType> = ({
+  className,
+  duration,
+  ifPaused,
+  switchFunc,
+}) => {
+  const [time, setTime] = React.useState<number>(duration);
   const size = 128;
   const radius = (size * 0.92) / 2;
   const progress = (time / duration) * 100;
   const circumference = 2 * 3.14 * radius;
   const dashOffsetNum = ((100 - progress) / 100) * circumference;
-  // const speed = ((2 * 3.14 * radius) / duration) ^ 2;
+  let timeoutID: NodeJS.Timeout | undefined;
+
+  React.useEffect(() => {
+    setTime(duration);
+  }, [duration]);
+
+  React.useEffect(() => {
+    if (ifPaused || !time) {
+      clearTimeout(timeoutID);
+      if (!time) {
+        switchFunc();
+      }
+    } else {
+      if (time >= 1) {
+        timeoutID = setTimeout(() => {
+          setTime(time - 1);
+        }, 1000);
+      }
+    }
+    return () => clearTimeout(timeoutID);
+  }, [ifPaused, time]);
 
   return (
     <div className={"timer-sector "}>

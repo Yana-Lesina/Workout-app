@@ -19,7 +19,7 @@ const PreparationInner: React.FC<PreparationInnerType> = ({
 }) => {
   return (
     <>
-      <h2 className="get-ready-title">Get Ready</h2>
+      {/* <h2 className="get-ready-title">Get Ready</h2>
 
       <div className="timer-wrapper">
         <ArrowButton imgLink={BackImg} onClick={switchToPage} />
@@ -29,7 +29,7 @@ const PreparationInner: React.FC<PreparationInnerType> = ({
 
       <div className="preview-img-container">
         <img src={photo} alt="preview image" className="preview-img" />
-      </div>
+      </div> */}
     </>
   );
 };

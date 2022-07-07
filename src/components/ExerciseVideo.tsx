@@ -1,4 +1,5 @@
 import React from "react";
+import PauseInformer from "./PauseInformer";
 
 type ExerciseVideoType = {
   photo: string;
@@ -13,6 +14,19 @@ const ExerciseVideo: React.FC<ExerciseVideoType> = ({
 }) => {
   const videoRef = React.useRef<HTMLVideoElement>(null);
 
+  // async function playVid() {
+  //   if (video.paused && !isPlaying) {
+  //     return video.play();
+  //   }
+  // }
+
+  // // Pause video function
+  // function pauseVid() {
+  //   if (!video.paused && isPlaying) {
+  //     video.pause();
+  //   }
+  // }
+
   const handleVideoPlay = () => {
     if (!ifPaused && videoRef.current !== null) {
       videoRef.current.play();
@@ -21,21 +35,27 @@ const ExerciseVideo: React.FC<ExerciseVideoType> = ({
     }
   };
 
+  // if (videoRef.current !== null) {
+  //   // On video playing toggle values
+  //   videoRef.current.onplaying = function () {
+  //     ifPaused = false;
+  //   };
+
+  //   // On video pause toggle values
+  //   videoRef.current.onpause = function () {
+  //     ifPaused = true;
+  //   };
+  // }
+
   React.useEffect(() => {
     handleVideoPlay();
   }, [ifPaused]);
 
   return (
     <>
-      <video
-        id="video-player"
-        ref={videoRef}
-        controls
-        autoPlay
-        loop
-        poster={photo}
-        src={videoLink}
-      ></video>
+      {ifPaused && <PauseInformer />}
+
+      <video id="video-player" ref={videoRef} autoPlay loop src={videoLink} />
     </>
   );
 };

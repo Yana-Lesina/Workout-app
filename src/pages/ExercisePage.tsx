@@ -1,15 +1,17 @@
 import "../styles/App.scss";
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 import { IExercise } from "../interfaces";
 import { WorkoutCompleted } from "../components/WorkoutCompleted";
 import BackImg from "../assets/images/back-img.svg";
 import ForwardImg from "../assets/images/forward-img.svg";
+import goToHomepage from "../assets/images/goToHomepage.svg";
 import ArrowButton from "../components/ArrowButton";
 import Timer from "../components/Timer";
 import PrepareImage from "../components/PrepareImage";
 import ExerciseVideo from "../components/ExerciseVideo";
 import VideoFooter from "../components/VideoFooter";
+import { Link } from "react-router-dom";
 
 // repeat type for MainPageType
 // if nothing changes - create 1 Interface
@@ -18,20 +20,16 @@ type ExercisePageType = {
 };
 
 const ExercisePage: React.FC<ExercisePageType> = ({ exercises }) => {
-  const [time, setTime] = React.useState<number>(5);
-  const [prepared, setPrepared] = useState<boolean>(false);
-  const [completed, setCompleted] = useState<boolean>(false);
-  const [counter, setCounter] = useState<number>(0);
+  const [prepared, setPrepared] = React.useState<boolean>(false);
+  const [completed, setCompleted] = React.useState<boolean>(false);
+  const [counter, setCounter] = React.useState<number>(0);
   const [ifPaused, setIfPaused] = React.useState(false);
-  let timeoutID: NodeJS.Timeout | undefined;
 
   const switchToExercise = () => {
     setPrepared(true);
-    setTime(exercises[counter].duration);
   };
 
   const switchToGetReady = (direction: -1 | 1) => {
-    setTime(5);
     if (
       (counter === 0 && direction === 1) ||
       (counter > 0 && counter + 1 < exercises.length) ||
@@ -43,34 +41,21 @@ const ExercisePage: React.FC<ExercisePageType> = ({ exercises }) => {
     setIfPaused(false);
   };
 
-  useEffect(() => {
-    if (ifPaused) {
-      clearTimeout(timeoutID);
-    } else {
-      if (time >= 1) {
-        timeoutID = setTimeout(() => {
-          setTime(time - 1);
-        }, 1000);
-      }
-    }
-    return () => clearTimeout(timeoutID);
-  }, [ifPaused, time]);
-
-  useEffect(() => {
+  const switchFunc = () => {
     if (exercises.length > counter + 1) {
       // get ready -> exercise
-      if (!time && !prepared) {
+      if (!prepared) {
         switchToExercise();
       }
       // exercise -> get ready
-      if (!time && prepared) {
+      if (prepared) {
         switchToGetReady(1);
       }
       // last exercise -> Workout Completed!
-    } else if (exercises.length === counter + 1 && !time) {
+    } else if (exercises.length === counter + 1) {
       setCompleted(true);
     }
-  }, [time, counter, prepared]);
+  };
 
   return (
     <>
@@ -78,6 +63,12 @@ const ExercisePage: React.FC<ExercisePageType> = ({ exercises }) => {
         <WorkoutCompleted totalDuration={0} />
       ) : (
         <>
+          <Link to="/">
+            <div className="goToHomepage-button">
+              <img src={goToHomepage} alt="goToHomepage" />
+            </div>
+          </Link>
+
           <h2 className="current-exercise-title">
             {!prepared ? "Get ready" : exercises[counter].title}
           </h2>
@@ -95,8 +86,9 @@ const ExercisePage: React.FC<ExercisePageType> = ({ exercises }) => {
 
             <Timer
               className={!prepared ? "get-ready-timer" : "exercise-timer"}
-              time={time}
               duration={!prepared ? 5 : exercises[counter].duration}
+              ifPaused={ifPaused}
+              switchFunc={switchFunc}
             />
 
             <ArrowButton
@@ -113,7 +105,7 @@ const ExercisePage: React.FC<ExercisePageType> = ({ exercises }) => {
           </div>
           <div className="exercise-inner">
             {!prepared ? (
-              <PrepareImage photo={exercises[counter].photo} />
+              <PrepareImage photo={exercises[counter]?.photo} />
             ) : (
               <>
                 <ExerciseVideo
@@ -126,7 +118,7 @@ const ExercisePage: React.FC<ExercisePageType> = ({ exercises }) => {
                   onClick={() => {
                     setIfPaused(!ifPaused);
                   }}
-                  onKeyPress={(event: { key: string }) => {
+                  onKeyPress={(event: any) => {
                     if (event.key === " " || event.key === "Enter") {
                       setIfPaused(!ifPaused);
                     }
