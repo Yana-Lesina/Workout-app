@@ -11,11 +11,12 @@ const PauseInformer: React.FC = () => {
         <div className="pause-text">
           Press “Play button” or “Space bar” to continue
         </div>
-        <Link to="/">
-          <div className="leave-workout-button">
-            <span className="leave-workout-button-text">Leave Workout</span>
-          </div>
-        </Link>
+
+        <div className="leave-workout-button">
+          <Link to="/" className="leave-workout-button-li">
+            Leave Workout
+          </Link>
+        </div>
       </div>
     </>
   );

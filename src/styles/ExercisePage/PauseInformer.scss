@@ -10,6 +10,7 @@
   .leave-workout-button {
     width: 256px;
     height: 48px;
+    margin-top: 2rem;
     margin-left: auto;
     margin-right: auto;
     border: 2px solid #212121;
@@ -19,10 +20,10 @@
     cursor: pointer;
     user-select: none;
 
-    padding-right: auto;
-    padding-left: auto;
-    .leave-workout-button-text {
+    .leave-workout-button-li {
       display: block;
+      color: #000;
+      text-decoration: none;
       position: relative;
       top: 50%;
       margin-top: -0.625em;
