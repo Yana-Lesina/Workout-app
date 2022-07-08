@@ -7,9 +7,10 @@ import { IWorkoutPart } from "../interfaces";
 
 type MainPageType = {
   elements: IWorkoutPart | undefined;
+  ifCompleted: boolean;
 };
 
-const MainPage: React.FC<MainPageType> = ({ elements }) => {
+const MainPage: React.FC<MainPageType> = ({ elements, ifCompleted }) => {
   return (
     <>
       <div className="img-container">
@@ -25,7 +26,7 @@ const MainPage: React.FC<MainPageType> = ({ elements }) => {
       <StartButton
         styles="action-button"
         link="/exercise"
-        innerText="Start Workout"
+        innerText={ifCompleted ? "Resume" : "Start Workout"}
       />
     </>
   );

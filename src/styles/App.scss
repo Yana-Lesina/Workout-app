@@ -45,7 +45,9 @@ h6 {
 .wrapper {
   display: flex;
   flex-direction: column;
-  margin-top: 5%;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+
   width: 800px;
   margin-left: auto;
   margin-right: auto;
@@ -62,8 +64,11 @@ h6 {
 
 // ActionButton component----------------------------------------
 button.action-button {
+  font-size: 16px;
+  font-weight: 600;
+
   position: sticky;
-  bottom: 10%;
+  bottom: 2rem;
   height: 56px;
   left: 0%;
   right: 0%;
@@ -77,12 +82,13 @@ button.action-button {
 
   vertical-align: middle;
   user-select: none;
+  z-index: 20;
 }
 
 button.action-button:focus,
 button.action-button:hover {
   outline: none;
-  box-shadow: 0 0 10px 5px rgba(170, 0, 255, 0.4);
+  box-shadow: 0 0 20px 5px rgba(170, 0, 255, 0.4);
 }
 button.action-button:active {
   filter: brightness(85%);
@@ -104,8 +110,7 @@ a {
 .exercise-inner {
   position: relative;
   width: 800px;
-  height: 450px;
-  margin-top: 1.5rem;
+  height: auto;
 
   display: flex;
   flex-direction: column;
@@ -122,6 +127,12 @@ a {
   .pause-informer {
     z-index: 10;
     position: absolute;
+    // top: 0;
+    // bottom: 0;
+    // left: 0;
+    // right: 0;
+    // margin: auto;
+    padding-top: 10rem;
     backdrop-filter: blur(8px);
     // background: #212121;
     // opacity: 0.64;
@@ -137,11 +148,18 @@ a {
       border: 2px solid #212121;
       border-radius: 8px;
       color: #212121;
+      background-color: #ffffff86;
       cursor: pointer;
       user-select: none;
 
       padding-right: auto;
       padding-left: auto;
+      .leave-workout-button-text {
+        display: block;
+        position: relative;
+        top: 50%;
+        margin-top: -0.625em;
+      }
     }
     .leave-workout-button:hover {
       background-color: #a8a8a859;
@@ -257,4 +275,31 @@ div.result-message {
   circle.circle-background-line {
     stroke: #eeeeee;
   }
+}
+
+.exercise-title.finished-exercise {
+  color: rgba(29, 233, 182, 1);
+}
+.current-exercise-title.finished-exercise.exercise-done--clue {
+  color: rgba(255, 64, 129, 1);
+}
+
+.exercise-img-wrapper {
+  position: relative;
+}
+
+.completed-image {
+  display: none;
+}
+.completed-image.finished-exercise {
+  display: block;
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  z-index: 5;
 }

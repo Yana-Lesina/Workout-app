@@ -4,14 +4,14 @@ type TimerType = {
   className: string;
   duration: number;
   ifPaused: boolean;
-  switchFunc: any;
+  handleRunOut: any;
 };
 
 const Timer: React.FC<TimerType> = ({
   className,
   duration,
   ifPaused,
-  switchFunc,
+  handleRunOut,
 }) => {
   const [time, setTime] = React.useState<number>(duration);
   const size = 128;
@@ -29,7 +29,7 @@ const Timer: React.FC<TimerType> = ({
     if (ifPaused || !time) {
       clearTimeout(timeoutID);
       if (!time) {
-        switchFunc();
+        handleRunOut(false);
       }
     } else {
       if (time >= 1) {

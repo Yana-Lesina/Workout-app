@@ -5,6 +5,7 @@ export type IExercise = {
   video: string;
   photo: string;
   description: string;
+  finished?: true | undefined;
 };
 
 export type IQuestion = {
@@ -21,11 +22,5 @@ export type IWorkoutPart = {
 
 export type Imuscle_group = {
   name: string;
-  photo: string;
-};
-
-export type ExerciseIntro = {
-  title: string;
-  duration: number;
   photo: string;
 };

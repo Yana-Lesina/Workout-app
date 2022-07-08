@@ -21,7 +21,7 @@ export const WorkoutCompleted: React.FC<WorkoutCompletedType> = ({
       <h1 className="completed-title">Workout completed!</h1>
       <div className="result-message">
         <h4>Nice job. You’re done. Here’s the workout summary.</h4>
-        <h6>Minutes</h6>
+        <h4>Minutes</h4>
         <h3>{totalDuration}</h3>
       </div>
       <SaveButton styles="action-button" link="/" innerText="Save & Continue" />

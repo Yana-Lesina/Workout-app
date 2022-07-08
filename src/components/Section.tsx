@@ -16,6 +16,7 @@ const Section: React.FC<IQuestion> = ({ title, exercises, muscle_group }) => {
               title={exercise.title}
               duration={exercise.duration}
               photo={exercise.photo}
+              className={exercise.finished ? "finished-exercise" : ""}
             />
           );
         })}
