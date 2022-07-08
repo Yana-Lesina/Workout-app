@@ -1,17 +1,19 @@
 import React from "react";
+import "../styles/Button.scss";
+
 import { Link } from "react-router-dom";
 
-interface IButton {
-  styles: string;
+type IButton = {
+  styles?: string;
   link: string;
   innerText: string;
-}
+};
 
 const Button: React.FC<IButton> = ({ styles, link, innerText }) => {
   return (
-    <button type="button" className={styles} autoFocus>
-      <Link to={link}>{innerText}</Link>
-    </button>
+    <Link to={link} className={`link-styles ${styles}`}>
+      {innerText}
+    </Link>
   );
 };
 

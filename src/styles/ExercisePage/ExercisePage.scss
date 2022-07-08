@@ -1,0 +1,22 @@
+.exercise-inner {
+  position: relative;
+  width: 800px;
+  height: auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  .exercise-title.finished-exercise {
+    color: rgba(29, 233, 182, 1);
+  }
+  .current-exercise-title.finished-exercise.exercise-done--clue {
+    color: rgba(255, 64, 129, 1);
+  }
+
+  // .exercise-img-wrapper {
+  //   position: relative;
+  // }
+}

@@ -1,15 +1,13 @@
 import React from "react";
 import PauseInformer from "./PauseInformer";
+import "../../styles/ExercisePage/VideoPlayer.scss";
 
-type ExerciseVideoType = {
+type VideoPlayerType = {
   videoLink: string;
   ifPaused: boolean;
 };
 
-const ExerciseVideo: React.FC<ExerciseVideoType> = ({
-  videoLink,
-  ifPaused,
-}) => {
+const VideoPlayer: React.FC<VideoPlayerType> = ({ videoLink, ifPaused }) => {
   const videoRef = React.useRef<HTMLVideoElement>(null);
 
   const handleVideoPlay = () => {
@@ -33,4 +31,4 @@ const ExerciseVideo: React.FC<ExerciseVideoType> = ({
   );
 };
 
-export default ExerciseVideo;
+export default VideoPlayer;

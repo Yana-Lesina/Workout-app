@@ -1,5 +1,7 @@
 import React from "react";
-import { IQuestion } from "../interfaces";
+import "../../styles/MainPage/Section.scss";
+
+import { IQuestion } from "../../interfaces";
 import Exercise from "./Exercise";
 
 const Section: React.FC<IQuestion> = ({ title, exercises, muscle_group }) => {

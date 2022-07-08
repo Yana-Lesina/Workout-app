@@ -1,0 +1,19 @@
+.completed-img-container {
+  margin: auto;
+  .completed-img {
+    width: 100%;
+  }
+}
+h1.completed-title {
+  text-align: center;
+}
+div.result-message {
+  text-align: center;
+  margin: auto;
+}
+
+.goToHomepage-button {
+  width: 7rem;
+  height: 1rem;
+  cursor: pointer;
+}

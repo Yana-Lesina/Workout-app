@@ -6,7 +6,7 @@ import { Routes, Route } from "react-router-dom";
 import { IWorkoutPart, IExercise } from "./interfaces";
 import MainPage from "./pages/MainPage";
 import ExercisePage from "./pages/ExercisePage";
-import { WorkoutCompleted } from "./components/WorkoutCompleted";
+import { WorkoutCompleted } from "./pages/WorkoutCompleted";
 import ErrorPage from "./pages/ErrorPage";
 import { url } from "./forEnv";
 
@@ -81,7 +81,10 @@ const App: React.FC = () => {
     <div className="wrapper">
       <Routes>
         {error ? (
-          <Route path="/error" element={<ErrorPage />} />
+          <Route
+            path="/error"
+            element={<ErrorPage errorMessage={error.message} />}
+          />
         ) : (
           <>
             <Route

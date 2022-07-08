@@ -1,0 +1,15 @@
+footer {
+  z-index: 20;
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  border-top: solid 8px #eeeeee;
+  background: #ffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  img {
+    cursor: pointer;
+    user-select: none;
+  }
+}

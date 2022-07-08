@@ -1,10 +1,11 @@
 import React from "react";
+import "../../styles/ExercisePage/Timer.scss";
 
 type TimerType = {
   className: string;
   duration: number;
   ifPaused: boolean;
-  handleRunOut: any;
+  handleRunOut?: any;
 };
 
 const Timer: React.FC<TimerType> = ({
@@ -29,7 +30,7 @@ const Timer: React.FC<TimerType> = ({
     if (ifPaused || !time) {
       clearTimeout(timeoutID);
       if (!time) {
-        handleRunOut(false);
+        handleRunOut?.(false);
       }
     } else {
       if (time >= 1) {
@@ -65,14 +66,7 @@ const Timer: React.FC<TimerType> = ({
           strokeDashoffset={String(dashOffsetNum)}
           strokeLinecap={"round"}
           transform={"rotate(-90 ) translate(" + -size + " 0)"}
-        >
-          {/* <animate
-            attributeName="stroke-dashoffset"
-            dur={1}
-            from={100 - progress}
-            to={100 - (progress + (100 - (time / duration) * 100))}
-          /> */}
-        </circle>
+        ></circle>
       </svg>
     </div>
   );

@@ -1,5 +1,6 @@
 import React from "react";
-import CompletedImage from "../assets/images/completed-img.svg";
+import "../../styles/MainPage/Exercise.scss";
+import CompletedImage from "../../assets/images/completed-img.svg";
 
 type ExerciseIntro = {
   title: string;

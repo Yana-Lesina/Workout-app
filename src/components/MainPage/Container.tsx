@@ -1,5 +1,7 @@
 import React from "react";
-import { IQuestion } from "../interfaces";
+import "../../styles/MainPage/Container.scss";
+
+import { IQuestion } from "../../interfaces";
 import Section from "./Section";
 
 type ContainerProps = {

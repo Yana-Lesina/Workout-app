@@ -4,13 +4,15 @@
   justify-content: flex-start;
   align-items: center;
   .exercise-img-wrapper {
-    width: 15%;
+    position: relative;
+    width: 8rem;
     .exercise-img {
       width: 100%;
 
       border-radius: 10px;
     }
   }
+
   .exercise-info-wrapper {
     padding: 16px;
   }

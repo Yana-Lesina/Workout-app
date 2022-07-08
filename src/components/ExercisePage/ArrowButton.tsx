@@ -1,4 +1,5 @@
 import React from "react";
+import "../../styles/ExercisePage/ArrowButton.scss";
 
 type ArrowButtonType = {
   imgLink: string;
@@ -13,7 +14,7 @@ const ArrowButton: React.FC<ArrowButtonType> = ({
 }) => {
   return (
     <div className="arrow-button-wrapper">
-      <div className={"arrow-button " + className} onClick={onClick}>
+      <div className={`arrow-button ${className}`} onClick={onClick}>
         <img src={imgLink} alt="arrow-img" className="arrow-img" />
       </div>
     </div>

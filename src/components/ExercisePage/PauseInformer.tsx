@@ -1,4 +1,6 @@
 import React from "react";
+import "../../styles/ExercisePage/PauseInformer.scss";
+
 import { Link } from "react-router-dom";
 
 const PauseInformer: React.FC = () => {

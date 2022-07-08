@@ -1,4 +1,5 @@
 import React from "react";
+import "../styles/WorkoutCompleted/WorkoutCompleted.scss";
 import SaveButton from "../components/Button";
 import CompletedImage from "../assets/images/completed-img.svg";
 

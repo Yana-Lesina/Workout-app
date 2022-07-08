@@ -1,19 +1,17 @@
-import "../styles/App.scss";
 import React from "react";
+import "../styles/ExercisePage/ExercisePage.scss";
 
 import { IExercise } from "../interfaces";
 import BackImg from "../assets/images/back-img.svg";
 import ForwardImg from "../assets/images/forward-img.svg";
 import goToHomepage from "../assets/images/goToHomepage.svg";
-import ArrowButton from "../components/ArrowButton";
-import Timer from "../components/Timer";
-import PrepareImage from "../components/PrepareImage";
-import ExerciseVideo from "../components/ExerciseVideo";
-import VideoFooter from "../components/VideoFooter";
+import ArrowButton from "../components/ExercisePage/ArrowButton";
+import Timer from "../components/ExercisePage/Timer";
+import PrepareImage from "../components/ExercisePage/PrepareImage";
+import VideoPlayer from "../components/ExercisePage/VideoPlayer";
+import VideoFooter from "../components/ExercisePage/VideoFooter";
 import { Link } from "react-router-dom";
 
-// repeat type for MainPageType
-// if nothing changes - create 1 Interface
 type ExercisePageType = {
   exercises: IExercise[];
   startCounter: number;
@@ -104,6 +102,7 @@ const ExercisePage: React.FC<ExercisePageType> = ({
               ? () => switchToExercise()
               : () => {
                   if (counter + 1 === exercises.length) {
+                    setExerciseState(counter);
                     setCompletedState(true);
                     return;
                   }
@@ -119,7 +118,7 @@ const ExercisePage: React.FC<ExercisePageType> = ({
           <PrepareImage photo={exercises[counter]?.photo} />
         ) : (
           <>
-            <ExerciseVideo
+            <VideoPlayer
               videoLink={exercises[counter].video}
               ifPaused={ifPaused}
             />

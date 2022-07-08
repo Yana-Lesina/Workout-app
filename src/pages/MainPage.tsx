@@ -1,9 +1,11 @@
-import "../styles/App.scss";
 import React from "react";
-import introImg from "../assets/images/intro-img.png";
-import Container from "../components/Container";
-import StartButton from "../components/Button";
+import "../styles/App.scss";
+import WelcomeImage from "../components/MainPage/WelcomeImage";
+import Headers from "../components/MainPage/Headers";
+import Container from "../components/MainPage/Container";
+import Button from "../components/Button";
 import { IWorkoutPart } from "../interfaces";
+import introImg from "../assets/images/intro-img.png";
 
 type MainPageType = {
   elements: IWorkoutPart | undefined;
@@ -13,17 +15,12 @@ type MainPageType = {
 const MainPage: React.FC<MainPageType> = ({ elements, ifCompleted }) => {
   return (
     <>
-      <div className="img-container">
-        <img src={introImg} alt="intro-img" className="intro-img" />
-      </div>
-      <div className="headers-container">
-        <h4>Day 1</h4>
-        <h2>Morning Flexibility Routine</h2>
-        <h6>Easy 15 min no equipment</h6>
-      </div>
+      <WelcomeImage src={introImg} />
+
+      <Headers workoutTitle={"Morning Flexibility Routine"} daysAmount={1} />
 
       <Container sections={elements?.questions} />
-      <StartButton
+      <Button
         styles="action-button"
         link="/exercise"
         innerText={ifCompleted ? "Resume" : "Start Workout"}
