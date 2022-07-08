@@ -19,12 +19,17 @@ Result: [workout-app](https://workout-app-21.netlify.app/)
 ├───.vscode
 ├───public
 └───src
-├───assets
-│ ├───fonts
-│ └───images
-├───components
-├───pages
-└───styles
+    ├───assets
+    │   ├───fonts
+    │   └───images
+    ├───components
+    │   ├───ExercisePage
+    │   └───MainPage
+    ├───pages
+    └───styles
+        ├───ExercisePage
+        ├───MainPage
+        └───WorkoutCompleted
 ```
 
 ## How to run the App
