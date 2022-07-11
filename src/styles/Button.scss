@@ -33,7 +33,13 @@
   &:active {
     filter: brightness(85%);
   }
-}
 
-@media (max-width: 800px) {
+  @media (max-width: 800px) {
+    & {
+      position: sticky;
+      bottom: 2%;
+      width: 90%;
+      margin: auto;
+    }
+  }
 }

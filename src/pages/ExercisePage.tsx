@@ -4,13 +4,12 @@ import "../styles/ExercisePage/ExercisePage.scss";
 import { IExercise } from "../interfaces";
 import BackImg from "../assets/images/back-img.svg";
 import ForwardImg from "../assets/images/forward-img.svg";
-import goToHomepage from "../assets/images/goToHomepage.svg";
 import ArrowButton from "../components/ExercisePage/ArrowButton";
 import Timer from "../components/ExercisePage/Timer";
 import PrepareImage from "../components/ExercisePage/PrepareImage";
 import VideoPlayer from "../components/ExercisePage/VideoPlayer";
 import VideoFooter from "../components/ExercisePage/VideoFooter";
-import { Link } from "react-router-dom";
+import MainpageButton from "../components/ExercisePage/MainpageButton";
 
 type ExercisePageType = {
   exercises: IExercise[];
@@ -65,11 +64,7 @@ const ExercisePage: React.FC<ExercisePageType> = ({
 
   return (
     <>
-      <Link to="/">
-        <div className="goToHomepage-button">
-          <img src={goToHomepage} alt="goToHomepage" />
-        </div>
-      </Link>
+      <MainpageButton />
 
       <h2
         className={`current-exercise-title ${

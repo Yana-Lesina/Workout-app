@@ -1,3 +1,24 @@
+.current-exercise-title,
+.get-ready-title {
+  text-align: center;
+  font-size: 32px;
+
+  @media (max-width: 800px) {
+    font-size: 20px;
+  }
+}
+
+.current-exercise-title.finished-exercise--clue {
+  color: rgba(255, 64, 129, 1);
+}
+
+.timer-wrapper {
+  @media (max-width: 800px) {
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+  }
+}
+
 .exercise-inner {
   position: relative;
   width: 800px;
@@ -8,8 +29,10 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-}
 
-.current-exercise-title.finished-exercise--clue {
-  color: rgba(255, 64, 129, 1);
+  @media (max-width: 800px) {
+    & {
+      width: 100%;
+    }
+  }
 }

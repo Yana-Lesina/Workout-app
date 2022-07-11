@@ -1,31 +1,10 @@
 @media (max-width: 800px) {
+  // .container,
+  // .headers-container {
+  //   margin: auto 5% auto 5%;
+  // }
 
-  .wrapper {
-    width: 100%;
-  }
-
-  button.action-button {
-    position: sticky;
-    bottom: 2%;
-    width: 90%;
-    margin: auto;
-  }
-
-  .container,
-  .headers-container {
-    margin: auto 5% auto 5%;
-  }
-
-  .preview-img-container {
-    width: 100%;
-  }
-
-  .goToHomepage-button {
-    width: 10rem;
-    height: 2rem;
-    display: flex;
-    align-items: center;
-    margin-top: 2.5rem;
-    margin-left: 2rem;
-  }
+  // .preview-img-container {
+  //   width: 100%;
+  // }
 }

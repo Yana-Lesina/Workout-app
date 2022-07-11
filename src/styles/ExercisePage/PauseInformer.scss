@@ -7,6 +7,27 @@
   height: 100%;
   color: #212121;
 
+  @media (max-width: 800px) {
+    padding-top: 2rem;
+  }
+
+  .pause-headers {
+    width: 19rem;
+    margin-left: auto;
+    margin-right: auto;
+
+    .pause-title {
+      @media (max-width: 800px) {
+        font-size: 24px;
+      }
+    }
+    .pause-text {
+      @media (max-width: 800px) {
+        font-size: 16px;
+      }
+    }
+  }
+
   .leave-workout-button {
     width: 256px;
     height: 48px;
@@ -28,11 +49,15 @@
       top: 50%;
       margin-top: -0.625em;
     }
+
+    &:hover {
+      background-color: #a8a8a859;
+    }
+    &:active {
+      filter: brightness(85%);
+    }
   }
-  .leave-workout-button:hover {
-    background-color: #a8a8a859;
-  }
-  .leave-workout-button:active {
-    filter: brightness(85%);
-  }
+}
+
+@media (max-width: 800px) {
 }

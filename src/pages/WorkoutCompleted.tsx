@@ -19,11 +19,16 @@ export const WorkoutCompleted: React.FC<WorkoutCompletedType> = ({
           className="completed-img"
         />
       </div>
-      <h1 className="completed-title">Workout completed!</h1>
-      <div className="result-message">
-        <h4>Nice job. You’re done. Here’s the workout summary.</h4>
-        <h4>Minutes</h4>
-        <h3>{totalDuration}</h3>
+
+      <div className="result-message-box">
+        <h1 className="completed-title">Workout completed!</h1>
+        <h4 className="completed-text">
+          Nice job. You’re done. Here’s the workout summary.
+        </h4>
+        <div className="total-duration-wrapper">
+          <h5>Minutes</h5>
+          <h3>{totalDuration}</h3>
+        </div>
       </div>
       <SaveButton styles="action-button" link="/" innerText="Save & Continue" />
     </>

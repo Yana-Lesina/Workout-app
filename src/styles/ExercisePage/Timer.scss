@@ -11,17 +11,20 @@
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
   }
-  circle.circle-progress-line {
-    transform: "rotate(-90 ) translate(-100 0)";
-  }
 
-  circle.exercise-timer {
-    stroke: rgba(255, 64, 129, 1);
-  }
-  circle.get-ready-timer {
-    stroke: rgba(29, 233, 182, 1);
-  }
-  circle.circle-background-line {
-    stroke: #eeeeee;
+  circle {
+    &.circle-progress-line {
+      transform: "rotate(-90 ) translate(-100 0)";
+    }
+
+    &.exercise-timer {
+      stroke: rgba(255, 64, 129, 1);
+    }
+    &.get-ready-timer {
+      stroke: rgba(29, 233, 182, 1);
+    }
+    &.circle-background-line {
+      stroke: #eeeeee;
+    }
   }
 }

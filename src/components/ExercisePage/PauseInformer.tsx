@@ -7,9 +7,11 @@ const PauseInformer: React.FC = () => {
   return (
     <>
       <div className="pause-informer">
-        <h2 className="pause-title">Workout paused</h2>
-        <div className="pause-text">
-          Press “Play button” or “Space bar” to continue
+        <div className="pause-headers">
+          <h2 className="pause-title">Workout paused</h2>
+          <div className="pause-text">
+            Press “Play button” or “Space bar” to continue
+          </div>
         </div>
 
         <div className="leave-workout-button">

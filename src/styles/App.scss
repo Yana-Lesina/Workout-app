@@ -1,5 +1,9 @@
 @import "Adaptive.scss";
 
+$actionButtonsColor: #aa00ff;
+$exerciseColor: #ff4081;
+$getReadyColor: #1de9b6;
+
 @font-face {
   font-family: "SF Pro Display";
   src: url("../assets/fonts/SFPRODISPLAYMEDIUM.OTF");
@@ -34,10 +38,10 @@ h6 {
   margin-bottom: 24px;
 }
 
-.current-exercise-title,
-.get-ready-title {
-  text-align: center;
-}
+// .current-exercise-title,
+// .get-ready-title {
+//   text-align: center;
+// }
 
 // App -------------------------------------
 .wrapper {
@@ -50,6 +54,12 @@ h6 {
   margin-left: auto;
   margin-right: auto;
   font-family: "SF Pro Text", sans-serif;
+
+  @media (max-width: 800px) {
+    & {
+      width: 100%;
+    }
+  }
 }
 
 // ----------------------------------------------------
