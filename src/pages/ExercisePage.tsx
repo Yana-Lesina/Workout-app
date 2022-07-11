@@ -73,8 +73,10 @@ const ExercisePage: React.FC<ExercisePageType> = ({
 
       <h2
         className={`current-exercise-title ${
-          exercises[counter]?.finished ? "finished-exercise" : ""
-        } ${!prepared ? "" : "exercise-done--clue"}`}
+          exercises[counter]?.finished && prepared
+            ? "finished-exercise--clue"
+            : " "
+        }`}
       >
         {!prepared ? "Get ready" : exercises[counter].title}
       </h2>
@@ -83,7 +85,11 @@ const ExercisePage: React.FC<ExercisePageType> = ({
         <ArrowButton
           imgLink={BackImg}
           onClick={
-            !prepared ? () => switchToExercise() : () => switchToGetReady(-1)
+            !prepared
+              ? () => {
+                  switchToGetReady(-1);
+                }
+              : () => switchToGetReady(-1)
           }
           className={counter === 0 && !prepared ? "extreme-element" : ""}
         />

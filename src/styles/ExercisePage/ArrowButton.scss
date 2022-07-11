@@ -12,8 +12,9 @@
 
     cursor: pointer;
     user-select: none;
-  }
-  .extreme-element {
-    display: none;
+
+    &.extreme-element {
+      display: none;
+    }
   }
 }

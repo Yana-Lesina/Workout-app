@@ -15,5 +15,8 @@
 
   .exercise-info-wrapper {
     padding: 16px;
+    .exercise-title.finished-exercise {
+      color: rgba(29, 233, 182, 1);
+    }
   }
 }
