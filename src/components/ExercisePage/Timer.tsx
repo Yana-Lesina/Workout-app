@@ -56,7 +56,7 @@ const Timer: React.FC<TimerType> = ({
         ></circle>
 
         <circle
-          className={"circle-progress-line " + className}
+          className={`circle-progress-line ${className}`}
           cx={size / 2}
           cy={size / 2}
           r={radius}
@@ -65,7 +65,7 @@ const Timer: React.FC<TimerType> = ({
           strokeDasharray={String(circumference)}
           strokeDashoffset={String(dashOffsetNum)}
           strokeLinecap={"round"}
-          transform={"rotate(-90 ) translate(" + -size + " 0)"}
+          transform={`rotate(-90) translate(${-size} 0)`}
         ></circle>
       </svg>
     </div>
