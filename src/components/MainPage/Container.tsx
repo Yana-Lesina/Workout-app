@@ -1,6 +1,5 @@
 import React from "react";
-import "../../styles/MainPage/Container.scss";
-
+import styles from "../../styles/MainPage/Container.module.scss";
 import { IQuestion } from "../../interfaces";
 import Section from "./Section";
 
@@ -10,7 +9,7 @@ type ContainerProps = {
 
 const Container: React.FC<ContainerProps> = ({ sections }) => {
   return (
-    <div className="container">
+    <div className={styles.container}>
       {sections?.map((section) => {
         return (
           <Section

@@ -1,6 +1,6 @@
 .action-button {
   position: sticky;
-  bottom: 2rem;
+  bottom: 1.5rem;
   height: 56px;
 
   width: 50rem;
@@ -14,7 +14,7 @@
 
   border: 0px;
   border-radius: 8px;
-  background: #aa00ff;
+  background: rgb(163, 77, 195); //#aa00ff;
   box-shadow: 0px 16px 32px rgba(170, 0, 255, 0.24);
 
   z-index: 20;
@@ -38,7 +38,7 @@
     & {
       position: sticky;
       bottom: 2%;
-      width: 90%;
+      width: 90vw;
       margin: auto;
     }
   }

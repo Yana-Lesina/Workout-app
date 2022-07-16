@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/MainPage/WelcomeImage.scss";
+import styles from "../../styles/MainPage/WelcomeImage.module.scss";
 
 type WelcomeImageType = {
   src: string;
@@ -7,8 +7,14 @@ type WelcomeImageType = {
 
 const WelcomeImage: React.FC<WelcomeImageType> = ({ src }) => {
   return (
-    <div className="img-container">
-      <img src={src} alt="intro-img" className="intro-img" />
+    <div className={styles.imgContainer}>
+      <img
+        src={src}
+        alt="intro-img"
+        className={styles.introImg}
+        width="52vw"
+        height="29.25vw"
+      />
     </div>
   );
 };

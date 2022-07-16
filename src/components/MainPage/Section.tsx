@@ -1,15 +1,14 @@
 import React from "react";
-import "../../styles/MainPage/Section.scss";
-
+import styles from "../../styles/MainPage/Section.module.scss";
 import { IQuestion } from "../../interfaces";
 import Exercise from "./Exercise";
 
 const Section: React.FC<IQuestion> = ({ title, exercises, muscle_group }) => {
   return (
     <div>
-      <hr className="section-line-separator" />
-      <h2>{title}</h2>
-      <div>{muscle_group.name}</div>
+      <hr className={styles.sectionLineSeparator} />
+      <h2 className={styles.sectionTitle}>{title}</h2>
+      <div className={styles.musclegroupTitle}>{muscle_group.name}</div>
       <ul>
         {exercises.map((exercise) => {
           return (
@@ -18,7 +17,7 @@ const Section: React.FC<IQuestion> = ({ title, exercises, muscle_group }) => {
               title={exercise.title}
               duration={exercise.duration}
               photo={exercise.photo}
-              className={exercise.finished ? "finished-exercise" : ""}
+              isFinished={exercise.finished}
             />
           );
         })}

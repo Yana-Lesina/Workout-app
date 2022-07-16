@@ -1,0 +1,22 @@
+.sectionLineSeparator {
+  border-top: 1px solid rgba(238, 238, 238, 1);
+}
+
+.sectionTitle {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 24px;
+  color: rgb(0, 0, 0); //rgb(117, 89, 131);
+  @media (max-width: 800px) {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 20px;
+  }
+}
+.musclegroupTitle {
+  font-size: 14px;
+  line-height: 24px;
+  margin-bottom: 10px;
+  color: rgb(117, 89, 131); //rgb(186, 165, 196);
+}

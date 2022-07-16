@@ -9,9 +9,10 @@ import ExercisePage from "./pages/ExercisePage";
 import { WorkoutCompleted } from "./pages/WorkoutCompleted";
 import ErrorPage from "./pages/ErrorPage";
 import { url } from "./forEnv";
+import ItemsLoader from "./components/MainPage/Skeletons/ItemsLoader";
 
 const App: React.FC = () => {
-  const [error, setError] = useState<Error | null>(null);
+  const [error, setError] = useState<boolean>(false);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const [items, setItems] = useState<IWorkoutPart>();
   const [startCounter, setStartCounter] = React.useState<number>(0);
@@ -72,7 +73,7 @@ const App: React.FC = () => {
 
         (error) => {
           setIsLoaded(true);
-          setError(error);
+          setError(true);
         },
       );
   }, []);
@@ -80,39 +81,38 @@ const App: React.FC = () => {
   return { isLoaded } ? (
     <div className="wrapper">
       <Routes>
-        {error ? (
+        <>
           <Route
-            path="/error"
-            element={<ErrorPage errorMessage={error.message} />}
+            path="/"
+            element={
+              <MainPage
+                elements={items}
+                ifCompleted={completed}
+                isLoaded={isLoaded}
+              />
+            }
           />
-        ) : (
-          <>
-            <Route
-              path="/"
-              element={<MainPage elements={items} ifCompleted={completed} />}
-            />
-            <Route
-              path="/exercise"
-              element={
-                !completed ? (
-                  <ExercisePage
-                    exercises={exercises}
-                    startCounter={startCounter}
-                    setExerciseState={setExerciseState}
-                    setCompletedState={setCompletedState}
-                  />
-                ) : (
-                  <WorkoutCompleted totalDuration={countExerciseDuration()} />
-                )
-              }
-            />
-            <Route path="*" element={<div>Nothing</div>} />
-          </>
-        )}
+          <Route
+            path="/exercise"
+            element={
+              !completed ? (
+                <ExercisePage
+                  exercises={exercises}
+                  startCounter={startCounter}
+                  setExerciseState={setExerciseState}
+                  setCompletedState={setCompletedState}
+                />
+              ) : (
+                <WorkoutCompleted totalDuration={countExerciseDuration()} />
+              )
+            }
+          />
+          <Route path="*" element={<ErrorPage />} />
+        </>
       </Routes>
     </div>
   ) : (
-    <div> Loading... </div>
+    <div>Loading...</div>
   );
 };
 

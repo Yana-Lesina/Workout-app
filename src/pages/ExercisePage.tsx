@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/ExercisePage/ExercisePage.scss";
+import styles from "../styles/ExercisePage/ExercisePage.module.scss";
 
 import { IExercise } from "../interfaces";
 import BackImg from "../assets/images/back-img.svg";
@@ -76,7 +77,7 @@ const ExercisePage: React.FC<ExercisePageType> = ({
         {!prepared ? "Get ready" : exercises[counter].title}
       </h2>
 
-      <div className="timer-wrapper">
+      <div className={styles.timerWrapper}>
         <ArrowButton
           imgLink={BackImg}
           onClick={

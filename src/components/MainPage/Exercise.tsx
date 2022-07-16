@@ -1,35 +1,41 @@
 import React from "react";
-import "../../styles/MainPage/Exercise.scss";
+import styles from "../../styles/MainPage/Exercise.module.scss";
 import CompletedImage from "../../assets/images/completed-img.svg";
 
 type ExerciseIntro = {
   title: string;
   duration: number;
   photo: string;
-  className: string;
+  isFinished: true | undefined;
 };
 
 const Exercise: React.FC<ExerciseIntro> = ({
   title,
   duration,
   photo,
-  className,
+  isFinished,
 }) => {
   return (
-    <div className="exercise-container">
-      <div className="exercise-img-wrapper">
+    <div className={styles.exerciseContainer}>
+      <div className={styles.exerciseImgWrapper}>
         <img
           src={CompletedImage}
-          alt="completed-image"
-          className={`completed-image ${className}`}
+          alt="completedImage"
+          className={`${styles.completedImage} ${
+            isFinished ? styles.finishedExercise : ""
+          }`}
         />
-        <img src={photo} className="exercise-img" />
+        <img src={photo} alt="exercise-img" className={styles.exerciseImg} />
       </div>
-      <div className="exercise-info-wrapper">
-        <div className={`exercise-title ${className}`}>
-          <b>{title}</b>
+      <div className={styles.exerciseInfoWrapper}>
+        <div
+          className={`${styles.exerciseTitle} ${
+            isFinished ? styles.finishedExercise : ""
+          }`}
+        >
+          {title}
         </div>
-        <div className="exercise-duration">{`${duration} sec`}</div>
+        <div className={styles.exerciseDuration}>{`${duration} sec`}</div>
       </div>
     </div>
   );

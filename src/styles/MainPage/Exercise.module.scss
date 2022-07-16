@@ -1,0 +1,55 @@
+.exerciseContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 10px;
+
+  @media (max-width: 800px) {
+    .exerciseImgWrapper {
+      width: 25vw;
+      min-width: 25vw;
+    }
+  }
+
+  .exerciseImgWrapper {
+    position: relative;
+    width: 8vw;
+
+    .completedImage {
+      display: none;
+      &.finishedExercise {
+        display: block;
+        position: absolute;
+        width: 50%;
+        height: 50%;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        margin: auto;
+        z-index: 5;
+      }
+    }
+
+    .exerciseImg {
+      width: 100%;
+      border-radius: 10px;
+    }
+  }
+
+  .exerciseInfoWrapper {
+    padding: 16px;
+
+    .exerciseTitle {
+      font-weight: 600;
+      &.finishedExercise {
+        color: rgba(29, 233, 182, 1);
+      }
+    }
+
+    .exerciseDuration {
+      color: rgb(117, 89, 131);
+    }
+  }
+}

@@ -1,5 +1,3 @@
-@import "Adaptive.scss";
-
 $actionButtonsColor: #aa00ff;
 $exerciseColor: #ff4081;
 $getReadyColor: #1de9b6;
@@ -14,34 +12,6 @@ $getReadyColor: #1de9b6;
   src: url("../assets/fonts/SF-Pro-Text-Medium.otf");
   font-weight: 400;
 }
-h1 {
-  font-size: 56px;
-}
-
-h2 {
-  font-family: "SF Pro Display", sans-serif;
-  font-size: 32px;
-  margin-top: 5px;
-  margin-bottom: 0;
-}
-
-h3 {
-  font-size: 24px;
-}
-
-h4 {
-  font-size: 20px;
-}
-
-h6 {
-  margin-top: 4px;
-  margin-bottom: 24px;
-}
-
-// .current-exercise-title,
-// .get-ready-title {
-//   text-align: center;
-// }
 
 // App -------------------------------------
 .wrapper {
@@ -50,42 +20,16 @@ h6 {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
 
-  width: 800px;
+  width: 52vw;
   margin-left: auto;
   margin-right: auto;
   font-family: "SF Pro Text", sans-serif;
 
   @media (max-width: 800px) {
     & {
-      width: 100%;
+      width: 90vw;
+      margin-left: auto;
+      margin-right: auto;
     }
   }
-}
-
-// ----------------------------------------------------
-
-// ----------------------------------------------------
-.timer-wrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.completed-image {
-  display: none;
-}
-.completed-image.finished-exercise {
-  display: block;
-  position: absolute;
-  width: 50%;
-  height: 50%;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  margin: auto;
-  z-index: 5;
 }

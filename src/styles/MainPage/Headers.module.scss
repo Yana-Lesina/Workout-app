@@ -1,0 +1,40 @@
+.headersContainer {
+  @media (max-width: 800px) {
+    // & {
+    //   margin: auto 5% auto 5%;
+    // }
+  }
+  .dayTitle {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    margin-top: 25px;
+    @media (max-width: 800px) {
+      & {
+        font-size: 14px;
+      }
+    }
+  }
+  .workoutTitle {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 32px;
+    @media (max-width: 800px) {
+      & {
+        font-size: 20px;
+        line-height: 24px;
+      }
+    }
+  }
+  .additionalTitle {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    color: rgb(117, 89, 131);
+
+    margin-top: 4px;
+    margin-bottom: 24px;
+  }
+}

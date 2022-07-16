@@ -1,16 +1,10 @@
 import "../styles/App.scss";
 import React from "react";
 
-type ErrorType = {
-  errorMessage: any;
-};
-
-const ErrorPage: React.FC<ErrorType> = ({ errorMessage }) => {
+const ErrorPage: React.FC = () => {
   return (
     <>
-      <div className="wrapper">
-        <h1>Error: {errorMessage}</h1>
-      </div>
+      <h3>Page not found..</h3>
     </>
   );
 };
