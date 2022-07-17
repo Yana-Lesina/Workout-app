@@ -1,6 +1,6 @@
 /*eslint no-constant-condition: "warn"*/
 
-import "./styles/App.scss";
+import styles from "./styles/App.module.scss";
 import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { IWorkoutPart, IExercise } from "./interfaces";
@@ -9,7 +9,6 @@ import ExercisePage from "./pages/ExercisePage";
 import { WorkoutCompleted } from "./pages/WorkoutCompleted";
 import ErrorPage from "./pages/ErrorPage";
 import { url } from "./forEnv";
-import ItemsLoader from "./components/MainPage/Skeletons/ItemsLoader";
 
 const App: React.FC = () => {
   const [error, setError] = useState<boolean>(false);
@@ -79,7 +78,7 @@ const App: React.FC = () => {
   }, []);
 
   return { isLoaded } ? (
-    <div className="wrapper">
+    <div className={styles.wrapper}>
       <Routes>
         <>
           <Route

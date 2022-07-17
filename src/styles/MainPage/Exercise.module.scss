@@ -1,3 +1,5 @@
+@import "../../index.scss";
+
 .exerciseContainer {
   display: flex;
   flex-direction: row;
@@ -5,16 +7,16 @@
   align-items: center;
   margin-bottom: 10px;
 
-  @media (max-width: 800px) {
-    .exerciseImgWrapper {
-      width: 25vw;
-      min-width: 25vw;
-    }
-  }
-
   .exerciseImgWrapper {
     position: relative;
     width: 8vw;
+
+    @media (max-width: 800px) {
+      & {
+        width: 25vw;
+        min-width: 25vw;
+      }
+    }
 
     .completedImage {
       display: none;
@@ -44,12 +46,12 @@
     .exerciseTitle {
       font-weight: 600;
       &.finishedExercise {
-        color: rgba(29, 233, 182, 1);
+        color: $getReadyColor;
       }
     }
 
     .exerciseDuration {
-      color: rgb(117, 89, 131);
+      color: $textAccent1;
     }
   }
 }

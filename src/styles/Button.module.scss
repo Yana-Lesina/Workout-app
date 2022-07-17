@@ -1,9 +1,9 @@
-.action-button {
+.actionButton {
   position: sticky;
-  bottom: 1.5rem;
+  bottom: 20px;
   height: 56px;
 
-  width: 50rem;
+  width: 52vw;
   font-size: 16px;
   font-weight: 600;
   color: #ffffff;
@@ -37,7 +37,7 @@
   @media (max-width: 800px) {
     & {
       position: sticky;
-      bottom: 2%;
+      bottom: 10px;
       width: 90vw;
       margin: auto;
     }

@@ -1,21 +1,20 @@
 import React from "react";
-import "../../styles/ExercisePage/PauseInformer.scss";
-
+import styles from "../../styles/ExercisePage/PauseInformer.module.scss";
 import { Link } from "react-router-dom";
 
 const PauseInformer: React.FC = () => {
   return (
     <>
-      <div className="pause-informer">
-        <div className="pause-headers">
-          <h2 className="pause-title">Workout paused</h2>
-          <div className="pause-text">
+      <div className={styles.pauseInformer}>
+        <div className={styles.pauseHeaders}>
+          <h2 className={styles.pauseTitle}>Workout paused</h2>
+          <div className={styles.pauseText}>
             Press “Play button” or “Space bar” to continue
           </div>
         </div>
 
-        <div className="leave-workout-button">
-          <Link to="/" className="leave-workout-button-li">
+        <div className={styles.leaveWorkoutButton}>
+          <Link to="/" className={styles.leaveWorkoutButtonLi}>
             Leave Workout
           </Link>
         </div>

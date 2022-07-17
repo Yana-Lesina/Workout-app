@@ -1,5 +1,4 @@
 import React from "react";
-import "../styles/ExercisePage/ExercisePage.scss";
 import styles from "../styles/ExercisePage/ExercisePage.module.scss";
 
 import { IExercise } from "../interfaces";
@@ -10,7 +9,7 @@ import Timer from "../components/ExercisePage/Timer";
 import PrepareImage from "../components/ExercisePage/PrepareImage";
 import VideoPlayer from "../components/ExercisePage/VideoPlayer";
 import VideoFooter from "../components/ExercisePage/VideoFooter";
-import MainpageButton from "../components/ExercisePage/MainpageButton";
+import ToHomepageButton from "../components/ExercisePage/ToHomepageButton";
 
 type ExercisePageType = {
   exercises: IExercise[];
@@ -65,12 +64,12 @@ const ExercisePage: React.FC<ExercisePageType> = ({
 
   return (
     <>
-      <MainpageButton />
+      <ToHomepageButton />
 
       <h2
-        className={`current-exercise-title ${
+        className={`${styles.currentExerciseTitle} ${
           exercises[counter]?.finished && prepared
-            ? "finished-exercise--clue"
+            ? styles.finishedExerciseClue
             : " "
         }`}
       >
@@ -87,13 +86,13 @@ const ExercisePage: React.FC<ExercisePageType> = ({
                 }
               : () => switchToGetReady(-1)
           }
-          className={counter === 0 && !prepared ? "extreme-element" : ""}
+          isExtremeElement={counter === 0 && !prepared}
         />
 
         <Timer
-          className={!prepared ? "get-ready-timer" : "exercise-timer"}
           duration={!prepared ? 5 : exercises[counter].duration}
           ifPaused={ifPaused}
+          isPrepared={prepared}
           handleRunOut={autoSwitch}
         />
 
@@ -112,10 +111,9 @@ const ExercisePage: React.FC<ExercisePageType> = ({
                   switchToGetReady(1);
                 }
           }
-          className={""}
         />
       </div>
-      <div className="exercise-inner">
+      <div className={styles.exerciseInner}>
         {!prepared ? (
           <PrepareImage photo={exercises[counter]?.photo} />
         ) : (

@@ -1,17 +1,16 @@
 import React from "react";
-import "../styles/Button.scss";
+import styles from "../styles/Button.module.scss";
 
 import { Link } from "react-router-dom";
 
 type IButton = {
-  styles?: string;
   link: string;
   innerText: string;
 };
 
-const Button: React.FC<IButton> = ({ styles, link, innerText }) => {
+const Button: React.FC<IButton> = ({ link, innerText }) => {
   return (
-    <Link to={link} className={`link-styles ${styles}`}>
+    <Link to={link} className={` ${styles.actionButton}`}>
       {innerText}
     </Link>
   );

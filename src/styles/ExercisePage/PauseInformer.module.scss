@@ -1,4 +1,4 @@
-.pause-informer {
+.pauseInformer {
   z-index: 10;
   position: absolute;
   padding-top: 10rem;
@@ -8,27 +8,29 @@
   color: #212121;
 
   @media (max-width: 800px) {
-    padding-top: 2rem;
+    & {
+      padding-top: 2rem;
+    }
   }
 
-  .pause-headers {
+  .pauseHeaders {
     width: 19rem;
     margin-left: auto;
     margin-right: auto;
 
-    .pause-title {
+    .pauseTitle {
       @media (max-width: 800px) {
         font-size: 24px;
       }
     }
-    .pause-text {
+    .pauseText {
       @media (max-width: 800px) {
         font-size: 16px;
       }
     }
   }
 
-  .leave-workout-button {
+  .leaveWorkoutButton {
     width: 256px;
     height: 48px;
     margin-top: 2rem;
@@ -41,7 +43,14 @@
     cursor: pointer;
     user-select: none;
 
-    .leave-workout-button-li {
+    &:hover {
+      background-color: #a8a8a859;
+    }
+    &:active {
+      filter: brightness(85%);
+    }
+
+    .leaveWorkoutButtonLi {
       display: block;
       color: #000;
       text-decoration: none;
@@ -49,15 +58,5 @@
       top: 50%;
       margin-top: -0.625em;
     }
-
-    &:hover {
-      background-color: #a8a8a859;
-    }
-    &:active {
-      filter: brightness(85%);
-    }
   }
-}
-
-@media (max-width: 800px) {
 }

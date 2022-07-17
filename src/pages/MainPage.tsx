@@ -1,5 +1,4 @@
 import React from "react";
-import "../styles/App.scss";
 import WelcomeImage from "../components/MainPage/WelcomeImage";
 import Headers from "../components/MainPage/Headers";
 import Container from "../components/MainPage/Container";
@@ -32,7 +31,6 @@ const MainPage: React.FC<MainPageType> = ({
           />
           <Container sections={elements?.questions} />
           <Button
-            styles="action-button"
             link="/exercise"
             innerText={ifCompleted ? "Resume" : "Start Workout"}
           />

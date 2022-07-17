@@ -1,11 +1,13 @@
-.arrow-button-wrapper {
+@import "../../index.scss";
+
+.arrowButtonWrapper {
   width: 74px;
   height: 48px;
-  .arrow-button {
+  .arrowButton {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px solid #aa00ff;
+    border: 2px solid $actionButtonsColor;
     border-radius: 8px;
     width: 74px;
     height: 48px;
@@ -13,7 +15,7 @@
     cursor: pointer;
     user-select: none;
 
-    &.extreme-element {
+    &.extremeElement {
       display: none;
     }
   }

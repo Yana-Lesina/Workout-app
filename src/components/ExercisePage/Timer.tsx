@@ -1,17 +1,17 @@
 import React from "react";
-import "../../styles/ExercisePage/Timer.scss";
+import styles from "../../styles/ExercisePage/Timer.module.scss";
 
 type TimerType = {
-  className: string;
   duration: number;
   ifPaused: boolean;
+  isPrepared?: boolean;
   handleRunOut?: any;
 };
 
 const Timer: React.FC<TimerType> = ({
-  className,
   duration,
   ifPaused,
+  isPrepared,
   handleRunOut,
 }) => {
   const [time, setTime] = React.useState<number>(duration);
@@ -43,11 +43,11 @@ const Timer: React.FC<TimerType> = ({
   }, [ifPaused, time]);
 
   return (
-    <div className={"timer-sector "}>
-      <div className="timer ">{time}</div>
+    <div className={styles.timerSector}>
+      <div className={styles.timer}>{time}</div>
       <svg width={String(size)} height={String(size)}>
         <circle
-          className={"circle-background-line"}
+          className={styles.circleBackgroundLine}
           cx={size / 2}
           cy={size / 2}
           r={radius}
@@ -56,7 +56,9 @@ const Timer: React.FC<TimerType> = ({
         ></circle>
 
         <circle
-          className={`circle-progress-line ${className}`}
+          className={`${styles.circleProgressLine} ${
+            isPrepared ? styles.exerciseTimer : styles.getReadyTimer
+          }`}
           cx={size / 2}
           cy={size / 2}
           r={radius}

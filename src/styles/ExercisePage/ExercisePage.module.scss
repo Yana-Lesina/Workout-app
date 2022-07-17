@@ -1,3 +1,19 @@
+@import "../../index.scss";
+
+.currentExerciseTitle,
+.getReadyTitle {
+  text-align: center;
+  font-size: 32px;
+
+  @media (max-width: 800px) {
+    font-size: 20px;
+  }
+}
+
+.currentExerciseTitle.finishedExerciseClue {
+  color: $exerciseColor;
+}
+
 .timerWrapper {
   display: flex;
   flex-direction: row;
@@ -5,4 +21,29 @@
   align-items: center;
   margin-top: 20px;
   margin-bottom: 20px;
+
+  .timerWrapper {
+    @media (max-width: 800px) {
+      margin-left: 1.5rem;
+      margin-right: 1.5rem;
+    }
+  }
+}
+
+.exerciseInner {
+  position: relative;
+  width: 800px;
+  height: auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  @media (max-width: 800px) {
+    & {
+      width: 100%;
+    }
+  }
 }

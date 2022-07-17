@@ -30,7 +30,7 @@ export const WorkoutCompleted: React.FC<WorkoutCompletedType> = ({
           <h3>{totalDuration}</h3>
         </div>
       </div>
-      <SaveButton styles="action-button" link="/" innerText="Save & Continue" />
+      <SaveButton link="/" innerText="Save & Continue" />
     </>
   );
 };

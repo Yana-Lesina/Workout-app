@@ -1,6 +1,6 @@
-footer {
+.footer {
   z-index: 20;
-  position: sticky;
+  position: sticky; //fixed
   bottom: 0;
   width: 100%;
   border-top: solid 8px #eeeeee;
@@ -8,6 +8,15 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  &:focus {
+    outline: none !important;
+  }
+
+  @media (max-width: 800px) {
+    position: fixed;
+  }
+
   img {
     cursor: pointer;
     user-select: none;

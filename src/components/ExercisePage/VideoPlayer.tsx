@@ -1,6 +1,6 @@
 import React from "react";
 import PauseInformer from "./PauseInformer";
-import "../../styles/ExercisePage/VideoPlayer.scss";
+import styles from "../../styles/ExercisePage/VideoPlayer.module.scss";
 
 type VideoPlayerType = {
   videoLink: string;
@@ -26,7 +26,13 @@ const VideoPlayer: React.FC<VideoPlayerType> = ({ videoLink, ifPaused }) => {
     <>
       {ifPaused && <PauseInformer />}
 
-      <video id="video-player" ref={videoRef} autoPlay loop src={videoLink} />
+      <video
+        className={styles.videoPlayer}
+        ref={videoRef}
+        autoPlay
+        loop
+        src={videoLink}
+      />
     </>
   );
 };

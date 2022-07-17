@@ -1,6 +1,5 @@
 import React from "react";
-import "../../styles/ExercisePage/VideoFooter.scss";
-
+import styles from "../../styles/ExercisePage/VideoFooter.module.scss";
 import PlayImg from "../../assets/images/play.svg";
 import PauseImg from "../../assets/images/pause.svg";
 
@@ -22,7 +21,12 @@ const VideoFooter: React.FC<VideoFooterType> = ({
   }, []);
 
   return (
-    <footer ref={buttonRef} tabIndex={0} onKeyPress={onKeyPress}>
+    <footer
+      ref={buttonRef}
+      tabIndex={0}
+      onKeyPress={onKeyPress}
+      className={styles.footer}
+    >
       {!ifPaused ? (
         <img src={PauseImg} alt="PauseImg" onClick={onClick} />
       ) : (

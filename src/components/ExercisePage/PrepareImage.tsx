@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/ExercisePage/PrepareImage.scss";
+import styles from "../../styles/ExercisePage/PrepareImage.module.scss";
 
 type PrepareImageType = {
   photo: string;
@@ -7,9 +7,9 @@ type PrepareImageType = {
 
 const PrepareImage: React.FC<PrepareImageType> = ({ photo }) => {
   return (
-    <>
-      <img src={photo} alt="preview-image" className="preview-img" />
-    </>
+    <div className={styles.prepareImageWrapper}>
+      <img src={photo} alt="preview-image" className={styles.previewImg} />
+    </div>
   );
 };
 

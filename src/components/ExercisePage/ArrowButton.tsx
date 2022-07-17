@@ -1,21 +1,26 @@
 import React from "react";
-import "../../styles/ExercisePage/ArrowButton.scss";
+import styles from "../../styles/ExercisePage/ArrowButton.module.scss";
 
 type ArrowButtonType = {
   imgLink: string;
   onClick: any;
-  className?: string;
+  isExtremeElement?: boolean;
 };
 
 const ArrowButton: React.FC<ArrowButtonType> = ({
   imgLink,
   onClick,
-  className,
+  isExtremeElement,
 }) => {
   return (
-    <div className="arrow-button-wrapper">
-      <div className={`arrow-button ${className}`} onClick={onClick}>
-        <img src={imgLink} alt="arrow-img" className="arrow-img" />
+    <div className={styles.arrowButtonWrapper}>
+      <div
+        className={`${styles.arrowButton} ${
+          isExtremeElement ? styles.extremeElement : ""
+        }`}
+        onClick={onClick}
+      >
+        <img src={imgLink} alt="arrow-img" />
       </div>
     </div>
   );

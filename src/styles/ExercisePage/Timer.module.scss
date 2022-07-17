@@ -1,4 +1,6 @@
-.timer-sector {
+@import "../../index.scss";
+
+.timerSector {
   position: relative;
   margin-left: auto;
   margin-right: auto;
@@ -13,17 +15,17 @@
   }
 
   circle {
-    &.circle-progress-line {
+    &.circleProgressLine {
       transform: "rotate(-90 ) translate(-100 0)";
     }
 
-    &.exercise-timer {
-      stroke: rgba(255, 64, 129, 1);
+    &.exerciseTimer {
+      stroke: $exerciseColor;
     }
-    &.get-ready-timer {
-      stroke: rgba(29, 233, 182, 1);
+    &.getReadyTimer {
+      stroke: $getReadyColor;
     }
-    &.circle-background-line {
+    &.circleBackgroundLine {
       stroke: #eeeeee;
     }
   }

@@ -1,3 +1,5 @@
+@import "../../index.scss";
+
 .headersContainer {
   @media (max-width: 800px) {
     // & {
@@ -32,7 +34,7 @@
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
-    color: rgb(117, 89, 131);
+    color: $textAccent1;
 
     margin-top: 4px;
     margin-bottom: 24px;
