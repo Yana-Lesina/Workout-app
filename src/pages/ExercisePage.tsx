@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../styles/ExercisePage/ExercisePage.module.scss";
 
-import { IExercise } from "../interfaces";
+import { ExerciseType } from "../globalTypes";
 import BackImg from "../assets/images/back-img.svg";
 import ForwardImg from "../assets/images/forward-img.svg";
 import ArrowButton from "../components/ExercisePage/ArrowButton";
@@ -12,7 +12,7 @@ import VideoFooter from "../components/ExercisePage/VideoFooter";
 import ToHomepageButton from "../components/ExercisePage/ToHomepageButton";
 
 type ExercisePageType = {
-  exercises: IExercise[];
+  exercises: ExerciseType[];
   startCounter: number;
   setExerciseState: any;
   setCompletedState: any;
@@ -28,10 +28,6 @@ const ExercisePage: React.FC<ExercisePageType> = ({
   const [counter, setCounter] = React.useState<number>(startCounter);
   const [ifPaused, setIfPaused] = React.useState(false);
 
-  const switchToExercise = () => {
-    setPrepared(true);
-  };
-
   const switchToGetReady = (direction: -1 | 1) => {
     if (
       (counter === 0 && direction === 1) ||
@@ -40,6 +36,7 @@ const ExercisePage: React.FC<ExercisePageType> = ({
     ) {
       setCounter(counter + 1 * direction);
     }
+    // setDuration(5);
     setPrepared(false);
     setIfPaused(false);
   };
@@ -48,7 +45,8 @@ const ExercisePage: React.FC<ExercisePageType> = ({
     if (exercises.length > counter + 1) {
       // get ready -> exercise
       if (!prepared) {
-        switchToExercise();
+        setPrepared(true);
+        setPrepared(true);
       }
       // exercise -> get ready
       if (prepared) {
@@ -79,13 +77,7 @@ const ExercisePage: React.FC<ExercisePageType> = ({
       <div className={styles.timerWrapper}>
         <ArrowButton
           imgLink={BackImg}
-          onClick={
-            !prepared
-              ? () => {
-                  switchToGetReady(-1);
-                }
-              : () => switchToGetReady(-1)
-          }
+          onClick={() => switchToGetReady(-1)}
           isExtremeElement={counter === 0 && !prepared}
         />
 
@@ -94,13 +86,14 @@ const ExercisePage: React.FC<ExercisePageType> = ({
           ifPaused={ifPaused}
           isPrepared={prepared}
           handleRunOut={autoSwitch}
+          switchHandler={counter}
         />
 
         <ArrowButton
           imgLink={ForwardImg}
           onClick={
             !prepared
-              ? () => switchToExercise()
+              ? () => setPrepared(true)
               : () => {
                   if (counter + 1 === exercises.length) {
                     setExerciseState(counter);

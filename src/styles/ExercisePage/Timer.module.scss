@@ -16,7 +16,7 @@
 
   circle {
     &.circleProgressLine {
-      transform: "rotate(-90 ) translate(-100 0)";
+      transition: stroke-dashoffset 0.3s linear;
     }
 
     &.exerciseTimer {

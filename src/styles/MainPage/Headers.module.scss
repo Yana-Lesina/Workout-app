@@ -1,10 +1,9 @@
 @import "../../index.scss";
 
 .headersContainer {
+  width: 100%;
+
   @media (max-width: 800px) {
-    // & {
-    //   margin: auto 5% auto 5%;
-    // }
   }
   .dayTitle {
     font-style: normal;

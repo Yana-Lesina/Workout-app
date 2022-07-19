@@ -3,7 +3,7 @@
 import styles from "./styles/App.module.scss";
 import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import { IWorkoutPart, IExercise } from "./interfaces";
+import { WorkoutPartType, ExerciseType } from "./globalTypes";
 import MainPage from "./pages/MainPage";
 import ExercisePage from "./pages/ExercisePage";
 import { WorkoutCompleted } from "./pages/WorkoutCompleted";
@@ -13,14 +13,14 @@ import { url } from "./forEnv";
 const App: React.FC = () => {
   const [error, setError] = useState<boolean>(false);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
-  const [items, setItems] = useState<IWorkoutPart>();
+  const [items, setItems] = useState<WorkoutPartType>();
   const [startCounter, setStartCounter] = React.useState<number>(0);
   const [completed, setCompleted] = React.useState<boolean>(false);
 
-  const createExercisesList = (elem: IWorkoutPart | undefined) => {
-    const exerciseList: IExercise[] = [];
-    elem?.questions.forEach((section: { exercises: IExercise[] }) => {
-      section.exercises.forEach((exercise: IExercise) => {
+  const createExercisesList = (elem: WorkoutPartType | undefined) => {
+    const exerciseList: ExerciseType[] = [];
+    elem?.questions.forEach((section: { exercises: ExerciseType[] }) => {
+      section.exercises.forEach((exercise: ExerciseType) => {
         exerciseList.push(exercise);
       });
     });
@@ -80,34 +80,32 @@ const App: React.FC = () => {
   return { isLoaded } ? (
     <div className={styles.wrapper}>
       <Routes>
-        <>
-          <Route
-            path="/"
-            element={
-              <MainPage
-                elements={items}
-                ifCompleted={completed}
-                isLoaded={isLoaded}
+        <Route
+          path="/"
+          element={
+            <MainPage
+              elements={items}
+              ifCompleted={completed}
+              isLoaded={isLoaded}
+            />
+          }
+        />
+        <Route
+          path="/exercise"
+          element={
+            !completed ? (
+              <ExercisePage
+                exercises={exercises}
+                startCounter={startCounter}
+                setExerciseState={setExerciseState}
+                setCompletedState={setCompletedState}
               />
-            }
-          />
-          <Route
-            path="/exercise"
-            element={
-              !completed ? (
-                <ExercisePage
-                  exercises={exercises}
-                  startCounter={startCounter}
-                  setExerciseState={setExerciseState}
-                  setCompletedState={setCompletedState}
-                />
-              ) : (
-                <WorkoutCompleted totalDuration={countExerciseDuration()} />
-              )
-            }
-          />
-          <Route path="*" element={<ErrorPage />} />
-        </>
+            ) : (
+              <WorkoutCompleted totalDuration={countExerciseDuration()} />
+            )
+          }
+        />
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>
   ) : (

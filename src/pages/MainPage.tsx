@@ -1,16 +1,20 @@
 import React from "react";
+
 import WelcomeImage from "../components/MainPage/WelcomeImage";
+
+import { WorkoutPartType } from "../globalTypes.js";
+
 import Headers from "../components/MainPage/Headers";
 import Container from "../components/MainPage/Container";
 import Button from "../components/Button";
-import { IWorkoutPart } from "../interfaces";
 import introImg from "../assets/images/intro-img.png";
+
 import ItemsLoader from "../components/MainPage/Skeletons/ItemsLoader";
 import ImageLoader from "../components/MainPage/Skeletons/ImageLoader";
 import HeadersLoader from "../components/MainPage/Skeletons/HeadersLoader";
 
 type MainPageType = {
-  elements: IWorkoutPart | undefined;
+  elements: WorkoutPartType | undefined;
   ifCompleted: boolean;
   isLoaded: boolean;
 };

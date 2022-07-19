@@ -2,14 +2,14 @@ import React from "react";
 import styles from "../../styles/MainPage/Exercise.module.scss";
 import CompletedImage from "../../assets/images/completed-img.svg";
 
-type ExerciseIntro = {
+type ExerciseIntroType = {
   title: string;
   duration: number;
   photo: string;
-  isFinished: true | undefined;
+  isFinished?: true | undefined;
 };
 
-const Exercise: React.FC<ExerciseIntro> = ({
+const Exercise: React.FC<ExerciseIntroType> = ({
   title,
   duration,
   photo,

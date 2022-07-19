@@ -22,6 +22,17 @@ const VideoPlayer: React.FC<VideoPlayerType> = ({ videoLink, ifPaused }) => {
     handleVideoPlay();
   }, [ifPaused]);
 
+  React.useEffect(() => {
+    if (
+      videoRef.current!.currentTime > 0 &&
+      !videoRef.current!.paused &&
+      !videoRef.current!.ended &&
+      videoRef.current!.readyState > videoRef.current!.HAVE_CURRENT_DATA
+    ) {
+      videoRef.current!.play();
+    }
+  }, []);
+
   return (
     <>
       {ifPaused && <PauseInformer />}
@@ -29,7 +40,6 @@ const VideoPlayer: React.FC<VideoPlayerType> = ({ videoLink, ifPaused }) => {
       <video
         className={styles.videoPlayer}
         ref={videoRef}
-        autoPlay
         loop
         src={videoLink}
       />

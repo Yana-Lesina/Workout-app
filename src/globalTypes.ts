@@ -1,4 +1,4 @@
-export type IExercise = {
+export type ExerciseType = {
   id: number;
   title: string;
   duration: number;
@@ -8,19 +8,19 @@ export type IExercise = {
   finished?: true | undefined;
 };
 
-export type IQuestion = {
+export type QuestionType = {
   title: string;
-  exercises: IExercise[];
-  muscle_group: Imuscle_group;
+  exercises: ExerciseType[];
+  muscleGroup: MuscleGroupType;
 };
 
-export type IWorkoutPart = {
+export type WorkoutPartType = {
   name: string;
   slug: string;
-  questions: IQuestion[];
+  questions: QuestionType[];
 };
 
-export type Imuscle_group = {
+export type MuscleGroupType = {
   name: string;
   photo: string;
 };

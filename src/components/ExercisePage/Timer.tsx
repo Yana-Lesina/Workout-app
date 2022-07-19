@@ -6,6 +6,7 @@ type TimerType = {
   ifPaused: boolean;
   isPrepared?: boolean;
   handleRunOut?: any;
+  switchHandler?: number;
 };
 
 const Timer: React.FC<TimerType> = ({
@@ -13,6 +14,7 @@ const Timer: React.FC<TimerType> = ({
   ifPaused,
   isPrepared,
   handleRunOut,
+  switchHandler,
 }) => {
   const [time, setTime] = React.useState<number>(duration);
   const size = 128;
@@ -21,6 +23,11 @@ const Timer: React.FC<TimerType> = ({
   const circumference = 2 * 3.14 * radius;
   const dashOffsetNum = ((100 - progress) / 100) * circumference;
   let timeoutID: NodeJS.Timeout | undefined;
+
+  //for "ger ready <- get ready" situation: timer countdown from 5 again
+  React.useEffect(() => {
+    if (!isPrepared) setTime(5);
+  }, [switchHandler]);
 
   React.useEffect(() => {
     setTime(duration);

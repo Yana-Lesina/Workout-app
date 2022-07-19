@@ -21,6 +21,7 @@
   align-items: center;
   margin-top: 20px;
   margin-bottom: 20px;
+  width: 100%;
 
   .timerWrapper {
     @media (max-width: 800px) {
@@ -32,7 +33,7 @@
 
 .exerciseInner {
   position: relative;
-  width: 800px;
+  width: 100%;
   height: auto;
 
   display: flex;
