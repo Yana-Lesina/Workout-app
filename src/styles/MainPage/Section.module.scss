@@ -1,4 +1,4 @@
-@import "../../index.scss";
+@import "../index.scss";
 
 .sectionWrapper {
   width: 100%;
@@ -11,18 +11,18 @@
     font-style: normal;
     font-weight: 600;
     font-size: 22px;
-    line-height: 24px;
-    color: $sectionTitle; //rgb(117, 89, 131);
+    line-height: 45px;
+    color: $sectionTitle;
     @media (max-width: 800px) {
       font-weight: 600;
       font-size: 18px;
-      line-height: 20px;
+      line-height: 35px;
     }
   }
   .musclegroupTitle {
     font-size: 14px;
     line-height: 24px;
     margin-bottom: 10px;
-    color: $textAccent1; //rgb(186, 165, 196);
+    color: $textAccent1;
   }
 }

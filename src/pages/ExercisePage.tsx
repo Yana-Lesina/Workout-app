@@ -1,6 +1,9 @@
 import React from "react";
 import styles from "../styles/ExercisePage/ExercisePage.module.scss";
 
+import { useSelector } from "react-redux";
+import { RootState } from "../redux-store/store";
+
 import { ExerciseType } from "../globalTypes";
 import BackImg from "../assets/images/back-img.svg";
 import ForwardImg from "../assets/images/forward-img.svg";
@@ -13,17 +16,22 @@ import ToHomepageButton from "../components/ExercisePage/ToHomepageButton";
 
 type ExercisePageType = {
   exercises: ExerciseType[];
-  startCounter: number;
+  // startCounter: number;
   setExerciseState: any;
   setCompletedState: any;
 };
 
 const ExercisePage: React.FC<ExercisePageType> = ({
   exercises,
-  startCounter,
+  // startCounter,
   setExerciseState,
   setCompletedState,
 }) => {
+  // console.log("exPage render");
+  const startCounter = useSelector(
+    (state: RootState) => state.startCounter.value,
+  );
+
   const [prepared, setPrepared] = React.useState<boolean>(false);
   const [counter, setCounter] = React.useState<number>(startCounter);
   const [ifPaused, setIfPaused] = React.useState(false);
@@ -120,7 +128,7 @@ const ExercisePage: React.FC<ExercisePageType> = ({
               onClick={() => {
                 setIfPaused(!ifPaused);
               }}
-              onKeyPress={(event: any) => {
+              onKeyPress={(event: React.KeyboardEvent<HTMLElement>) => {
                 if (event.key === " " || event.key === "Enter") {
                   setIfPaused(!ifPaused);
                 }

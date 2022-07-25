@@ -1,21 +1,25 @@
 /*eslint no-constant-condition: "warn"*/
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setStartCounter } from "./redux-store/slices/startCounterSlice";
+import { setIsDataLoaded } from "./redux-store/slices/isLoadedSlice";
 
 import styles from "./styles/App.module.scss";
-import React, { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { url } from "./forEnv";
 import { WorkoutPartType, ExerciseType } from "./globalTypes";
+
 import MainPage from "./pages/MainPage";
 import ExercisePage from "./pages/ExercisePage";
-import { WorkoutCompleted } from "./pages/WorkoutCompleted";
+import WorkoutCompleted from "./pages/WorkoutCompleted";
 import ErrorPage from "./pages/ErrorPage";
-import { url } from "./forEnv";
 
 const App: React.FC = () => {
-  const [error, setError] = useState<boolean>(false);
-  const [isLoaded, setIsLoaded] = useState<boolean>(false);
-  const [items, setItems] = useState<WorkoutPartType>();
-  const [startCounter, setStartCounter] = React.useState<number>(0);
+  const [error, setError] = React.useState<boolean>(false);
+  const [items, setItems] = React.useState<WorkoutPartType>();
   const [completed, setCompleted] = React.useState<boolean>(false);
+
+  const dispatch = useDispatch();
 
   const createExercisesList = (elem: WorkoutPartType | undefined) => {
     const exerciseList: ExerciseType[] = [];
@@ -34,7 +38,8 @@ const App: React.FC = () => {
 
   const setExerciseState = (id: number) => {
     exercises[id].finished = true;
-    setStartCounter(findStartCounter());
+
+    dispatch(setStartCounter(findStartCounter()));
   };
 
   const findStartCounter = () => {
@@ -53,7 +58,8 @@ const App: React.FC = () => {
 
   // console.log("app render");
 
-  useEffect(() => {
+  React.useEffect(() => {
+    // console.log("useEffect with fetch");
     const getServerData = async () => {
       const serverData = await fetch(url);
       return serverData;
@@ -66,29 +72,24 @@ const App: React.FC = () => {
       })
       .then(
         (result) => {
-          setIsLoaded(true);
+          dispatch(setIsDataLoaded(true));
           setItems(result.data);
         },
 
         (error) => {
-          setIsLoaded(true);
+          // console.log("error", error.message);
+          dispatch(setIsDataLoaded(true));
           setError(true);
         },
       );
   }, []);
 
-  return { isLoaded } ? (
+  return (
     <div className={styles.wrapper}>
       <Routes>
         <Route
           path="/"
-          element={
-            <MainPage
-              elements={items}
-              ifCompleted={completed}
-              isLoaded={isLoaded}
-            />
-          }
+          element={<MainPage elements={items} ifCompleted={completed} />}
         />
         <Route
           path="/exercise"
@@ -96,7 +97,7 @@ const App: React.FC = () => {
             !completed ? (
               <ExercisePage
                 exercises={exercises}
-                startCounter={startCounter}
+                // startCounter={startCounter}
                 setExerciseState={setExerciseState}
                 setCompletedState={setCompletedState}
               />
@@ -108,8 +109,6 @@ const App: React.FC = () => {
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>
-  ) : (
-    <div>Loading...</div>
   );
 };
 

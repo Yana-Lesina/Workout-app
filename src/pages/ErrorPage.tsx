@@ -1,10 +1,11 @@
 import React from "react";
+import styles from "../styles/ErrorPage/ErrorPage.module.scss";
 
 const ErrorPage: React.FC = () => {
   return (
-    <>
-      <h3>Page not found..</h3>
-    </>
+    <div className={styles.wrapper}>
+      <span>🤔 Page not found... </span>
+    </div>
   );
 };
 

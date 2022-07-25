@@ -6,14 +6,14 @@ type ExerciseIntroType = {
   title: string;
   duration: number;
   photo: string;
-  isFinished?: true | undefined;
+  finished?: true | undefined;
 };
 
 const Exercise: React.FC<ExerciseIntroType> = ({
   title,
   duration,
   photo,
-  isFinished,
+  finished,
 }) => {
   return (
     <div className={styles.exerciseContainer}>
@@ -22,7 +22,7 @@ const Exercise: React.FC<ExerciseIntroType> = ({
           src={CompletedImage}
           alt="completedImage"
           className={`${styles.completedImage} ${
-            isFinished ? styles.finishedExercise : ""
+            finished ? styles.finishedExercise : ""
           }`}
         />
         <img src={photo} alt="exercise-img" className={styles.exerciseImg} />
@@ -30,7 +30,7 @@ const Exercise: React.FC<ExerciseIntroType> = ({
       <div className={styles.exerciseInfoWrapper}>
         <div
           className={`${styles.exerciseTitle} ${
-            isFinished ? styles.finishedExercise : ""
+            finished ? styles.finishedExercise : ""
           }`}
         >
           {title}

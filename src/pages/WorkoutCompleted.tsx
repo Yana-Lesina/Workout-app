@@ -7,7 +7,7 @@ type WorkoutCompletedType = {
   totalDuration: number;
 };
 
-export const WorkoutCompleted: React.FC<WorkoutCompletedType> = ({
+const WorkoutCompleted: React.FC<WorkoutCompletedType> = ({
   totalDuration = 0,
 }) => {
   return (
@@ -34,3 +34,5 @@ export const WorkoutCompleted: React.FC<WorkoutCompletedType> = ({
     </>
   );
 };
+
+export default WorkoutCompleted;

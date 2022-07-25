@@ -1,4 +1,6 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux-store/store";
 
 import WelcomeImage from "../components/MainPage/WelcomeImage";
 
@@ -16,17 +18,16 @@ import HeadersLoader from "../components/MainPage/Skeletons/HeadersLoader";
 type MainPageType = {
   elements: WorkoutPartType | undefined;
   ifCompleted: boolean;
-  isLoaded: boolean;
 };
 
-const MainPage: React.FC<MainPageType> = ({
-  elements,
-  ifCompleted,
-  isLoaded,
-}) => {
+const MainPage: React.FC<MainPageType> = ({ elements, ifCompleted }) => {
+  const isDataLoaded = useSelector(
+    (state: RootState) => state.isDataLoaded.value,
+  );
+
   return (
     <>
-      {isLoaded ? (
+      {isDataLoaded ? (
         <>
           <WelcomeImage src={introImg} />
           <Headers
