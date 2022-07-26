@@ -1,0 +1,77 @@
+@import "../index.scss";
+
+.wrapper {
+  width: 52vw;
+  margin-top: 8vw;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (max-width: 800px) {
+    margin-top: 20vw;
+    width: 75vw;
+  }
+
+  fieldset {
+    padding: 0 25%;
+    @media (max-width: 800px) {
+      padding: 0;
+    }
+  }
+
+  legend {
+    display: block;
+    margin-bottom: 10px;
+
+    font-size: 2em;
+    font-weight: 600;
+  }
+
+  label {
+    line-height: 25px;
+    color: $textAccent1;
+  }
+
+  input {
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    border: 1px #d9d9d9 solid;
+    color: #1d1d1d;
+    padding: 0 0.75rem;
+    display: block;
+    position: relative;
+
+    font-size: 1rem;
+    height: 36px;
+    line-height: 36px;
+  }
+  input:hover {
+    border-color: silver;
+  }
+  input:focus {
+    box-shadow: 0 0 0 3px rgb(228 228 228 / 45%);
+  }
+  input:focus-visible {
+    outline: none !important;
+  }
+
+  input[type="submit"] {
+    cursor: pointer;
+    background: $actionButtonsColor;
+    color: $actionButtonTextColor;
+  }
+
+  span {
+    display: block;
+    width: 100%;
+    text-align: center;
+
+    font-size: 1rem;
+    font-weight: 200;
+
+    a {
+      text-decoration: none;
+      color: $actionButtonsColor;
+    }
+  }
+}
