@@ -44,21 +44,29 @@
     font-size: 1rem;
     height: 36px;
     line-height: 36px;
-  }
-  input:hover {
-    border-color: silver;
-  }
-  input:focus {
-    box-shadow: 0 0 0 3px rgb(228 228 228 / 45%);
-  }
-  input:focus-visible {
-    outline: none !important;
+
+    &:hover {
+      border-color: silver;
+    }
+    &:focus {
+      box-shadow: 0 0 0 3px rgb(228 228 228 / 45%);
+    }
+    &:focus-visible {
+      outline: none !important;
+    }
   }
 
   input[type="submit"] {
     cursor: pointer;
     background: $actionButtonsColor;
     color: $actionButtonTextColor;
+    margin-top: 20px;
+
+    &:focus,
+    &:hover {
+      outline: none;
+      box-shadow: 0 0 20px 5px rgba(170, 0, 255, 0.4);
+    }
   }
 
   span {
