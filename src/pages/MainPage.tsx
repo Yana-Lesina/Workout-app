@@ -5,11 +5,12 @@ import { RootState } from "../redux-store/store";
 import WelcomeImage from "../components/MainPage/WelcomeImage";
 
 import { WorkoutPartType } from "../globalTypes.js";
+import introImg from "../assets/images/intro-img.png";
 
+import UserProfile from "../components/MainPage/UserProfile";
 import Headers from "../components/MainPage/Headers";
 import Container from "../components/MainPage/Container";
 import Button from "../components/Button";
-import introImg from "../assets/images/intro-img.png";
 
 import ItemsLoader from "../components/MainPage/Skeletons/ItemsLoader";
 import ImageLoader from "../components/MainPage/Skeletons/ImageLoader";
@@ -29,6 +30,7 @@ const MainPage: React.FC<MainPageType> = ({ elements, ifCompleted }) => {
     <>
       {isDataLoaded ? (
         <>
+          <UserProfile />
           <WelcomeImage src={introImg} />
           <Headers
             workoutTitle={"Morning Flexibility Routine"}

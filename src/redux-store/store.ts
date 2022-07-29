@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { startCounterSlice } from "./slices/startCounterSlice";
 import { isDataLoadedSlice } from "./slices/isLoadedSlice";
+import { userSlice } from "./slices/userSlice";
 
 export const store = configureStore({
   reducer: {
     startCounter: startCounterSlice.reducer,
     isDataLoaded: isDataLoadedSlice.reducer,
+    user: userSlice.reducer,
   },
 });
 

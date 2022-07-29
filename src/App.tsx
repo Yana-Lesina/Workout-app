@@ -1,9 +1,12 @@
 /*eslint no-constant-condition: "warn"*/
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setStartCounter } from "./redux-store/slices/startCounterSlice";
 import { setIsDataLoaded } from "./redux-store/slices/isLoadedSlice";
+import { setCurrentUser } from "./redux-store/slices/userSlice";
+
+import { getUser } from "./firebase/authFuncs";
 
 import styles from "./styles/App.module.scss";
 import { url } from "./forEnv";
@@ -15,6 +18,7 @@ import WorkoutCompleted from "./pages/WorkoutCompleted";
 import ErrorPage from "./pages/ErrorPage";
 import SignUpPage from "./pages/SignUpPage";
 import LogInPage from "./pages/LogInPage";
+import LoadingPage from "./pages/LoadingPage";
 
 const App: React.FC = () => {
   const [error, setError] = React.useState<boolean>(false);
@@ -22,6 +26,7 @@ const App: React.FC = () => {
   const [completed, setCompleted] = React.useState<boolean>(false);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const createExercisesList = (elem: WorkoutPartType | undefined) => {
     const exerciseList: ExerciseType[] = [];
@@ -72,18 +77,30 @@ const App: React.FC = () => {
         const jsonData = await res.json();
         return jsonData;
       })
-      .then(
-        (result) => {
-          dispatch(setIsDataLoaded(true));
-          setItems(result.data);
-        },
+      .then((result) => {
+        dispatch(setIsDataLoaded(true));
+        setItems(result.data);
+      })
+      .catch((error: Error) => {
+        dispatch(setIsDataLoaded(true));
+        setError(true);
 
-        (error) => {
-          // console.log("error", error.message);
-          dispatch(setIsDataLoaded(true));
-          setError(true);
-        },
-      );
+        reportError(error.message);
+      });
+  }, []);
+
+  React.useEffect(() => {
+    getUser((user) => {
+      if (user) {
+        console.log("catch user!", user);
+        dispatch(setCurrentUser({ email: user.email, uid: user.uid }));
+        navigate("/main-page");
+      } else {
+        console.log("no user");
+
+        navigate("/log-in");
+      }
+    });
   }, []);
 
   return (
@@ -92,7 +109,7 @@ const App: React.FC = () => {
         <Route path="/sign-up" element={<SignUpPage />} />
         <Route path="/log-in" element={<LogInPage />} />
         <Route
-          path="/main"
+          path="/main-page"
           element={<MainPage elements={items} ifCompleted={completed} />}
         />
         <Route
@@ -110,6 +127,7 @@ const App: React.FC = () => {
             )
           }
         />
+        <Route path="/" element={<LoadingPage />}></Route>
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>

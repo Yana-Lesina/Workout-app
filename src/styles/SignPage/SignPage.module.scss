@@ -18,12 +18,28 @@
     }
   }
 
+  span.errorMessage {
+    display: block;
+    width: 80%;
+    margin-right: auto;
+    margin-left: auto;
+
+    text-align: center;
+
+    font-size: 0.9rem;
+    font-weight: 200;
+    line-height: 25px;
+
+    color: red;
+  }
+
   legend {
     display: block;
     margin-bottom: 10px;
 
     font-size: 2em;
     font-weight: 600;
+    text-align: center;
   }
 
   label {
@@ -69,7 +85,7 @@
     }
   }
 
-  span {
+  span.switchAuthText {
     display: block;
     width: 100%;
     text-align: center;
