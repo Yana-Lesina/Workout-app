@@ -2,7 +2,6 @@ import React from "react";
 import styles from "../styles/SignPage/SignPage.module.scss";
 import { Link, useNavigate } from "react-router-dom";
 
-import { auth } from "../firebase/index";
 import { RootState } from "../redux-store/store";
 
 import { logIn } from "../firebase/authFuncs";
@@ -30,13 +29,7 @@ const LogInPage: React.FC = () => {
 
     await logIn(emailRef?.current?.value, passwordRef?.current?.value)
       .then(({ user }) => {
-        console.log("user.email", user.email);
-
         dispatch(setCurrentUser({ email: user?.email, uid: user?.uid }));
-
-        console.log("auth.currentUser", auth.currentUser?.email);
-        console.log("userData", userData);
-
         navigate("/main-page");
       })
       .catch((error) => {
