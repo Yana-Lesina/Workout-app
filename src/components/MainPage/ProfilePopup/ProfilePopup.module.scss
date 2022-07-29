@@ -1,0 +1,48 @@
+@import "../../../styles/index.scss";
+
+.userProfileBlock {
+  position: absolute;
+  align-self: end;
+
+  width: 18vw;
+  height: 20vw;
+
+  background-color: $lineColor;
+  border-radius: 10px;
+
+  p {
+    display: block;
+
+    padding: 5px 20px;
+
+    cursor: pointer;
+    font-size: 1.1vw;
+
+    &:hover {
+      color: $actionButtonsColor;
+    }
+  }
+
+  .logOut {
+    position: inherit;
+
+    bottom: 0;
+    padding-bottom: 20px;
+
+    width: 100%;
+    text-align: center;
+  }
+
+  .crossImageBlock {
+    display: flex;
+    justify-content: end;
+
+    padding: 5px 10px;
+
+    .crossImage {
+      width: 30px;
+      height: auto;
+      cursor: pointer;
+    }
+  }
+}

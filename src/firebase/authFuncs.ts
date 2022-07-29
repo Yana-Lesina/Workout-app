@@ -7,11 +7,9 @@ import {
   sendPasswordResetEmail,
   updateEmail,
   updatePassword,
-  Auth,
   NextOrObserver,
   User,
 } from "firebase/auth";
-import { IUser } from "../redux-store/slices/userSlice";
 
 export const signUp = (email: string, password: string) => {
   return createUserWithEmailAndPassword(auth, email, password);

@@ -97,7 +97,6 @@ const App: React.FC = () => {
         navigate("/main-page");
       } else {
         console.log("no user");
-
         navigate("/log-in");
       }
     });

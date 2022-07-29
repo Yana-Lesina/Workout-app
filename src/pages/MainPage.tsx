@@ -7,7 +7,7 @@ import WelcomeImage from "../components/MainPage/WelcomeImage";
 import { WorkoutPartType } from "../globalTypes.js";
 import introImg from "../assets/images/intro-img.png";
 
-import UserProfile from "../components/MainPage/UserProfile";
+import Profile from "../components/MainPage/Profile";
 import Headers from "../components/MainPage/Headers";
 import Container from "../components/MainPage/Container";
 import Button from "../components/Button";
@@ -30,7 +30,7 @@ const MainPage: React.FC<MainPageType> = ({ elements, ifCompleted }) => {
     <>
       {isDataLoaded ? (
         <>
-          <UserProfile />
+          <Profile />
           <WelcomeImage src={introImg} />
           <Headers
             workoutTitle={"Morning Flexibility Routine"}
