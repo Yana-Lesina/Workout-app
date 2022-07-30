@@ -1,23 +1,24 @@
 import React from "react";
-import styles from "../styles/SignPage/SignPage.module.scss";
+import styles from "./AuthPages.module.scss";
+
 import { Link, useNavigate } from "react-router-dom";
 
-import { RootState } from "../redux-store/store";
+import { handleAuthError } from "../../helpers/handleAuthError";
 
-import { logIn } from "../firebase/authFuncs";
-import { useSelector, useDispatch } from "react-redux";
-import { setCurrentUser } from "../redux-store/slices/userSlice";
+import { logIn } from "../../firebase/authFuncs";
+import { useDispatch } from "react-redux";
+import { setCurrentUser } from "../../redux-store/slices/userSlice";
+import SubmitButton from "../../components/AuthPages/SubmitButton";
 
 const LogInPage: React.FC = () => {
   const emailRef = React.useRef<HTMLInputElement | null>(null);
   const passwordRef = React.useRef<HTMLInputElement | null>(null);
 
   const [errorMessage, setErrorMessage] = React.useState("");
+  const [requestLoading, setRequestLoading] = React.useState<boolean>(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const userData = useSelector((state: RootState) => state.user);
 
   const handleLogIn = async (event: any) => {
     event.preventDefault();
@@ -27,23 +28,16 @@ const LogInPage: React.FC = () => {
     )
       return;
 
+    setRequestLoading(true);
     await logIn(emailRef?.current?.value, passwordRef?.current?.value)
       .then(({ user }) => {
         dispatch(setCurrentUser({ email: user?.email, uid: user?.uid }));
         navigate("/main-page");
       })
       .catch((error) => {
-        const devErrorCode = error.code;
-        const devErrorMessage = error.message;
-
-        if (devErrorCode === "auth/wrong-password") {
-          setErrorMessage("Incorrect password");
-        } else if (devErrorCode === "auth/user-not-found") {
-          setErrorMessage("There's no such user ");
-        } else {
-          setErrorMessage(devErrorMessage);
-        }
+        setErrorMessage(handleAuthError(error));
       });
+    setRequestLoading(false);
   };
 
   return (
@@ -55,16 +49,16 @@ const LogInPage: React.FC = () => {
 
         <label htmlFor="email">Email: </label>
         <br />
-        <input type="text" id="email" ref={emailRef} />
+        <input type="text" id="email" ref={emailRef} required />
 
         <label htmlFor="password">Password: </label>
         <br />
-        <input type="password" id="password" ref={passwordRef} />
+        <input type="password" id="password" ref={passwordRef} required />
         <span className={styles.switchAuthText}>
           Forgot password? <Link to="/reset-password">Reset Password</Link>
         </span>
 
-        <input type="submit" value="Log In"></input>
+        <SubmitButton innerText="Log In" disabled={requestLoading} />
 
         <span className={styles.switchAuthText}>
           Need an account? <Link to="/sign-up">Sign up</Link>

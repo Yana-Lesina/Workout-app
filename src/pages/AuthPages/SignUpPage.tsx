@@ -1,22 +1,26 @@
 import React from "react";
-import styles from "../styles/SignPage/SignPage.module.scss";
+import styles from "./AuthPages.module.scss";
 import { Link, useNavigate } from "react-router-dom";
 
-import { signUp } from "../firebase/authFuncs";
-
+import { signUp } from "../../firebase/authFuncs";
 import { useDispatch } from "react-redux";
-import { setCurrentUser } from "../redux-store/slices/userSlice";
+import { setCurrentUser } from "../../redux-store/slices/userSlice";
+
+import { handleAuthError } from "../../helpers/handleAuthError";
+import SubmitButton from "../../components/AuthPages/SubmitButton";
 
 const SignUpPage: React.FC = () => {
   const emailRef = React.useRef<HTMLInputElement | null>(null);
   const passwordRef = React.useRef<HTMLInputElement | null>(null);
   const passwordConfirmRef = React.useRef<HTMLInputElement | null>(null);
-  const [errorMessage, setErrorMessage] = React.useState("");
+
+  const [errorMessage, setErrorMessage] = React.useState<string>("");
+  const [requestLoading, setRequestLoading] = React.useState<boolean>(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleSubmit = async (event: any) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
     if (
@@ -28,6 +32,7 @@ const SignUpPage: React.FC = () => {
     if (passwordRef?.current?.value !== passwordConfirmRef?.current?.value)
       return setErrorMessage("Passwords do not match");
 
+    setRequestLoading(true);
     await signUp(emailRef.current.value, passwordRef.current.value)
       .then(({ user }) => {
         // <=> userCredential.user;
@@ -43,19 +48,9 @@ const SignUpPage: React.FC = () => {
         navigate("/main-page");
       })
       .catch((error) => {
-        const devErrorCode = error.code;
-        const devErrorMessage = error.message;
-
-        if (devErrorCode === "auth/invalid-email") {
-          setErrorMessage("Incorrect email syntax");
-        } else if (devErrorCode === "auth/weak-password") {
-          setErrorMessage("Password should be at least 6 characters ");
-        } else if (devErrorCode === "auth/email-already-in-use") {
-          setErrorMessage("There's already an account for this email ");
-        } else {
-          setErrorMessage(devErrorMessage);
-        }
+        setErrorMessage(handleAuthError(error));
       });
+    setRequestLoading(false);
   };
 
   return (
@@ -67,17 +62,22 @@ const SignUpPage: React.FC = () => {
 
         <label htmlFor="email">Email: </label>
         <br />
-        <input type="text" id="email" ref={emailRef} />
+        <input type="text" id="email" ref={emailRef} required />
 
         <label htmlFor="password">Password: </label>
         <br />
-        <input type="password" id="password" ref={passwordRef} />
+        <input type="password" id="password" ref={passwordRef} required />
 
         <label htmlFor="confirmation">Password Confirmation: </label>
         <br />
-        <input type="password" id="confirmation" ref={passwordConfirmRef} />
+        <input
+          type="password"
+          id="confirmation"
+          ref={passwordConfirmRef}
+          required
+        />
 
-        <input type="submit" value="Sign Up"></input>
+        <SubmitButton innerText="Sign Up" disabled={requestLoading} />
 
         <span className={styles.switchAuthText}>
           Already have an account? <Link to="/log-in">Sign in</Link>

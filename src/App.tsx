@@ -16,9 +16,10 @@ import MainPage from "./pages/MainPage";
 import ExercisePage from "./pages/ExercisePage";
 import WorkoutCompleted from "./pages/WorkoutCompleted";
 import ErrorPage from "./pages/ErrorPage";
-import SignUpPage from "./pages/SignUpPage";
-import LogInPage from "./pages/LogInPage";
+import SignUpPage from "./pages/AuthPages/SignUpPage";
+import LogInPage from "./pages/AuthPages/LogInPage";
 import LoadingPage from "./pages/LoadingPage";
+import ResetPasswordPage from "./pages/AuthPages/ResetPasswordPage";
 
 const App: React.FC = () => {
   const [error, setError] = React.useState<boolean>(false);
@@ -107,6 +108,7 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/sign-up" element={<SignUpPage />} />
         <Route path="/log-in" element={<LogInPage />} />
+        <Route path="/reset-password" element={<ResetPasswordPage />} />
         <Route
           path="/main-page"
           element={<MainPage elements={items} ifCompleted={completed} />}

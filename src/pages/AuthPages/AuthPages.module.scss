@@ -1,4 +1,4 @@
-@import "../index.scss";
+@import "../../styles/index.scss";
 
 .wrapper {
   width: 52vw;
@@ -72,18 +72,24 @@
     }
   }
 
-  input[type="submit"] {
-    cursor: pointer;
-    background: $actionButtonsColor;
-    color: $actionButtonTextColor;
-    margin-top: 20px;
+  // input[type="submit"] {
+  //   cursor: pointer;
+  //   background: $actionButtonsColor;
+  //   color: $actionButtonTextColor;
+  //   margin-top: 20px;
 
-    &:focus,
-    &:hover {
-      outline: none;
-      box-shadow: 0 0 20px 5px rgba(170, 0, 255, 0.4);
-    }
-  }
+  //   &:focus,
+  //   &:hover {
+  //     outline: none;
+  //     box-shadow: 0 0 20px 5px rgba(170, 0, 255, 0.4);
+  //   }
+  //   &:disabled {
+  //     background-color: rgba(97, 26, 132, 0.4);
+  //     &:hover {
+  //       box-shadow: 0 0 2px 2px rgba(187, 142, 209, 0.4);
+  //     }
+  //   }
+  // }
 
   span.switchAuthText {
     display: block;
