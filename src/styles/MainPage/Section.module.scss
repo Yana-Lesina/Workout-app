@@ -3,6 +3,10 @@
 .sectionWrapper {
   width: 100%;
 
+  @media (max-width: 800px) {
+    padding-left: 5vw;
+  }
+
   .sectionLineSeparator {
     border-top: 2px solid $lineColor;
   }

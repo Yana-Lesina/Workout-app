@@ -39,8 +39,7 @@ const ProfilePopup: React.FC<ProfilePopupType> = ({ onClick }) => {
       </div>
 
       <ul>
-        <li>*Avatar*</li>
-        <li>{userData.email}</li>
+        <li className={styles.email}>{userData.email}</li>
         <li>
           <Link to="/change-password">Change Password</Link>
         </li>

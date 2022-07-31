@@ -3,11 +3,11 @@
 .userProfileBlock {
   position: absolute;
   align-self: end;
-  width: 18vw;
+  width: 52vw;
   height: 29.25vw;
-  background-color: $lineColor;
-  border-radius: 10px;
-  font-size: 1.1vw;
+  background-color: $lineColorWithOpacity;
+  border-radius: 5px;
+  font-size: 20px;
   z-index: 5;
 
   word-break: break-all;
@@ -16,32 +16,48 @@
     & {
       position: fixed;
       align-self: end;
-      width: 70vw;
+      width: 80vw;
       height: 70vh;
-      font-size: 4.1vw;
+      font-size: 4vw;
+      background-color: $lineColor;
     }
   }
 
   li {
     display: block;
-    padding: 5px 20px;
-    cursor: pointer;
+    padding: 10px 30px;
     color: $textAccent1;
+    text-align: center;
+
+    cursor: pointer;
+
     &:hover {
       color: $actionButtonsColor;
     }
     @media (max-width: 800px) {
       & {
-        padding: 10px 20px;
+        padding: 10px 30px;
+        font-size: 5vw;
+        text-align: left;
       }
     }
 
     a {
       text-decoration: none;
       color: $textAccent1;
-
       &:hover {
         color: $actionButtonsColor;
+      }
+    }
+  }
+
+  .email {
+    color: black;
+    font-size: 1.3rem;
+    text-align: center;
+    @media (max-width: 800px) {
+      & {
+        font-size: 4vw;
       }
     }
   }
@@ -49,18 +65,24 @@
   .crossImageBlock {
     display: flex;
     justify-content: end;
+    margin-top: 10px;
+    margin-right: 10px;
 
-    padding: 5px 10px;
+    @media (max-width: 800px) {
+      & {
+        margin: 10px 20px;
+      }
+    }
 
     .crossImage {
-      width: 30px;
-      height: 30px;
+      width: 40px;
+      height: 40px;
       cursor: pointer;
 
       @media (max-width: 800px) {
         & {
-          width: 40px;
-          height: 40px;
+          width: 50px;
+          height: 50px;
         }
       }
     }
