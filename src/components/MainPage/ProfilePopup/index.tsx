@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import styles from "./ProfilePopup.module.scss";
 
@@ -37,15 +37,18 @@ const ProfilePopup: React.FC<ProfilePopupType> = ({ onClick }) => {
       <div className={styles.crossImageBlock}>
         <img src={crossImg} className={styles.crossImage} onClick={onClick} />
       </div>
-      <p>*Avatar*</p>
-      <p>{userData.email}</p>
 
-      <p>Change Password</p>
-      <p>Change Email</p>
-
-      <p onClick={handleSignOut} className={styles.logOut}>
-        Log Out
-      </p>
+      <ul>
+        <li>*Avatar*</li>
+        <li>{userData.email}</li>
+        <li>
+          <Link to="/change-password">Change Password</Link>
+        </li>
+        <li>
+          <Link to="/change-email">Change Email</Link>
+        </li>
+        <li onClick={handleSignOut}>Log Out</li>
+      </ul>
     </div>
   );
 };

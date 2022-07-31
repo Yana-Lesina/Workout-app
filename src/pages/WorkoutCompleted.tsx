@@ -30,7 +30,7 @@ const WorkoutCompleted: React.FC<WorkoutCompletedType> = ({
           <h3>{totalDuration}</h3>
         </div>
       </div>
-      <SaveButton link="/" innerText="Save & Continue" />
+      <SaveButton link="/main-page" innerText="Save & Continue" />
     </>
   );
 };

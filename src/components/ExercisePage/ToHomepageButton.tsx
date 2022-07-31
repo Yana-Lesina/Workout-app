@@ -6,7 +6,7 @@ import goToHomepage from "../../assets/images/goToHomepage.svg";
 const ToHomepageButton: React.FC = () => {
   return (
     <div className={styles.toHomepageButton}>
-      <Link to="/" className={styles.link}>
+      <Link to="/main-page" className={styles.link}>
         <img src={goToHomepage} alt="goToHomepage" />
       </Link>
     </div>

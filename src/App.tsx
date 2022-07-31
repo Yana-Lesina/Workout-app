@@ -4,7 +4,6 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setStartCounter } from "./redux-store/slices/startCounterSlice";
 import { setIsDataLoaded } from "./redux-store/slices/isLoadedSlice";
-import { setCurrentUser } from "./redux-store/slices/userSlice";
 
 import { getUser } from "./firebase/authFuncs";
 
@@ -20,6 +19,7 @@ import SignUpPage from "./pages/AuthPages/SignUpPage";
 import LogInPage from "./pages/AuthPages/LogInPage";
 import LoadingPage from "./pages/LoadingPage";
 import ResetPasswordPage from "./pages/AuthPages/ResetPasswordPage";
+import ChangePasswordPage from "./pages/AuthPages/ChangePasswordPage";
 
 const App: React.FC = () => {
   const [error, setError] = React.useState<boolean>(false);
@@ -64,10 +64,7 @@ const App: React.FC = () => {
     );
   };
 
-  // console.log("app render");
-
   React.useEffect(() => {
-    // console.log("useEffect with fetch");
     const getServerData = async () => {
       const serverData = await fetch(url);
       return serverData;
@@ -94,7 +91,6 @@ const App: React.FC = () => {
     getUser((user) => {
       if (user) {
         console.log("catch user!", user);
-        dispatch(setCurrentUser({ email: user.email, uid: user.uid }));
         navigate("/main-page");
       } else {
         console.log("no user");
@@ -109,6 +105,7 @@ const App: React.FC = () => {
         <Route path="/sign-up" element={<SignUpPage />} />
         <Route path="/log-in" element={<LogInPage />} />
         <Route path="/reset-password" element={<ResetPasswordPage />} />
+        <Route path="/change-password" element={<ChangePasswordPage />} />
         <Route
           path="/main-page"
           element={<MainPage elements={items} ifCompleted={completed} />}
