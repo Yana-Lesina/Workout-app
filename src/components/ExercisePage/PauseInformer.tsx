@@ -14,7 +14,7 @@ const PauseInformer: React.FC = () => {
         </div>
 
         <div className={styles.leaveWorkoutButton}>
-          <Link to="/" className={styles.leaveWorkoutButtonLi}>
+          <Link to="/main-page" className={styles.leaveWorkoutButtonLi}>
             Leave Workout
           </Link>
         </div>
