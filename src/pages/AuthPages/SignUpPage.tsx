@@ -45,6 +45,7 @@ const SignUpPage: React.FC = () => {
           setCurrentUser({
             email: user.email,
             uid: user.uid,
+            role: roles[activeRoleID],
           }),
         );
 

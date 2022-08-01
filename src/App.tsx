@@ -31,6 +31,8 @@ const App: React.FC = () => {
   const [items, setItems] = React.useState<WorkoutPartType>();
   const [completed, setCompleted] = React.useState<boolean>(false);
 
+  const userRole = useSelector((state: RootState) => state.user.role);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -93,7 +95,6 @@ const App: React.FC = () => {
   }, []);
 
   React.useEffect(() => {
-    console.log("the usefect i need");
     getUser((user) => {
       if (user) {
         console.log("catch user!", user);
@@ -101,6 +102,7 @@ const App: React.FC = () => {
           setCurrentUser({
             email: user.email,
             uid: user.uid,
+            role: userRole,
           }),
         );
         navigate("/main-page");
