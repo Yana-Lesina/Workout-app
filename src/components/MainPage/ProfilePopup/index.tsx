@@ -1,8 +1,6 @@
 import React from "react";
-
-import { Link, useNavigate } from "react-router-dom";
-
 import styles from "./ProfilePopup.module.scss";
+import { Link, useNavigate } from "react-router-dom";
 
 import { logOut } from "../../../firebase/authFuncs";
 import { useSelector, useDispatch } from "react-redux";
@@ -40,6 +38,7 @@ const ProfilePopup: React.FC<ProfilePopupType> = ({ onClick }) => {
 
       <ul>
         <li className={styles.email}>{userData.email}</li>
+        <li className={styles.email}>{`Role: ${userData.role}`}</li>
         <li>
           <Link to="/change-password">Change Password</Link>
         </li>

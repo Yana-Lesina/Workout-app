@@ -6,9 +6,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { handleAuthError } from "../../helpers/handleAuthError";
 
 import { logIn } from "../../firebase/authFuncs";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setCurrentUser } from "../../redux-store/slices/userSlice";
 import SubmitButton from "../../components/AuthPages/SubmitButton";
+import { RootState } from "../../redux-store/store";
 
 const LogInPage: React.FC = () => {
   const emailRef = React.useRef<HTMLInputElement | null>(null);
@@ -19,6 +20,8 @@ const LogInPage: React.FC = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const userRole = useSelector((state: RootState) => state.user.role);
 
   const handleLogIn = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -31,7 +34,13 @@ const LogInPage: React.FC = () => {
     setRequestLoading(true);
     await logIn(emailRef?.current?.value, passwordRef?.current?.value)
       .then(({ user }) => {
-        dispatch(setCurrentUser({ email: user?.email, uid: user?.uid }));
+        dispatch(
+          setCurrentUser({
+            email: user?.email,
+            uid: user?.uid,
+            role: userRole,
+          }),
+        );
         navigate("/main-page");
       })
       .catch((error) => {

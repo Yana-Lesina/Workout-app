@@ -9,10 +9,11 @@ import {
 } from "../../firebase/authFuncs";
 
 import { handleAuthError } from "../../helpers/handleAuthError";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setCurrentUser } from "../../redux-store/slices/userSlice";
 
 import SubmitButton from "../../components/AuthPages/SubmitButton";
+import { RootState } from "../../redux-store/store";
 
 const ChangeEmailPage: React.FC = () => {
   const passwordRef = React.useRef<HTMLInputElement | null>(null);
@@ -21,6 +22,7 @@ const ChangeEmailPage: React.FC = () => {
   const [errorMessage, setErrorMessage] = React.useState<string>("");
   const [requestLoading, setRequestLoading] = React.useState<boolean>(false);
 
+  const userRole = useSelector((state: RootState) => state.user.role);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -45,6 +47,7 @@ const ChangeEmailPage: React.FC = () => {
                   setCurrentUser({
                     email: user.email,
                     uid: user.uid,
+                    role: userRole,
                   }),
                 );
               }
