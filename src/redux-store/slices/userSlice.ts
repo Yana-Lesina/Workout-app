@@ -16,16 +16,13 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     setCurrentUser: (state, action: PayloadAction<IUser>) => {
-      console.log("action.payload.email", action.payload.email);
       state.email = action.payload.email;
       state.uid = action.payload.uid;
     },
 
     removeUser: (state) => {
-      // console.log("removeUser before", state.email);
       state.email = null;
       state.uid = null;
-      // console.log("removeUser after", state.email);
     },
   },
 });

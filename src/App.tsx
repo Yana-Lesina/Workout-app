@@ -1,7 +1,7 @@
 /*eslint no-constant-condition: "warn"*/
 import React from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setStartCounter } from "./redux-store/slices/startCounterSlice";
 import { setIsDataLoaded } from "./redux-store/slices/isLoadedSlice";
 
@@ -20,8 +20,13 @@ import LogInPage from "./pages/AuthPages/LogInPage";
 import LoadingPage from "./pages/LoadingPage";
 import ResetPasswordPage from "./pages/AuthPages/ResetPasswordPage";
 import ChangePasswordPage from "./pages/AuthPages/ChangePasswordPage";
+import ChangeEmailPage from "./pages/AuthPages/ChangeEmailPage";
+
+import { RootState } from "./redux-store/store";
+import { setCurrentUser } from "./redux-store/slices/userSlice";
 
 const App: React.FC = () => {
+  console.log("app render");
   const [error, setError] = React.useState<boolean>(false);
   const [items, setItems] = React.useState<WorkoutPartType>();
   const [completed, setCompleted] = React.useState<boolean>(false);
@@ -88,9 +93,16 @@ const App: React.FC = () => {
   }, []);
 
   React.useEffect(() => {
+    console.log("the usefect i need");
     getUser((user) => {
       if (user) {
         console.log("catch user!", user);
+        dispatch(
+          setCurrentUser({
+            email: user.email,
+            uid: user.uid,
+          }),
+        );
         navigate("/main-page");
       } else {
         console.log("no user");
@@ -106,6 +118,8 @@ const App: React.FC = () => {
         <Route path="/log-in" element={<LogInPage />} />
         <Route path="/reset-password" element={<ResetPasswordPage />} />
         <Route path="/change-password" element={<ChangePasswordPage />} />
+        <Route path="/change-email" element={<ChangeEmailPage />} />
+
         <Route
           path="/main-page"
           element={<MainPage elements={items} ifCompleted={completed} />}

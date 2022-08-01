@@ -33,18 +33,24 @@ const ChangePasswordPage: React.FC = () => {
       return setErrorMessage("Passwords do not match");
 
     setRequestLoading(true);
-
     await reauthentication(passwordRef?.current?.value)
       .then(() => {
-        changePassword(newPasswordRef.current!.value);
-        alert(`Password was changed successfully!`);
-        navigate("/main-page");
+        changePassword(newPasswordRef.current!.value)
+          ?.then(() => {
+            alert(`Password was changed successfully!`);
+
+            navigate("/main-page");
+          })
+          .catch((error) => {
+            setErrorMessage(handleAuthError(error));
+          });
       })
       .catch((error) => {
         setErrorMessage(handleAuthError(error));
+      })
+      .finally(() => {
+        setRequestLoading(false);
       });
-
-    setRequestLoading(false);
   };
 
   return (

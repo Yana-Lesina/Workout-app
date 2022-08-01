@@ -26,8 +26,10 @@ const ResetPasswordPage: React.FC = () => {
       })
       .catch((error) => {
         alert(`Something goes wrong...\n${error.code}`);
+      })
+      .finally(() => {
+        setRequestLoading(false);
       });
-    setRequestLoading(false);
   };
 
   return (

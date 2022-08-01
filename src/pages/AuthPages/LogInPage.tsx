@@ -36,8 +36,10 @@ const LogInPage: React.FC = () => {
       })
       .catch((error) => {
         setErrorMessage(handleAuthError(error));
+      })
+      .finally(() => {
+        setRequestLoading(false);
       });
-    setRequestLoading(false);
   };
 
   return (

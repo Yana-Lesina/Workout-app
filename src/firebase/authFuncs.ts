@@ -47,9 +47,10 @@ export const reauthentication = (userProvidedPassword: string) => {
 };
 
 export const changeEmail = (email: string) => {
-  if (auth.currentUser !== null) updateEmail(auth.currentUser, email);
+  if (auth.currentUser !== null) return updateEmail(auth.currentUser, email);
 };
 
 export const changePassword = (newPassword: string) => {
-  if (auth.currentUser !== null) updatePassword(auth.currentUser, newPassword);
+  if (auth.currentUser !== null)
+    return updatePassword(auth.currentUser, newPassword);
 };
