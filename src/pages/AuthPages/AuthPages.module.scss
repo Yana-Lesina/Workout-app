@@ -47,6 +47,24 @@
     color: $textAccent1;
   }
 
+  .rolesWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .roleBlock {
+      width: 45%;
+      margin-bottom: 20px;
+      text-align: center;
+      cursor: pointer;
+      &.active {
+        color: $getReadyColor;
+      }
+      &:hover {
+        color: $getReadyColor;
+      }
+    }
+  }
+
   input {
     width: 100%;
     border-radius: 5px;

@@ -13,12 +13,15 @@ const SignUpPage: React.FC = () => {
   const emailRef = React.useRef<HTMLInputElement | null>(null);
   const passwordRef = React.useRef<HTMLInputElement | null>(null);
   const passwordConfirmRef = React.useRef<HTMLInputElement | null>(null);
+  const [activeRoleID, setActiveRoleID] = React.useState<number>(0);
 
   const [errorMessage, setErrorMessage] = React.useState<string>("");
   const [requestLoading, setRequestLoading] = React.useState<boolean>(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const roles = ["User", "Trainer"];
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -59,6 +62,20 @@ const SignUpPage: React.FC = () => {
     <form onSubmit={handleSubmit} className={styles.wrapper}>
       <fieldset>
         <legend>Sign Up</legend>
+        <div className={styles.rolesWrapper}>
+          {roles.map((role, id) => {
+            return (
+              <div
+                className={`${styles.roleBlock} ${
+                  id === activeRoleID ? styles.active : " "
+                }`}
+                onClick={() => setActiveRoleID(id)}
+              >
+                as {role}
+              </div>
+            );
+          })}
+        </div>
 
         <span className={styles.errorMessage}>{errorMessage}</span>
 
