@@ -1,15 +1,17 @@
 /*eslint no-constant-condition: "warn"*/
 import React from "react";
+import styles from "./styles/App.module.scss";
 import { Routes, Route, useNavigate } from "react-router-dom";
+import { url } from "./forEnv";
+import { WorkoutPartType, ExerciseType } from "./globalTypes";
+
 import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "./redux-store/store";
+import { setCurrentUser } from "./redux-store/slices/userSlice";
 import { setStartCounter } from "./redux-store/slices/startCounterSlice";
 import { setIsDataLoaded } from "./redux-store/slices/isLoadedSlice";
 
 import { getUser } from "./firebase/authFuncs";
-
-import styles from "./styles/App.module.scss";
-import { url } from "./forEnv";
-import { WorkoutPartType, ExerciseType } from "./globalTypes";
 
 import MainPage from "./pages/MainPage";
 import ExercisePage from "./pages/ExercisePage";
@@ -21,9 +23,6 @@ import LoadingPage from "./pages/LoadingPage";
 import ResetPasswordPage from "./pages/AuthPages/ResetPasswordPage";
 import ChangePasswordPage from "./pages/AuthPages/ChangePasswordPage";
 import ChangeEmailPage from "./pages/AuthPages/ChangeEmailPage";
-
-import { RootState } from "./redux-store/store";
-import { setCurrentUser } from "./redux-store/slices/userSlice";
 
 const App: React.FC = () => {
   console.log("app render");
