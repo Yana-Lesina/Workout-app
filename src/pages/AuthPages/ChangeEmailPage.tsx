@@ -7,8 +7,8 @@ import {
   getUser,
   reauthentication,
 } from "../../firebase/authFuncs";
-import { handleAuthError } from "../../helpers/handleAuthError";
 
+import { handleAuthError } from "../../helpers/handleAuthError";
 import { useDispatch } from "react-redux";
 import { setCurrentUser } from "../../redux-store/slices/userSlice";
 

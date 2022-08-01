@@ -12,7 +12,9 @@ const ResetPasswordPage: React.FC = () => {
   const [errorMessage, setErrorMessage] = React.useState("");
   const [requestLoading, setRequestLoading] = React.useState<boolean>(false);
 
-  const handleResetPassword = async (event: any) => {
+  const handleResetPassword = async (
+    event: React.FormEvent<HTMLFormElement>,
+  ) => {
     event.preventDefault();
     if (emailRef?.current?.value === undefined)
       return setErrorMessage("Enter email for resetting password");

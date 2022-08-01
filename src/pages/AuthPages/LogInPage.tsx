@@ -20,7 +20,7 @@ const LogInPage: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleLogIn = async (event: any) => {
+  const handleLogIn = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (
       emailRef?.current?.value === undefined ||
