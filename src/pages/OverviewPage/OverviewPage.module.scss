@@ -1,0 +1,10 @@
+.cardsWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media (max-width: 800px) {
+    width: 90vw;
+    margin: 30px auto 20px;
+  }
+}
