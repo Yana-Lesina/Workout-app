@@ -15,7 +15,7 @@ import VideoFooter from "../components/ExercisePage/VideoFooter";
 import ToHomepageButton from "../components/ExercisePage/ToHomepageButton";
 
 type ExercisePageType = {
-  exercises: ExerciseType[];
+  exercises: ExerciseType[] | undefined;
   // startCounter: number;
   setExerciseState: any;
   setCompletedState: any;
@@ -28,51 +28,51 @@ const ExercisePage: React.FC<ExercisePageType> = ({
   setCompletedState,
 }) => {
   // console.log("exPage render");
-  const startCounter = useSelector(
-    (state: RootState) => state.startCounter.value,
-  );
+  // const startCounter = useSelector(
+  //   (state: RootState) => state.startCounter.value,
+  // );
 
-  const [prepared, setPrepared] = React.useState<boolean>(false);
-  const [counter, setCounter] = React.useState<number>(startCounter);
-  const [ifPaused, setIfPaused] = React.useState(false);
+  // const [prepared, setPrepared] = React.useState<boolean>(false);
+  // const [counter, setCounter] = React.useState<number>(startCounter);
+  // const [ifPaused, setIfPaused] = React.useState(false);
 
-  const switchToGetReady = (direction: -1 | 1) => {
-    if (
-      (counter === 0 && direction === 1) ||
-      (counter > 0 && counter + 1 < exercises.length) ||
-      (counter + 1 === exercises.length && direction === -1)
-    ) {
-      setCounter(counter + 1 * direction);
-    }
-    // setDuration(5);
-    setPrepared(false);
-    setIfPaused(false);
-  };
+  // const switchToGetReady = (direction: -1 | 1) => {
+  //   if (
+  //     (counter === 0 && direction === 1) ||
+  //     (counter > 0 && counter + 1 < exercises.length) ||
+  //     (counter + 1 === exercises.length && direction === -1)
+  //   ) {
+  //     setCounter(counter + 1 * direction);
+  //   }
+  //   // setDuration(5);
+  //   setPrepared(false);
+  //   setIfPaused(false);
+  // };
 
-  const autoSwitch = () => {
-    if (exercises.length > counter + 1) {
-      // get ready -> exercise
-      if (!prepared) {
-        setPrepared(true);
-        setPrepared(true);
-      }
-      // exercise -> get ready
-      if (prepared) {
-        setExerciseState(counter);
-        switchToGetReady(1);
-      }
-      // last exercise -> Workout Completed!
-    } else if (exercises.length === counter + 1) {
-      setExerciseState(counter);
-      setCompletedState(true);
-    }
-  };
+  // const autoSwitch = () => {
+  //   if (exercises.length > counter + 1) {
+  //     // get ready -> exercise
+  //     if (!prepared) {
+  //       setPrepared(true);
+  //       setPrepared(true);
+  //     }
+  //     // exercise -> get ready
+  //     if (prepared) {
+  //       setExerciseState(counter);
+  //       switchToGetReady(1);
+  //     }
+  //     // last exercise -> Workout Completed!
+  //   } else if (exercises.length === counter + 1) {
+  //     setExerciseState(counter);
+  //     setCompletedState(true);
+  //   }
+  // };
 
   return (
     <>
       <ToHomepageButton />
 
-      <h2
+      {/* <h2
         className={`${styles.currentExerciseTitle} ${
           exercises[counter]?.finished && prepared
             ? styles.finishedExerciseClue
@@ -136,7 +136,7 @@ const ExercisePage: React.FC<ExercisePageType> = ({
             />
           </>
         )}
-      </div>
+      </div> */}
     </>
   );
 };

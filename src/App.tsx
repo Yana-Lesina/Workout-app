@@ -9,9 +9,9 @@ import { getUser } from "./firebase/authFuncs";
 
 import styles from "./styles/App.module.scss";
 import { url } from "./forEnv";
-import { WorkoutPartType, ExerciseType } from "./globalTypes";
+import { DataType, WorkoutPartType, ExerciseType } from "./globalTypes";
 
-import MainPage from "./pages/MainPage";
+import WorkoutPage from "./pages/WorkoutPage";
 import ExercisePage from "./pages/ExercisePage";
 import WorkoutCompleted from "./pages/WorkoutCompleted";
 import ErrorPage from "./pages/ErrorPage";
@@ -24,11 +24,14 @@ import ChangeEmailPage from "./pages/AuthPages/ChangeEmailPage";
 
 import { RootState } from "./redux-store/store";
 import { setCurrentUser } from "./redux-store/slices/userSlice";
+import OverviewPage from "./pages/OverviewPage/OverviewPage";
+
+import { getDatabase, ref, child, get } from "firebase/database";
+import { getServerData } from "./firebase/databaseFuncs";
 
 const App: React.FC = () => {
-  console.log("app render");
   const [error, setError] = React.useState<boolean>(false);
-  const [items, setItems] = React.useState<WorkoutPartType>();
+  const [items, setItems] = React.useState<WorkoutPartType[]>();
   const [completed, setCompleted] = React.useState<boolean>(false);
 
   const userRole = useSelector((state: RootState) => state.user.role);
@@ -36,9 +39,10 @@ const App: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const createExercisesList = (elem: WorkoutPartType | undefined) => {
+  const createExercisesList = (elem: WorkoutPartType[] | undefined) => {
+    if (elem === undefined) return;
     const exerciseList: ExerciseType[] = [];
-    elem?.questions.forEach((section: { exercises: ExerciseType[] }) => {
+    elem[0]?.questions.forEach((section: { exercises: ExerciseType[] }) => {
       section.exercises.forEach((exercise: ExerciseType) => {
         exerciseList.push(exercise);
       });
@@ -52,45 +56,66 @@ const App: React.FC = () => {
   };
 
   const setExerciseState = (id: number) => {
-    exercises[id].finished = true;
+    if (exercises !== undefined) exercises[id].finished = true;
 
     dispatch(setStartCounter(findStartCounter()));
   };
 
   const findStartCounter = () => {
-    return exercises.findIndex((exercise) => !exercise.finished);
+    return exercises !== undefined
+      ? exercises.findIndex((exercise) => !exercise.finished)
+      : 0;
   };
 
   const exercises = createExercisesList(items);
 
   const countExerciseDuration = () => {
-    return Math.round(
-      exercises
-        .map((exercise) => exercise.duration)
-        ?.reduce((prev, current) => prev + current) / 60,
-    );
+    return exercises !== undefined
+      ? Math.round(
+          exercises
+            .map((exercise) => exercise.duration)
+            ?.reduce((prev, current) => prev + current) / 60,
+        )
+      : 0;
   };
 
+  // React.useEffect(() => {
+  //   const getServerData = async () => {
+  //     const serverData = await fetch(url);
+  //     return serverData;
+  //   };
+
+  //   getServerData()
+  //     .then(async (res) => {
+  //       const jsonData = await res.json();
+  //       return jsonData;
+  //     })
+  //     .then((result: DataType) => {
+  //       dispatch(setIsDataLoaded(true));
+  //       setItems(result);
+  //     })
+  //     .catch((error: Error) => {
+  //       dispatch(setIsDataLoaded(true));
+  //       setError(true);
+
+  //       reportError(error.message);
+  //     });
+  // }, []);
+
   React.useEffect(() => {
-    const getServerData = async () => {
-      const serverData = await fetch(url);
-      return serverData;
-    };
-
-    getServerData()
-      .then(async (res) => {
-        const jsonData = await res.json();
-        return jsonData;
+    const dbRef = ref(getDatabase());
+    get(child(dbRef, `data/`))
+      .then(async (snapshot) => {
+        if (snapshot.exists()) {
+          const serverData = await snapshot.val();
+          setItems(serverData);
+          dispatch(setIsDataLoaded(true));
+        } else {
+          alert("No data available");
+        }
       })
-      .then((result) => {
-        dispatch(setIsDataLoaded(true));
-        setItems(result.data);
-      })
-      .catch((error: Error) => {
-        dispatch(setIsDataLoaded(true));
-        setError(true);
-
-        reportError(error.message);
+      .catch((error) => {
+        reportError(error);
       });
   }, []);
 
@@ -116,17 +141,19 @@ const App: React.FC = () => {
   return (
     <div className={styles.wrapper}>
       <Routes>
+        <Route path="/main-page" element={<OverviewPage items={items} />} />
+
         <Route path="/sign-up" element={<SignUpPage />} />
         <Route path="/log-in" element={<LogInPage />} />
         <Route path="/reset-password" element={<ResetPasswordPage />} />
         <Route path="/change-password" element={<ChangePasswordPage />} />
         <Route path="/change-email" element={<ChangeEmailPage />} />
 
-        <Route
+        {/* <Route
           path="/main-page"
-          element={<MainPage elements={items} ifCompleted={completed} />}
-        />
-        <Route
+          element={<WorkoutPage elements={items} ifCompleted={completed} />}
+        /> */}
+        {/* <Route
           path="/exercise"
           element={
             !completed ? (
@@ -140,7 +167,7 @@ const App: React.FC = () => {
               <WorkoutCompleted totalDuration={countExerciseDuration()} />
             )
           }
-        />
+        /> */}
         <Route path="/" element={<LoadingPage />}></Route>
         <Route path="*" element={<ErrorPage />} />
       </Routes>
