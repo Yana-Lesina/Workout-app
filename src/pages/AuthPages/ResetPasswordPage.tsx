@@ -1,14 +1,13 @@
 import React from "react";
-import styles from "./AuthPages.module.scss";
 
-import { Link } from "react-router-dom";
-
-import { resetPassword } from "../../firebase/authFuncs";
+import Form from "../../components/AuthPages/Form";
+import Input from "../../components/AuthPages/Input";
 import SubmitButton from "../../components/AuthPages/SubmitButton";
+import ErrorMessage from "../../components/AuthPages/ErrorMessage";
+import AnotherTargetLink from "../../components/AuthPages/AnotherTargetLink";
 
 const ResetPasswordPage: React.FC = () => {
-  const emailRef = React.useRef<HTMLInputElement | null>(null);
-
+  const [email, setEmail] = React.useState("");
   const [errorMessage, setErrorMessage] = React.useState("");
   const [requestLoading, setRequestLoading] = React.useState<boolean>(false);
 
@@ -16,42 +15,39 @@ const ResetPasswordPage: React.FC = () => {
     event: React.FormEvent<HTMLFormElement>,
   ) => {
     event.preventDefault();
-    if (emailRef?.current?.value === undefined)
-      return setErrorMessage("Enter email for resetting password");
 
     setRequestLoading(true);
-    await resetPassword(emailRef.current.value)
-      .then(() => {
-        alert(
-          `Email sent, password reset!\nCheck your inbox for further instructions`,
-        );
-      })
-      .catch((error) => {
-        alert(`Something goes wrong...\n${error.code}`);
-      })
-      .finally(() => {
-        setRequestLoading(false);
-      });
+    // await resetPassword(emailRef.current.value)
+    //   .then(() => {
+    //     alert(
+    //       `Email sent, password reset!\nCheck your inbox for further instructions`,
+    //     );
+    //   })
+    //   .catch((error) => {
+    //     alert(`Something goes wrong...\n${error.code}`);
+    //   })
+    //   .finally(() => {
+    //     setRequestLoading(false);
+    //   });
   };
 
   return (
-    <form onSubmit={handleResetPassword} className={styles.wrapper}>
-      <fieldset>
-        <legend>Password Reset</legend>
+    <Form legendText="Password Reset" onSubmit={handleResetPassword}>
+      <ErrorMessage text={errorMessage} />
 
-        <span className={styles.errorMessage}>{errorMessage}</span>
+      <Input
+        id="email"
+        type="text"
+        labelText="Email:"
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+          setEmail(event.target.value)
+        }
+      />
 
-        <label htmlFor="email">Email: </label>
-        <br />
-        <input type="text" id="email" ref={emailRef} required />
+      <SubmitButton innerText="Reset Password" disabled={requestLoading} />
 
-        <SubmitButton innerText="Reset Password" disabled={requestLoading} />
-
-        <span className={styles.switchAuthText}>
-          <Link to="/log-in">Log In</Link>
-        </span>
-      </fieldset>
-    </form>
+      <AnotherTargetLink path="/log-in" linkText="Log In" />
+    </Form>
   );
 };
 

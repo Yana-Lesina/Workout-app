@@ -1,12 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { startCounterSlice } from "./slices/startCounterSlice";
+import { workoutsArraySlice } from "./slices/WorkoutsArraySlice";
 import { isDataLoadedSlice } from "./slices/isLoadedSlice";
 import { userSlice } from "./slices/userSlice";
+import { ErrorSlice } from "./slices/ErrorSlice";
 
 export const store = configureStore({
   reducer: {
-    startCounter: startCounterSlice.reducer,
+    workoutsArray: workoutsArraySlice.reducer,
     isDataLoaded: isDataLoadedSlice.reducer,
+    ErrorMessage: ErrorSlice.reducer,
     user: userSlice.reducer,
   },
 });

@@ -1,0 +1,15 @@
+@import "../../../styles//index.scss";
+
+span.targetLink {
+  display: block;
+  width: 100%;
+  text-align: center;
+
+  font-size: 1rem;
+  font-weight: 200;
+
+  a {
+    text-decoration: none;
+    color: $actionButtonsColor;
+  }
+}

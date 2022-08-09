@@ -8,10 +8,10 @@ import { WorkoutPartType, ExerciseType } from "./globalTypes";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "./redux-store/store";
 import { setCurrentUser } from "./redux-store/slices/userSlice";
-import { setStartCounter } from "./redux-store/slices/startCounterSlice";
+
 import { setIsDataLoaded } from "./redux-store/slices/isLoadedSlice";
 
-import { getUser } from "./firebase/authFuncs";
+import { checkUser } from "./firebase/authFuncs";
 
 import MainPage from "./pages/MainPage";
 import ExercisePage from "./pages/ExercisePage";
@@ -27,7 +27,7 @@ import ChangeEmailPage from "./pages/AuthPages/ChangeEmailPage";
 const App: React.FC = () => {
   console.log("app render");
   const [error, setError] = React.useState<boolean>(false);
-  const [items, setItems] = React.useState<WorkoutPartType>();
+
   const [completed, setCompleted] = React.useState<boolean>(false);
 
   const dispatch = useDispatch();
@@ -69,45 +69,44 @@ const App: React.FC = () => {
   };
 
   React.useEffect(() => {
-    const getServerData = async () => {
-      const serverData = await fetch(url);
-      return serverData;
-    };
-
-    getServerData()
-      .then(async (res) => {
-        const jsonData = await res.json();
-        return jsonData;
-      })
-      .then((result) => {
-        dispatch(setIsDataLoaded(true));
-        setItems(result.data);
-      })
-      .catch((error: Error) => {
-        dispatch(setIsDataLoaded(true));
-        setError(true);
-
-        reportError(error.message);
-      });
+    // const getServerData = async () => {
+    //   const serverData = await fetch(url);
+    //   return serverData;
+    // };
+    // getServerData()
+    //   .then(async (res) => {
+    //     const jsonData = await res.json();
+    //     return jsonData;
+    //   })
+    //   .then((result) => {
+    //     dispatch(setIsDataLoaded(true));
+    //     setItems(result.data);
+    //   })
+    //   .catch((error: Error) => {
+    //     dispatch(setIsDataLoaded(true));
+    //     setError(true);
+    //     reportError(error.message);
+    //   });
   }, []);
 
   React.useEffect(() => {
-    console.log("the usefect i need");
-    getUser((user) => {
-      if (user) {
-        console.log("catch user!", user);
-        dispatch(
-          setCurrentUser({
-            email: user.email,
-            uid: user.uid,
-          }),
-        );
-        navigate("/main-page");
-      } else {
-        console.log("no user");
-        navigate("/log-in");
-      }
-    });
+    console.log("app UseEffect for getUser(onAuthStateChanged)");
+    checkUser();
+    // getUser((user) => {
+    //   if (user) {
+    //     console.log("catch user!", user);
+    //     dispatch(
+    //       setCurrentUser({
+    //         email: user.email,
+    //         uid: user.uid,
+    //       }),
+    //     );
+    //     navigate("/main-page");
+    //   } else {
+    //     console.log("no user");
+    //     navigate("/log-in");
+    //   }
+    // });
   }, []);
 
   return (

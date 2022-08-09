@@ -1,18 +1,21 @@
 import React from "react";
-import styles from "./AuthPages.module.scss";
 
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { handleAuthError } from "../../helpers/handleAuthError";
 
 import { logIn } from "../../firebase/authFuncs";
 import { useDispatch } from "react-redux";
-import { setCurrentUser } from "../../redux-store/slices/userSlice";
+
+import Form from "../../components/AuthPages/Form";
+import Input from "../../components/AuthPages/Input";
 import SubmitButton from "../../components/AuthPages/SubmitButton";
+import ErrorMessage from "../../components/AuthPages/ErrorMessage";
+import AnotherTargetLink from "../../components/AuthPages/AnotherTargetLink";
 
 const LogInPage: React.FC = () => {
-  const emailRef = React.useRef<HTMLInputElement | null>(null);
-  const passwordRef = React.useRef<HTMLInputElement | null>(null);
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
 
   const [errorMessage, setErrorMessage] = React.useState("");
   const [requestLoading, setRequestLoading] = React.useState<boolean>(false);
@@ -22,51 +25,55 @@ const LogInPage: React.FC = () => {
 
   const handleLogIn = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (
-      emailRef?.current?.value === undefined ||
-      passwordRef?.current?.value === undefined
-    )
-      return;
 
     setRequestLoading(true);
-    await logIn(emailRef?.current?.value, passwordRef?.current?.value)
-      .then(({ user }) => {
-        dispatch(setCurrentUser({ email: user?.email, uid: user?.uid }));
-        navigate("/main-page");
-      })
-      .catch((error) => {
-        setErrorMessage(handleAuthError(error));
-      })
-      .finally(() => {
-        setRequestLoading(false);
-      });
+    // await logIn(emailRef?.current?.value, passwordRef?.current?.value)
+    //   .then(({ user }) => {
+    //     dispatch(setCurrentUser({ email: user?.email, uid: user?.uid }));
+    //     navigate("/main-page");
+    //   })
+    //   .catch((error) => {
+    //     setErrorMessage(handleAuthError(error));
+    //   })
+    //   .finally(() => {
+    //     setRequestLoading(false);
+    //   });
   };
 
   return (
-    <form onSubmit={handleLogIn} className={styles.wrapper}>
-      <fieldset>
-        <legend>Log In</legend>
+    <Form legendText="Log In" onSubmit={handleLogIn}>
+      <ErrorMessage text={errorMessage} />
 
-        <span className={styles.errorMessage}>{errorMessage}</span>
+      <Input
+        id="email"
+        type="text"
+        labelText="Email:"
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+          setEmail(event.target.value)
+        }
+      />
 
-        <label htmlFor="email">Email: </label>
-        <br />
-        <input type="text" id="email" ref={emailRef} required />
+      <Input
+        id="password"
+        type="password"
+        labelText="Password:"
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+          setPassword(event.target.value)
+        }
+      />
+      <AnotherTargetLink
+        targetText="Forgot password? "
+        path="/reset-password"
+        linkText="Reset Password"
+      />
 
-        <label htmlFor="password">Password: </label>
-        <br />
-        <input type="password" id="password" ref={passwordRef} required />
-        <span className={styles.switchAuthText}>
-          Forgot password? <Link to="/reset-password">Reset Password</Link>
-        </span>
-
-        <SubmitButton innerText="Log In" disabled={requestLoading} />
-
-        <span className={styles.switchAuthText}>
-          Need an account? <Link to="/sign-up">Sign up</Link>
-        </span>
-      </fieldset>
-    </form>
+      <SubmitButton innerText="Log In" disabled={requestLoading} />
+      <AnotherTargetLink
+        targetText="Need an account? "
+        path="/sign-up"
+        linkText="Sign up"
+      />
+    </Form>
   );
 };
 
