@@ -1,0 +1,27 @@
+.wrapper {
+  width: 52vw;
+  margin-top: 8vw;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (max-width: 800px) {
+    margin-top: 20vw;
+    width: 75vw;
+  }
+
+  fieldset {
+    padding: 0 25%;
+    @media (max-width: 800px) {
+      padding: 0;
+    }
+  }
+
+  legend {
+    display: block;
+    margin-bottom: 10px;
+
+    font-size: 2em;
+    font-weight: 600;
+    text-align: center;
+  }
+}

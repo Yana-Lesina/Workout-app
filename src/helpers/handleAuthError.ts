@@ -1,22 +1,25 @@
 import { FirebaseError } from "firebase/app";
+import { useDispatch } from "react-redux";
+import { setError } from "../redux-store/slices/ErrorSlice";
 
 export const handleAuthError = (error: Error) => {
+  const dispatch = useDispatch();
+
   if (error instanceof FirebaseError) {
     const devErrorCode = error.code;
 
     if (devErrorCode === "auth/invalid-email") {
-      return "Incorrect email syntax";
+      dispatch(setError("Incorrect email syntax"));
     } else if (devErrorCode === "auth/weak-password") {
-      return "Password should be at least 6 characters ";
+      dispatch(setError("Password should be at least 6 characters "));
     } else if (devErrorCode === "auth/email-already-in-use") {
-      return "There's already an account for this email ";
+      dispatch(setError("There's already an account for this email"));
     } else if (devErrorCode === "auth/wrong-password") {
-      return "Incorrect password";
+      dispatch(setError("Incorrect password"));
     } else if (devErrorCode === "auth/user-not-found") {
-      return "There's no such user ";
-    } else return String(error.message);
+      dispatch(setError("There's no such user"));
+    } else dispatch(setError(error.message));
   } else {
-    reportError(error.message);
-    return String(error.message);
+    setError(error.message);
   }
 };

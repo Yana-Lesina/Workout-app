@@ -1,7 +1,9 @@
 import { auth } from "../firebase";
+
 import {
   onAuthStateChanged,
   createUserWithEmailAndPassword,
+  sendEmailVerification,
   signInWithEmailAndPassword,
   signOut,
   sendPasswordResetEmail,
@@ -13,10 +15,34 @@ import {
   EmailAuthProvider,
   EmailAuthCredential,
 } from "firebase/auth";
+import { handleAuthError } from "../helpers/handleAuthError";
+import { store } from "../redux-store/store";
+import { setCurrentUser } from "../redux-store/slices/userSlice";
 
-export const signUp = (email: string, password: string) => {
-  return createUserWithEmailAndPassword(auth, email, password);
-};
+export async function signUp(
+  email: string,
+  password: string,
+  confirmation: string,
+) {
+  try {
+    if (password !== confirmation) {
+      throw new Error("Passwords do not match, please try again");
+    }
+
+    await createUserWithEmailAndPassword(auth, email, password).then(
+      ({ user }) => {
+        checkUser();
+        // sendEmailVerification(user).then(() => {
+        //   checkUser();
+        // });
+      },
+    );
+  } catch (error) {
+    if (error instanceof Error) {
+      handleAuthError(error);
+    } else handleAuthError(new Error("Unexpected type of error!!!"));
+  }
+}
 export const logIn = (email: string, password: string) => {
   return signInWithEmailAndPassword(auth, email, password);
 };
@@ -28,9 +54,35 @@ export const resetPassword = (email: string) => {
   return sendPasswordResetEmail(auth, email);
 };
 
-export const getUser = (callback: NextOrObserver<User>) => {
-  return onAuthStateChanged(auth, callback);
-};
+export async function checkUser() {
+  // callback: NextOrObserver<User>
+  // return onAuthStateChanged(auth, callback);
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/firebase.User
+
+      console.log("user!", user);
+
+      if (user.emailVerified) {
+        console.log("emailVerified = true ");
+
+        store.dispatch(setCurrentUser(user));
+        // store.dispatch(setUserName(user.displayName));
+      } else {
+        console.log("emailVerified = false ");
+
+        // store.dispatch(successOccured("Сheck your email for confirmation"));
+      }
+      // store.dispatch(setMainPageLoad(true));
+    } else {
+      // User is signed out
+      // store.dispatch(logout());
+      // store.dispatch(setMainPageLoad(true));
+    }
+  });
+}
 
 export const reauthentication = (userProvidedPassword: string) => {
   const user: User | null = auth.currentUser;

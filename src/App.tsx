@@ -1,15 +1,15 @@
 /*eslint no-constant-condition: "warn"*/
 import React from "react";
+import styles from "./styles/App.module.scss";
 import { Routes, Route, useNavigate } from "react-router-dom";
+import { url } from "./forEnv";
+import { WorkoutPartType, ExerciseType } from "./globalTypes";
+
 import { useDispatch, useSelector } from "react-redux";
 import { setStartCounter } from "./redux-store/slices/startCounterSlice";
 import { setIsDataLoaded } from "./redux-store/slices/isLoadedSlice";
 
-import { getUser } from "./firebase/authFuncs";
-
-import styles from "./styles/App.module.scss";
-import { url } from "./forEnv";
-import { DataType, WorkoutPartType, ExerciseType } from "./globalTypes";
+import { checkUser } from "./firebase/authFuncs";
 
 import WorkoutPage from "./pages/WorkoutPage";
 import ExercisePage from "./pages/ExercisePage";
@@ -31,10 +31,8 @@ import { getServerData } from "./firebase/databaseFuncs";
 
 const App: React.FC = () => {
   const [error, setError] = React.useState<boolean>(false);
-  const [items, setItems] = React.useState<WorkoutPartType[]>();
-  const [completed, setCompleted] = React.useState<boolean>(false);
 
-  const userRole = useSelector((state: RootState) => state.user.role);
+  const [completed, setCompleted] = React.useState<boolean>(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -120,22 +118,23 @@ const App: React.FC = () => {
   }, []);
 
   React.useEffect(() => {
-    getUser((user) => {
-      if (user) {
-        console.log("catch user!", user);
-        dispatch(
-          setCurrentUser({
-            email: user.email,
-            uid: user.uid,
-            role: userRole,
-          }),
-        );
-        navigate("/main-page");
-      } else {
-        console.log("no user");
-        navigate("/log-in");
-      }
-    });
+    console.log("app UseEffect for getUser(onAuthStateChanged)");
+    checkUser();
+    // getUser((user) => {
+    //   if (user) {
+    //     console.log("catch user!", user);
+    //     dispatch(
+    //       setCurrentUser({
+    //         email: user.email,
+    //         uid: user.uid,
+    //       }),
+    //     );
+    //     navigate("/main-page");
+    //   } else {
+    //     console.log("no user");
+    //     navigate("/log-in");
+    //   }
+    // });
   }, []);
 
   return (

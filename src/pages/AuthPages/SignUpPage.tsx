@@ -1,19 +1,20 @@
 import React from "react";
-import styles from "./AuthPages.module.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { signUp } from "../../firebase/authFuncs";
 import { useDispatch } from "react-redux";
-import { setCurrentUser } from "../../redux-store/slices/userSlice";
 
-import { handleAuthError } from "../../helpers/handleAuthError";
+import Form from "../../components/AuthPages/Form";
+import ErrorMessage from "../../components/AuthPages/ErrorMessage";
+import Input from "../../components/AuthPages/Input";
 import SubmitButton from "../../components/AuthPages/SubmitButton";
+import AnotherTargetLink from "../../components/AuthPages/AnotherTargetLink";
 
 const SignUpPage: React.FC = () => {
-  const emailRef = React.useRef<HTMLInputElement | null>(null);
-  const passwordRef = React.useRef<HTMLInputElement | null>(null);
-  const passwordConfirmRef = React.useRef<HTMLInputElement | null>(null);
-  const [activeRoleID, setActiveRoleID] = React.useState<number>(0);
+  console.log("SignUpPage render");
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [confirmation, setConfirmation] = React.useState("");
 
   const [errorMessage, setErrorMessage] = React.useState<string>("");
   const [requestLoading, setRequestLoading] = React.useState<boolean>(false);
@@ -26,84 +27,65 @@ const SignUpPage: React.FC = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (
-      emailRef?.current?.value === undefined ||
-      passwordRef?.current?.value === undefined
-    )
-      return;
-
-    if (passwordRef?.current?.value !== passwordConfirmRef?.current?.value)
-      return setErrorMessage("Passwords do not match");
-
     setRequestLoading(true);
-    await signUp(emailRef.current.value, passwordRef.current.value)
-      .then(({ user }) => {
-        // <=> userCredential.user;
+    signUp(email, password, confirmation);
+    // await signUp(emailRef.current.value, passwordRef.current.value)
+    //   .then(({ user }) => {
+    //     // <=> userCredential.user;
 
-        // Signed in
-        dispatch(
-          setCurrentUser({
-            email: user.email,
-            uid: user.uid,
-            role: roles[activeRoleID],
-          }),
-        );
+    //     // Signed in
+    //     dispatch(
+    //       setCurrentUser({
+    //         email: user.email,
+    //         uid: user.uid,
+    //       }),
+    //     );
 
-        navigate("/main-page");
-      })
-      .catch((error) => {
-        setErrorMessage(handleAuthError(error));
-      })
-      .finally(() => {
-        setRequestLoading(false);
-      });
+    //     navigate("/main-page");
+    //   })
+    //   .catch((error) => {
+    //     setErrorMessage(handleAuthError(error));
+    //   })
+    //   .finally(() => {
+    //     setRequestLoading(false);
+    //   });
+    setRequestLoading(false);
   };
 
   return (
-    <form onSubmit={handleSubmit} className={styles.wrapper}>
-      <fieldset>
-        <legend>Sign Up</legend>
-        <div className={styles.rolesWrapper}>
-          {roles.map((role, id) => {
-            return (
-              <div
-                className={`${styles.roleBlock} ${
-                  id === activeRoleID ? styles.active : " "
-                }`}
-                onClick={() => setActiveRoleID(id)}
-              >
-                as {role}
-              </div>
-            );
-          })}
-        </div>
-
-        <span className={styles.errorMessage}>{errorMessage}</span>
-
-        <label htmlFor="email">Email: </label>
-        <br />
-        <input type="text" id="email" ref={emailRef} required />
-
-        <label htmlFor="password">Password: </label>
-        <br />
-        <input type="password" id="password" ref={passwordRef} required />
-
-        <label htmlFor="confirmation">Password Confirmation: </label>
-        <br />
-        <input
-          type="password"
-          id="confirmation"
-          ref={passwordConfirmRef}
-          required
-        />
-
-        <SubmitButton innerText="Sign Up" disabled={requestLoading} />
-
-        <span className={styles.switchAuthText}>
-          Already have an account? <Link to="/log-in">Sign in</Link>
-        </span>
-      </fieldset>
-    </form>
+    <Form legendText="Sign Up" onSubmit={handleSubmit}>
+      <ErrorMessage text={errorMessage} />
+      <Input
+        id="email"
+        type="text"
+        labelText="Email:"
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+          setEmail(event.target.value)
+        }
+      />
+      <Input
+        id="password"
+        type="password"
+        labelText="Password:"
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+          setPassword(event.target.value)
+        }
+      />
+      <Input
+        id="confirmation"
+        type="password"
+        labelText="Password Confirmation:"
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+          setConfirmation(event.target.value)
+        }
+      />
+      <SubmitButton innerText="Sign Up" disabled={requestLoading} />
+      <AnotherTargetLink
+        targetText="Already have an account?"
+        path="/log-in"
+        linkText="Sign in"
+      />
+    </Form>
   );
 };
 

@@ -1,0 +1,31 @@
+@import "../../../styles/index.scss";
+
+.label {
+  line-height: 25px;
+  color: $textAccent1;
+}
+
+.input {
+  width: 100%;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  border: 1px #d9d9d9 solid;
+  color: #1d1d1d;
+  padding: 0 0.75rem;
+  display: block;
+  position: relative;
+
+  font-size: 1rem;
+  height: 36px;
+  line-height: 36px;
+
+  &:hover {
+    border-color: silver;
+  }
+  &:focus {
+    box-shadow: 0 0 0 3px rgb(228 228 228 / 45%);
+  }
+  &:focus-visible {
+    outline: none !important;
+  }
+}
