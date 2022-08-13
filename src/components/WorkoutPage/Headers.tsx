@@ -11,7 +11,7 @@ const Headers: React.FC<HeadersType> = ({ daysAmount, workoutTitle }) => {
     <div className={styles.headersContainer}>
       <h4 className={styles.dayTitle}>Day {daysAmount}</h4>
       <h2 className={styles.workoutTitle}>{workoutTitle}</h2>
-      <h6 className={styles.additionalTitle}>Easy • 15 min • No equipment </h6>
+      <h6 className={styles.additionalTitle}>Easy • {} min • No equipment </h6>
     </div>
   );
 };

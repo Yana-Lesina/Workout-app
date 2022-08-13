@@ -1,5 +1,4 @@
 export const url = process.env.REACT_APP_WORKOUT_DATA || "";
-
 export const fApiKey = process.env.REACT_APP_FIREBASE_API_KEY || "";
 export const fAuthDomain = process.env.REACT_APP_FIREBASE_AUTH_DOMAIN || "";
 export const fProjID = process.env.REACT_APP_FIREBASE_PROJECT_ID || "";

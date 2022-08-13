@@ -5,7 +5,7 @@ type InputType = {
   id: string;
   type: "text" | "password";
   labelText: string;
-  onChange: any;
+  onChange?: any;
 };
 
 const Input: React.FC<InputType> = ({ id, type, labelText, onChange }) => {

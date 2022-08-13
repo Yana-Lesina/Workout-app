@@ -16,14 +16,12 @@ import ToHomepageButton from "../components/ExercisePage/ToHomepageButton";
 
 type ExercisePageType = {
   exercises: ExerciseType[] | undefined;
-  // startCounter: number;
   setExerciseState: any;
   setCompletedState: any;
 };
 
 const ExercisePage: React.FC<ExercisePageType> = ({
   exercises,
-  // startCounter,
   setExerciseState,
   setCompletedState,
 }) => {
@@ -71,6 +69,9 @@ const ExercisePage: React.FC<ExercisePageType> = ({
   return (
     <>
       <ToHomepageButton />
+      <div>
+        Congrats, it's an Exercise page. And now you should remove this mess:'D
+      </div>
 
       {/* <h2
         className={`${styles.currentExerciseTitle} ${

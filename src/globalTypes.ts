@@ -5,8 +5,11 @@ export type DataType = {
 export type WorkoutPartType = {
   name: string;
   slug: string;
-  ifCompleted: true | undefined;
   questions: QuestionType[];
+
+  isWorkoutCompleted: boolean | undefined;
+  startCounter: number | undefined;
+  exerciseList: ExerciseType[] | undefined;
 };
 
 export type QuestionType = {

@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./Profile.module.scss";
 
 import ProfileLogo from "./ProfileLogo";
 import ProfilePopup from "./ProfilePopup";
@@ -9,7 +10,9 @@ const Profile = () => {
 
   return (
     <>
-      <ProfileLogo onClick={() => setShowProfilePopup(true)} />
+      <div className={styles.profileWrapper}>
+        <ProfileLogo onClick={() => setShowProfilePopup(true)} />
+      </div>
       {showProfilePopup && (
         <ProfilePopup onClick={() => setShowProfilePopup(false)} />
       )}

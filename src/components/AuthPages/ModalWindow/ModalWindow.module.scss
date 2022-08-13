@@ -1,0 +1,100 @@
+@import "../../../styles/index.scss";
+
+.modalBackground {
+  width: 100vw;
+  height: 100vh;
+
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  background-color: rgba(110, 79, 125, 0.434);
+  z-index: 10;
+
+  &.hidden {
+    display: none;
+  }
+}
+
+.modalWindow {
+  position: absolute;
+  top: 5vw;
+  margin-left: auto;
+  margin-right: auto;
+  right: 0;
+  left: 0;
+
+  width: 52vw;
+  height: 35vw;
+  background-color: $lineColor;
+  z-index: 15;
+  border-radius: 5px;
+
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: 800px) {
+    & {
+      width: 75vw;
+      height: 70vw;
+    }
+  }
+
+  .crossImageWrapper {
+    align-self: flex-end;
+    margin-top: 1.5vw;
+    margin-right: 2vw;
+    width: 5vw;
+    cursor: pointer;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+
+    @media (max-width: 800px) {
+      & {
+        width: 10vw;
+      }
+    }
+  }
+
+  .textWrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: justify;
+    padding: 2.5vw 7vw;
+
+    @media (max-width: 800px) {
+      & {
+        padding: 2vw 7vw;
+      }
+    }
+
+    .targetMessage {
+      margin-top: 15px;
+      font-size: 2vw;
+
+      @media (max-width: 800px) {
+        & {
+          font-size: 4vw;
+          margin-top: 25px;
+        }
+      }
+
+      .targetWord {
+        cursor: pointer;
+        color: $actionButtonsColor;
+      }
+    }
+  }
+}

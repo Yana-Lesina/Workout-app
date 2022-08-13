@@ -1,0 +1,32 @@
+@import "../../styles/index.scss";
+
+@font-face {
+  font-family: "SF Pro Display";
+  src: url("../../assets/fonts/SFPRODISPLAYMEDIUM.OTF");
+  font-weight: 600;
+}
+@font-face {
+  font-family: "SF Pro Text";
+  src: url("../../assets/fonts/SF-Pro-Text-Medium.otf");
+  font-weight: 400;
+}
+
+// App -------------------------------------
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: 4.5rem;
+  padding-bottom: 1.5rem;
+
+  width: 52vw;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: "SF Pro Text", sans-serif;
+
+  @media (max-width: 800px) {
+    & {
+      width: 100vw;
+      margin-top: 0;
+    }
+  }
+}

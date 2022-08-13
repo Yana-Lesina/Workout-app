@@ -10,22 +10,17 @@ import Input from "../../components/AuthPages/Input";
 import SubmitButton from "../../components/AuthPages/SubmitButton";
 import ErrorMessage from "../../components/AuthPages/ErrorMessage";
 import AnotherTargetLink from "../../components/AuthPages/AnotherTargetLink";
+import { RootState } from "../../redux-store/store";
 
 const ChangeEmailPage: React.FC = () => {
   const [password, setPassword] = React.useState("");
   const [newEmail, setNewEmail] = React.useState("");
-
-  const [errorMessage, setErrorMessage] = React.useState<string>("");
-  const [requestLoading, setRequestLoading] = React.useState<boolean>(false);
-
-  const userRole = useSelector((state: RootState) => state.user.role);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const [buttonDisabled, setButtonDisabled] = React.useState<boolean>(false);
 
   const handleChangeEmail = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    setRequestLoading(true);
+    setButtonDisabled(true);
 
     // await reauthentication(passwordRef?.current?.value)
     //   .then(() => {
@@ -51,13 +46,15 @@ const ChangeEmailPage: React.FC = () => {
     //     setErrorMessage(handleAuthError(error));
     //   })
     //   .finally(() => {
-    //     setRequestLoading(false);
+    //     setShowModal(false);
     //   });
+
+    setButtonDisabled(false);
   };
 
   return (
     <Form legendText="Changing email.." onSubmit={handleChangeEmail}>
-      <ErrorMessage text={errorMessage} />
+      <ErrorMessage />
 
       <Input
         id="password"
@@ -76,7 +73,7 @@ const ChangeEmailPage: React.FC = () => {
         }
       />
 
-      <SubmitButton innerText="Change email" disabled={requestLoading} />
+      <SubmitButton innerText="Change email" disabled={buttonDisabled} />
 
       <AnotherTargetLink path="//main-page" linkText="Go back to Main page" />
     </Form>

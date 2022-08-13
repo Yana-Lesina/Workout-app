@@ -1,53 +1,56 @@
 import React from "react";
 
+import { RootState } from "../../redux-store/store";
+import { useSelector } from "react-redux";
+import { resetPassword } from "../../firebase/authFuncs";
+
 import Form from "../../components/AuthPages/Form";
 import Input from "../../components/AuthPages/Input";
 import SubmitButton from "../../components/AuthPages/SubmitButton";
 import ErrorMessage from "../../components/AuthPages/ErrorMessage";
 import AnotherTargetLink from "../../components/AuthPages/AnotherTargetLink";
+import ModalWindow from "../../components/AuthPages/ModalWindow";
 
 const ResetPasswordPage: React.FC = () => {
   const [email, setEmail] = React.useState("");
-  const [errorMessage, setErrorMessage] = React.useState("");
-  const [requestLoading, setRequestLoading] = React.useState<boolean>(false);
+
+  const ifDisplayButton = useSelector(
+    (state: RootState) => state.isButtonDisabled,
+  );
 
   const handleResetPassword = async (
     event: React.FormEvent<HTMLFormElement>,
   ) => {
     event.preventDefault();
 
-    setRequestLoading(true);
-    // await resetPassword(emailRef.current.value)
-    //   .then(() => {
-    //     alert(
-    //       `Email sent, password reset!\nCheck your inbox for further instructions`,
-    //     );
-    //   })
-    //   .catch((error) => {
-    //     alert(`Something goes wrong...\n${error.code}`);
-    //   })
-    //   .finally(() => {
-    //     setRequestLoading(false);
-    //   });
+    console.log("handleResetPassword");
+
+    resetPassword(email);
   };
 
   return (
-    <Form legendText="Password Reset" onSubmit={handleResetPassword}>
-      <ErrorMessage text={errorMessage} />
+    <>
+      <ModalWindow />
+      <Form legendText="Password Reset" onSubmit={handleResetPassword}>
+        <ErrorMessage />
 
-      <Input
-        id="email"
-        type="text"
-        labelText="Email:"
-        onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-          setEmail(event.target.value)
-        }
-      />
+        <Input
+          id="email"
+          type="text"
+          labelText="Email:"
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+            setEmail(event.target.value)
+          }
+        />
 
-      <SubmitButton innerText="Reset Password" disabled={requestLoading} />
+        <SubmitButton
+          innerText="Reset Password"
+          disabled={ifDisplayButton.value}
+        />
 
-      <AnotherTargetLink path="/log-in" linkText="Log In" />
-    </Form>
+        <AnotherTargetLink path="/log-in" linkText="Log In" />
+      </Form>
+    </>
   );
 };
 

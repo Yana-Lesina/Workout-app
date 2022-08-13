@@ -1,0 +1,32 @@
+@import "../../../../styles/index.scss";
+
+// .userProfileIcon {
+//   position: absolute;
+//   width: 40px;
+//   height: 40px;
+//   border-radius: 50%;
+//   margin: 10px;
+//   align-self: end;
+//   cursor: pointer;
+
+//   @media (max-width: 800px) {
+//     width: 50px;
+//     height: 50px;
+//     margin: 10px 20px;
+//   }
+// }
+
+.userProfileIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: 10px;
+  // align-self: end;
+  cursor: pointer;
+
+  @media (max-width: 800px) {
+    width: 50px;
+    height: 50px;
+    margin: 10px 20px;
+  }
+}

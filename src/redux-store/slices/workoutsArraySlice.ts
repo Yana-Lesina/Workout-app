@@ -2,10 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { ExerciseType, WorkoutPartType } from "../../globalTypes";
 
-// type WorkoutsArraySliceType = {
-//   workoutsList: WorkoutPartType[];
-// };
-
 const initialState = {
   workoutsList: [] as WorkoutPartType[],
 };

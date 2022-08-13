@@ -2,12 +2,12 @@ import React from "react";
 import styles from "./ProfilePopup.module.scss";
 import { Link, useNavigate } from "react-router-dom";
 
-import { logOut } from "../../../firebase/authFuncs";
+import { checkUser, logOut } from "../../../../firebase/authFuncs";
 import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../../../redux-store/store";
-import { removeUser } from "../../../redux-store/slices/userSlice";
+import { RootState } from "../../../../redux-store/store";
+import { removeUser } from "../../../../redux-store/slices/userSlice";
 
-import crossImg from "../../../assets/images/cross.svg";
+import crossImg from "../../../../assets/images/cross.svg";
 
 type ProfilePopupType = {
   onClick: any;
@@ -21,14 +21,7 @@ const ProfilePopup: React.FC<ProfilePopupType> = ({ onClick }) => {
   const handleSignOut = async (event: any) => {
     event.preventDefault();
 
-    await logOut()
-      .then(() => {
-        dispatch(removeUser());
-        navigate("/log-in");
-      })
-      .catch((error: Error) => {
-        alert(`LogOut failure... \n${error.message}`);
-      });
+    logOut();
   };
   return (
     <div className={styles.userProfileBlock}>
@@ -38,7 +31,7 @@ const ProfilePopup: React.FC<ProfilePopupType> = ({ onClick }) => {
 
       <ul>
         <li className={styles.email}>{userData.email}</li>
-        <li className={styles.email}>{`Role: ${userData.role}`}</li>
+        <li className={styles.email}>{`Role: ${userData.displayName}`}</li>
         <li>
           <Link to="/change-password">Change Password</Link>
         </li>

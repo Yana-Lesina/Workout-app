@@ -1,15 +1,22 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { workoutsArraySlice } from "./slices/WorkoutsArraySlice";
-import { isDataLoadedSlice } from "./slices/isLoadedSlice";
-import { userSlice } from "./slices/userSlice";
-import { ErrorSlice } from "./slices/ErrorSlice";
+
+import workoutsArraySlice from "./slices/workoutsArraySlice";
+import isDataLoadedSlice from "./slices/isLoadedSlice";
+import userSlice from "./slices/userSlice";
+import ErrorSlice from "./slices/ErrorSlice";
+import loadersSlice from "./slices/loadersSlice";
+import modalWindowSlice from "./slices/modalWindowSlice";
+import disableButtonSlice from "./slices/disableButtonSlice";
 
 export const store = configureStore({
   reducer: {
-    workoutsArray: workoutsArraySlice.reducer,
-    isDataLoaded: isDataLoadedSlice.reducer,
-    ErrorMessage: ErrorSlice.reducer,
-    user: userSlice.reducer,
+    isButtonDisabled: disableButtonSlice,
+    loaders: loadersSlice,
+    modalWindow: modalWindowSlice,
+    workoutsArray: workoutsArraySlice,
+    isDataLoaded: isDataLoadedSlice,
+    errorMessage: ErrorSlice,
+    user: userSlice,
   },
 });
 
