@@ -1,0 +1,10 @@
+.result-message-box {
+  text-align: center;
+
+  @media (max-width: 800px) {
+    & {
+      margin-right: 2rem;
+      margin-left: 2rem;
+    }
+  }
+}
