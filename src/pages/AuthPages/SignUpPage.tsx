@@ -21,7 +21,7 @@ const SignUpPage: React.FC = () => {
     (state: RootState) => state.isButtonDisabled,
   );
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     signUp(email, password, confirmation);

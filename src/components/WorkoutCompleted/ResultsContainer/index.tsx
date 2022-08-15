@@ -6,7 +6,7 @@ type ResultsContainerType = {
 };
 
 const ResultsContainer: React.FC<ResultsContainerType> = ({ children }) => {
-  return <div className="result-message-box">{children}</div>;
+  return <div className={styles.resultMessageBox}>{children}</div>;
 };
 
 export default ResultsContainer;

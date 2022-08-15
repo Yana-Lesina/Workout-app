@@ -79,13 +79,16 @@ const AppRoutes = () => {
               <Route
                 key="workoutPage"
                 path="workout/:name"
-                element={<WorkoutPage />}
-              ></Route>,
-              <Route
-                key="exercisePage"
-                path="/exercise-page"
-                element={<ExercisePage />}
-              />,
+                // element={<WorkoutPage />}
+              >
+                <Route
+                  key="exercisePage"
+                  path="exercise-page"
+                  element={<ExercisePage />}
+                />
+                <Route key="exercisePage" index element={<WorkoutPage />} />
+              </Route>,
+
               <Route
                 key="workoutCompleted"
                 path="/workout-completed"

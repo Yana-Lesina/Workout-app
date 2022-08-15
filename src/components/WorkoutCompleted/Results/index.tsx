@@ -9,11 +9,11 @@ const ResultsContainer: React.FC = () => {
   );
   return (
     <>
-      <h1 className="completed-title">Workout completed!</h1>
-      <h4 className="completed-text">
+      <h1 className={styles.completedTitle}>Workout completed!</h1>
+      <h4 className={styles.completedText}>
         Nice job. You’re done. Here’s the workout summary.
       </h4>
-      <div className="total-duration-wrapper">
+      <div className={styles.totalDurationWrapper}>
         <h5>Minutes</h5>
         <h3>{totalDuration}</h3>
       </div>

@@ -18,6 +18,7 @@ import HeadersLoader from "../components/WorkoutPage/Skeletons/HeadersLoader";
 import GoBackButton from "../components/general/GoBackButton";
 import { setWorkout } from "../redux-store/slices/workoutSlice";
 import Section from "../components/WorkoutPage/Section";
+import { useLocation } from "react-router-dom";
 
 type WorkoutPageType = {
   // workout: WorkoutPartType | undefined;
@@ -29,6 +30,9 @@ const WorkoutPage: React.FC<WorkoutPageType> = () => {
   // );
   const isDataLoaded = true;
   const workout = useSelector((state: RootState) => state.workout.workoutItem);
+
+  const location = useLocation();
+  console.log("location", location);
 
   // CHECK -------------------------------------
   const dispatch = useDispatch();
@@ -52,7 +56,7 @@ const WorkoutPage: React.FC<WorkoutPageType> = () => {
             return <Section key={section.title} {...section} />;
           })}
           <Button
-            link="/exercise-page"
+            link={`exercise-page`}
             innerText={workout?.isWorkoutCompleted ? "Resume" : "Start Workout"}
           />
         </>
