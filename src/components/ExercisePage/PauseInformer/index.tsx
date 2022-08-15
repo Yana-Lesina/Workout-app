@@ -1,8 +1,13 @@
 import React from "react";
-import styles from "../../styles/ExercisePage/PauseInformer.module.scss";
+import styles from "./PauseInformer.module.scss";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../redux-store/store";
 
 const PauseInformer: React.FC = () => {
+  const workoutName = useSelector(
+    (state: RootState) => state.workout.workoutItem.name,
+  );
   return (
     <>
       <div className={styles.pauseInformer}>
@@ -14,7 +19,10 @@ const PauseInformer: React.FC = () => {
         </div>
 
         <div className={styles.leaveWorkoutButton}>
-          <Link to="/main-page" className={styles.leaveWorkoutButtonLi}>
+          <Link
+            to={`/workout/:${workoutName}`}
+            className={styles.leaveWorkoutButtonLi}
+          >
             Leave Workout
           </Link>
         </div>

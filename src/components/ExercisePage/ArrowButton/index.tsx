@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../styles/ExercisePage/ArrowButton.module.scss";
+import styles from "./ArrowButton.module.scss";
 
 type ArrowButtonType = {
   imgLink: string;

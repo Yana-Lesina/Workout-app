@@ -30,10 +30,8 @@ const OverviewPage: React.FC = () => {
   return isDataLoaded ? (
     <div className={styles.cardsWrapper}>
       <Profile />
-      {items?.map((item) => {
-        return (
-          <WorkoutpagePreview key={item.name} workout={item} link={item.name} />
-        );
+      {items?.map((item, id) => {
+        return <WorkoutpagePreview key={item.name} workout={item} />;
       })}
       <WorkoutShortcut />
     </div>

@@ -2,7 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { ExerciseType, WorkoutPartType } from "../../globalTypes";
 
-const initialState = {
+type sliceType = {
+  workoutsList: WorkoutPartType[];
+};
+
+const initialState: sliceType = {
   workoutsList: [] as WorkoutPartType[],
 };
 
@@ -16,44 +20,24 @@ export const workoutsArraySlice = createSlice({
       // createExerciseLists:
       state.workoutsList.forEach((workout) => {
         workout.exerciseList = [] as ExerciseType[];
+        let countedDuration = 0;
 
         workout.questions.forEach((section) => {
           section.exercises.forEach((exercise) => {
+            // push exercise element
             workout.exerciseList?.push(exercise);
+
+            //count workout duration (total, in seconds)
+            countedDuration += exercise.duration;
           });
+
+          // convert workout duration into minutes & write it down
+          workout.workoutDuration = Math.round(countedDuration / 60);
         });
       });
-    },
-
-    setStartCounter: (state, action: PayloadAction<number>) => {
-      const id = action.payload;
-      const workout = state.workoutsList[id];
-
-      workout.startCounter = workout.exerciseList?.findIndex(
-        (exercise) => !exercise.finished,
-      );
-    },
-
-    setCompletedWorkout: (state, action: PayloadAction<number>) => {
-      const id = action.payload;
-      const workout = state.workoutsList[id];
-
-      workout.isWorkoutCompleted = true;
-    },
-
-    setUncompletedWorkout: (state, action: PayloadAction<number>) => {
-      const id = action.payload;
-      const workout = state.workoutsList[id];
-
-      workout.isWorkoutCompleted = false;
     },
   },
 });
 
-export const {
-  setWorkoutsList,
-  setStartCounter,
-  setCompletedWorkout,
-  setUncompletedWorkout,
-} = workoutsArraySlice.actions; //for component where we want to use slice
+export const { setWorkoutsList } = workoutsArraySlice.actions; //for component where we want to use slice
 export default workoutsArraySlice.reducer; //for store

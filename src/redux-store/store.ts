@@ -7,16 +7,21 @@ import ErrorSlice from "./slices/ErrorSlice";
 import loadersSlice from "./slices/loadersSlice";
 import modalWindowSlice from "./slices/modalWindowSlice";
 import disableButtonSlice from "./slices/disableButtonSlice";
+import workoutSlice from "./slices/workoutSlice";
+import exerciseSlice from "./slices/exerciseSlice";
 
 export const store = configureStore({
   reducer: {
-    isButtonDisabled: disableButtonSlice,
-    loaders: loadersSlice,
-    modalWindow: modalWindowSlice,
-    workoutsArray: workoutsArraySlice,
-    isDataLoaded: isDataLoadedSlice,
-    errorMessage: ErrorSlice,
     user: userSlice,
+    workoutsArray: workoutsArraySlice,
+    workout: workoutSlice,
+    exercise: exerciseSlice,
+
+    modalWindow: modalWindowSlice,
+    loaders: loadersSlice,
+    isButtonDisabled: disableButtonSlice,
+
+    errorMessage: ErrorSlice, //remove???
   },
 });
 

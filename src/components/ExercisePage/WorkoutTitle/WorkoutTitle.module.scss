@@ -1,0 +1,15 @@
+@import "../../../styles/index.scss";
+
+.currentExerciseTitle,
+.getReadyTitle {
+  text-align: center;
+  font-size: 32px;
+
+  @media (max-width: 800px) {
+    font-size: 20px;
+  }
+}
+
+.currentExerciseTitle.finishedExerciseClue {
+  color: $exerciseColor;
+}

@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../styles/ExercisePage/Timer.module.scss";
+import styles from "./Timer.module.scss";
 
 type TimerType = {
   duration: number;

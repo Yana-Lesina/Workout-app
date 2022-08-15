@@ -1,0 +1,16 @@
+.timerWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+
+  @media (max-width: 800px) {
+    & {
+      padding-left: 5vw;
+      padding-right: 5vw;
+    }
+  }
+}

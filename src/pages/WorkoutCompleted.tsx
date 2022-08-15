@@ -1,15 +1,15 @@
 import React from "react";
 import "../styles/WorkoutCompleted/WorkoutCompleted.scss";
-import SaveButton from "../components/Button";
+import SaveButton from "../components/general/ActionButton";
 import CompletedImage from "../assets/images/completed-img.svg";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux-store/store";
 
-type WorkoutCompletedType = {
-  totalDuration: number;
-};
+const WorkoutCompleted: React.FC = () => {
+  const totalDuration = useSelector(
+    (state: RootState) => state.workout.workoutItem.workoutDuration,
+  );
 
-const WorkoutCompleted: React.FC<WorkoutCompletedType> = ({
-  totalDuration = 0,
-}) => {
   return (
     <>
       <div className="completed-img-container">

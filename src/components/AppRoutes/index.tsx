@@ -16,12 +16,16 @@ import ChangePasswordPage from "../../pages/AuthPages/ChangePasswordPage";
 import ChangeEmailPage from "../../pages/AuthPages/ChangeEmailPage";
 import LoadingPage from "../../pages/LoadingPage";
 import WorkoutPage from "../../pages/WorkoutPage";
+import ExercisePage from "../../pages/ExercisePage";
+import WorkoutCompleted from "../../pages/WorkoutCompleted";
 
 const AppRoutes = () => {
   const ifAuthorized = useSelector((state: RootState) => state.user.uid);
   const ifWelcomePageLoaded = useSelector(
     (state: RootState) => state.loaders.ifWelcomePageLoaded,
   );
+
+  console.log("AppRoutes render");
 
   React.useEffect(() => {
     console.log("ifAuthorized", Boolean(ifAuthorized));
@@ -45,11 +49,11 @@ const AppRoutes = () => {
                 path="*"
                 element={<Navigate to="/log-in" />}
               />,
-              <Route
-                key="noAth_ErrorPage"
-                path="/error-page"
-                element={<ErrorPage />}
-              />,
+              // <Route
+              //   key="noAth_ErrorPage"
+              //   path="/error-page"
+              //   element={<ErrorPage />}
+              // />,
             ]
           : [
               <Route
@@ -71,17 +75,28 @@ const AppRoutes = () => {
                 key="overviewPage_redirect"
                 path="*"
                 element={<Navigate to="/overview-page" />}
-              ></Route>,
+              />,
               <Route
                 key="workoutPage"
                 path="workout/:name"
-                element={<WorkoutPage workout={undefined} />}
+                element={<WorkoutPage />}
+              ></Route>,
+              <Route
+                key="exercisePage"
+                path="/exercise-page"
+                element={<ExercisePage />}
               />,
               <Route
-                key="withAuthErrorPage"
-                path="error-page"
-                element={<ErrorPage />}
+                key="workoutCompleted"
+                path="/workout-completed"
+                element={<WorkoutCompleted />}
               />,
+
+              // <Route
+              //   key="withAuthErrorPage"
+              //   path="error-page"
+              //   element={<ErrorPage />}
+              // />,
             ]}
         <Route path="*" element={<ErrorPage />} />
       </Routes>

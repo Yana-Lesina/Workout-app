@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../styles/ExercisePage/PrepareImage.module.scss";
+import styles from "./PrepareImage.module.scss";
 
 type PrepareImageType = {
   photo: string;

@@ -1,6 +1,8 @@
 import React from "react";
-import PauseInformer from "./PauseInformer";
-import styles from "../../styles/ExercisePage/VideoPlayer.module.scss";
+import { useDispatch } from "react-redux";
+import { setIfPaused } from "../../../redux-store/slices/exerciseSlice";
+import PauseInformer from "../PauseInformer";
+import styles from "./VideoPlayer.module.scss";
 
 type VideoPlayerType = {
   videoLink: string;
@@ -9,6 +11,7 @@ type VideoPlayerType = {
 
 const VideoPlayer: React.FC<VideoPlayerType> = ({ videoLink, ifPaused }) => {
   const videoRef = React.useRef<HTMLVideoElement | null>(null);
+  const dispatch = useDispatch();
 
   const handleVideoPlay = () => {
     if (!ifPaused && videoRef !== null) {
@@ -21,6 +24,10 @@ const VideoPlayer: React.FC<VideoPlayerType> = ({ videoLink, ifPaused }) => {
   React.useEffect(() => {
     handleVideoPlay();
   }, [ifPaused]);
+
+  React.useEffect(() => {
+    dispatch(setIfPaused(false));
+  }, []);
 
   return (
     <>

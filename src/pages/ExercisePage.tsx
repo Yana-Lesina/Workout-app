@@ -1,10 +1,8 @@
 import React from "react";
-import styles from "../styles/ExercisePage/ExercisePage.module.scss";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux-store/store";
 
-import { ExerciseType } from "../globalTypes";
 import BackImg from "../assets/images/back-img.svg";
 import ForwardImg from "../assets/images/forward-img.svg";
 import ArrowButton from "../components/ExercisePage/ArrowButton";
@@ -12,88 +10,101 @@ import Timer from "../components/ExercisePage/Timer";
 import PrepareImage from "../components/ExercisePage/PrepareImage";
 import VideoPlayer from "../components/ExercisePage/VideoPlayer";
 import VideoFooter from "../components/ExercisePage/VideoFooter";
-import ToHomepageButton from "../components/ExercisePage/ToHomepageButton";
+import GoBackButton from "../components/general/GoBackButton";
+import {
+  setIfPaused,
+  setIfPrepared,
+} from "../redux-store/slices/exerciseSlice";
+import {
+  setCompletedWorkout,
+  setExerciseState,
+} from "../redux-store/slices/workoutSlice";
+import WorkoutTitle from "../components/ExercisePage/WorkoutTitle";
+import NavigationBlock from "../components/ExercisePage/NavigationBlock";
+import ExerciseInner from "../components/ExercisePage/ExerciseInner";
+import { useNavigate } from "react-router-dom";
 
 type ExercisePageType = {
-  exercises: ExerciseType[] | undefined;
-  setExerciseState: any;
-  setCompletedState: any;
+  // exercises: ExerciseType[] | undefined;
+  // setExerciseState: any;
+  // setCompletedState: any;
 };
 
-const ExercisePage: React.FC<ExercisePageType> = ({
-  exercises,
-  setExerciseState,
-  setCompletedState,
-}) => {
-  // console.log("exPage render");
-  // const startCounter = useSelector(
-  //   (state: RootState) => state.startCounter.value,
-  // );
+const ExercisePage: React.FC<ExercisePageType> = () => {
+  const workout = useSelector((state: RootState) => state.workout.workoutItem);
+  const startCounter = workout.startCounter;
+  const exercises = workout.exerciseList;
 
-  // const [prepared, setPrepared] = React.useState<boolean>(false);
-  // const [counter, setCounter] = React.useState<number>(startCounter);
-  // const [ifPaused, setIfPaused] = React.useState(false);
+  const ifPrepared = useSelector(
+    (state: RootState) => state.exercise.ifPrepared,
+  );
+  const ifPaused = useSelector((state: RootState) => state.exercise.ifPaused);
+  const isWorkoutCompleted = workout.isWorkoutCompleted;
 
-  // const switchToGetReady = (direction: -1 | 1) => {
-  //   if (
-  //     (counter === 0 && direction === 1) ||
-  //     (counter > 0 && counter + 1 < exercises.length) ||
-  //     (counter + 1 === exercises.length && direction === -1)
-  //   ) {
-  //     setCounter(counter + 1 * direction);
-  //   }
-  //   // setDuration(5);
-  //   setPrepared(false);
-  //   setIfPaused(false);
-  // };
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [counter, setCounter] = React.useState<number>(startCounter!);
 
-  // const autoSwitch = () => {
-  //   if (exercises.length > counter + 1) {
-  //     // get ready -> exercise
-  //     if (!prepared) {
-  //       setPrepared(true);
-  //       setPrepared(true);
-  //     }
-  //     // exercise -> get ready
-  //     if (prepared) {
-  //       setExerciseState(counter);
-  //       switchToGetReady(1);
-  //     }
-  //     // last exercise -> Workout Completed!
-  //   } else if (exercises.length === counter + 1) {
-  //     setExerciseState(counter);
-  //     setCompletedState(true);
-  //   }
-  // };
+  dispatch(setExerciseState(0));
+  console.log("WORKOUT FROM EXERCISE PAGE", workout);
+
+  const switchToGetReady = (direction: -1 | 1) => {
+    if (
+      (counter === 0 && direction === 1) ||
+      (counter > 0 && counter + 1 < exercises!.length) ||
+      (counter + 1 === exercises!.length && direction === -1)
+    ) {
+      setCounter(counter + 1 * direction);
+    }
+    // setDuration(5);
+    dispatch(setIfPrepared(false));
+    dispatch(setIfPaused(false));
+  };
+
+  const autoSwitch = () => {
+    if (exercises!.length > counter + 1) {
+      // get ready -> exercise
+      if (!ifPrepared) {
+        dispatch(setIfPrepared(true));
+      }
+      // exercise -> get ready
+      if (ifPrepared) {
+        dispatch(setExerciseState(counter));
+        switchToGetReady(1);
+      }
+      // last exercise -> Workout Completed!
+    } else if (exercises!.length === counter + 1) {
+      dispatch(setExerciseState(counter));
+      dispatch(setCompletedWorkout());
+    }
+  };
+
+  React.useEffect(() => {
+    if (isWorkoutCompleted) {
+      navigate("/workout-completed");
+    }
+  }, [isWorkoutCompleted]);
 
   return (
     <>
-      <ToHomepageButton />
-      <div>
-        Congrats, it's an Exercise page. And now you should remove this mess:'D
-      </div>
+      <GoBackButton path={`/workout/:${workout.name}`} />
 
-      {/* <h2
-        className={`${styles.currentExerciseTitle} ${
-          exercises[counter]?.finished && prepared
-            ? styles.finishedExerciseClue
-            : " "
-        }`}
-      >
-        {!prepared ? "Get ready" : exercises[counter].title}
-      </h2>
+      <WorkoutTitle
+        preparationTitle="Get Ready"
+        exerciseTitle={exercises[counter].title}
+      />
 
-      <div className={styles.timerWrapper}>
+      <NavigationBlock>
         <ArrowButton
           imgLink={BackImg}
           onClick={() => switchToGetReady(-1)}
-          isExtremeElement={counter === 0 && !prepared}
+          isExtremeElement={counter === 0 && !ifPrepared}
         />
 
         <Timer
-          duration={!prepared ? 5 : exercises[counter].duration}
+          duration={!ifPrepared ? 5 : exercises[counter].duration}
           ifPaused={ifPaused}
-          isPrepared={prepared}
+          isPrepared={ifPrepared}
           handleRunOut={autoSwitch}
           switchHandler={counter}
         />
@@ -101,23 +112,24 @@ const ExercisePage: React.FC<ExercisePageType> = ({
         <ArrowButton
           imgLink={ForwardImg}
           onClick={
-            !prepared
-              ? () => setPrepared(true)
+            !ifPrepared
+              ? () => dispatch(setIfPrepared(true))
               : () => {
                   if (counter + 1 === exercises.length) {
-                    setExerciseState(counter);
-                    setCompletedState(true);
+                    dispatch(setExerciseState(counter));
+                    dispatch(setCompletedWorkout());
                     return;
                   }
-                  setExerciseState(counter);
+                  dispatch(setExerciseState(counter));
                   switchToGetReady(1);
                 }
           }
         />
-      </div>
-      <div className={styles.exerciseInner}>
-        {!prepared ? (
-          <PrepareImage photo={exercises[counter]?.photo} />
+      </NavigationBlock>
+
+      <ExerciseInner>
+        {!ifPrepared ? (
+          <PrepareImage photo={exercises[counter].photo} />
         ) : (
           <>
             <VideoPlayer
@@ -127,17 +139,17 @@ const ExercisePage: React.FC<ExercisePageType> = ({
             <VideoFooter
               ifPaused={ifPaused}
               onClick={() => {
-                setIfPaused(!ifPaused);
+                dispatch(setIfPaused(!ifPaused));
               }}
               onKeyPress={(event: React.KeyboardEvent<HTMLElement>) => {
                 if (event.key === " " || event.key === "Enter") {
-                  setIfPaused(!ifPaused);
+                  dispatch(setIfPaused(!ifPaused));
                 }
               }}
             />
           </>
         )}
-      </div> */}
+      </ExerciseInner>
     </>
   );
 };

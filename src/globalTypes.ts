@@ -9,7 +9,8 @@ export type WorkoutPartType = {
 
   isWorkoutCompleted: boolean | undefined;
   startCounter: number | undefined;
-  exerciseList: ExerciseType[] | undefined;
+  workoutDuration: number | undefined;
+  exerciseList: ExerciseType[];
 };
 
 export type QuestionType = {
