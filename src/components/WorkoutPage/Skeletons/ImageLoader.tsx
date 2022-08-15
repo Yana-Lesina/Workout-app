@@ -1,5 +1,5 @@
 import ContentLoader from "react-content-loader";
-import styles from "../../../styles/MainPage/WelcomeImage.module.scss";
+import styles from "../WelcomeImage/WelcomeImage.module.scss";
 
 const ImageLoader = () => (
   <ContentLoader

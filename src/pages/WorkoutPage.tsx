@@ -9,7 +9,7 @@ import introImg from "../assets/images/intro-img.png";
 
 // import Profile from "../components/WorkoutPage/Profile";
 import Headers from "../components/WorkoutPage/Headers";
-import Container from "../components/WorkoutPage/Container";
+
 import Button from "../components/general/ActionButton";
 
 import ItemsLoader from "../components/WorkoutPage/Skeletons/ItemsLoader";
@@ -17,6 +17,7 @@ import ImageLoader from "../components/WorkoutPage/Skeletons/ImageLoader";
 import HeadersLoader from "../components/WorkoutPage/Skeletons/HeadersLoader";
 import GoBackButton from "../components/general/GoBackButton";
 import { setWorkout } from "../redux-store/slices/workoutSlice";
+import Section from "../components/WorkoutPage/Section";
 
 type WorkoutPageType = {
   // workout: WorkoutPartType | undefined;
@@ -47,7 +48,9 @@ const WorkoutPage: React.FC<WorkoutPageType> = () => {
             daysAmount={1}
             duration={workout?.workoutDuration}
           />
-          <Container sections={workout?.questions} />
+          {workout?.questions?.map((section) => {
+            return <Section key={section.title} {...section} />;
+          })}
           <Button
             link="/exercise-page"
             innerText={workout?.isWorkoutCompleted ? "Resume" : "Start Workout"}

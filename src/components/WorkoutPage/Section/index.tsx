@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "../../styles/MainPage/Section.module.scss";
-import { QuestionType } from "../../globalTypes";
-import Exercise from "./Exercise";
+import styles from "./Section.module.scss";
+import { QuestionType } from "../../../globalTypes";
+import Exercise from "../Exercise";
 
 const Section: React.FC<QuestionType> = ({ title, exercises, muscleGroup }) => {
   return (

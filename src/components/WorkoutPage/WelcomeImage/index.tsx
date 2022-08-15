@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../styles/MainPage/WelcomeImage.module.scss";
+import styles from "./WelcomeImage.module.scss";
 
 type WelcomeImageType = {
   src: string;

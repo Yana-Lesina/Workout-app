@@ -1,6 +1,6 @@
 import React from "react";
 import ContentLoader from "react-content-loader";
-import styles from "../../../styles/MainPage/Exercise.module.scss";
+import styles from "../Exercise/Exercise.module.scss";
 
 const ItemsLoader = () => (
   <ContentLoader

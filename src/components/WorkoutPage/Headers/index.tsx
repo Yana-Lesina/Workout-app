@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../styles/MainPage/Headers.module.scss";
+import styles from "./Headers.module.scss";
 
 type HeadersType = {
   daysAmount: number;
