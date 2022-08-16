@@ -7,7 +7,7 @@ import { store } from "../redux-store/store";
 export const getServerData = async () => {
   const dbRef = ref(getDatabase());
   let serverData: WorkoutPartType[] = [] as WorkoutPartType[];
-  get(child(dbRef, `data/`))
+  get(child(dbRef, `/data/`))
     .then(async (snapshot) => {
       if (snapshot.exists()) {
         serverData = await snapshot.val();
