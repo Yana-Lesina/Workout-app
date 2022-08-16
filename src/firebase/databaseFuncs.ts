@@ -11,7 +11,7 @@ export const getServerData = async () => {
     .then(async (snapshot) => {
       if (snapshot.exists()) {
         serverData = await snapshot.val();
-        let workouts = serverData.data;
+        const workouts = serverData.data;
         store.dispatch(setWorkoutsList(workouts));
         store.dispatch(setOverviewPageLoaded(true));
         // return serverData;
