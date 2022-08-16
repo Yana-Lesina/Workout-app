@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/WorkoutCompleted/WorkoutCompleted.scss";
+// import "../styles/WorkoutCompleted/WorkoutCompleted.scss";
 import SaveButton from "../components/general/ActionButton";
 
 import TickImage from "../components/WorkoutCompleted/TickImage";

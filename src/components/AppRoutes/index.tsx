@@ -76,11 +76,7 @@ const AppRoutes = () => {
                 path="*"
                 element={<Navigate to="/overview-page" />}
               />,
-              <Route
-                key="workoutPage"
-                path="workout/:name"
-                // element={<WorkoutPage />}
-              >
+              <Route key="workoutPage" path="workout/:name">
                 <Route
                   key="exercisePage"
                   path="exercise-page"
@@ -94,12 +90,6 @@ const AppRoutes = () => {
                 path="/workout-completed"
                 element={<WorkoutCompleted />}
               />,
-
-              // <Route
-              //   key="withAuthErrorPage"
-              //   path="error-page"
-              //   element={<ErrorPage />}
-              // />,
             ]}
         <Route path="*" element={<ErrorPage />} />
       </Routes>
@@ -112,51 +102,3 @@ const AppRoutes = () => {
 };
 
 export default AppRoutes;
-
-// export default function AppRoutes() {
-//   const isAuth = useSelector((state: RootStateOrAny) =>
-//     Boolean(state.authUID.value),
-//   );
-//   const isMainPageLoad = useSelector(
-//     (state: RootStateOrAny) => state.loaders.mainPage,
-//   );
-
-//   React.useEffect(() => {
-//     store.dispatch(setDeskListLoad(false));
-//   }, [isAuth]);
-
-//   return isMainPageLoad ? (
-//     <Routes>
-//       {!isAuth
-//         ? [
-//             <Route
-//               key="authorization"
-//               path="/authorization"
-//               element={<Authorization />}
-//             />,
-//             <Route
-//               key="registration"
-//               path="/registration"
-//               element={<Registration />}
-//             />,
-//             <Route key="confirm" path="/confirm" element={<Confirm />} />,
-//             <Route
-//               key="redirect-authorization"
-//               path="*"
-//               element={<Navigate to="/authorization" />}
-//             />,
-//           ]
-//         : [
-//             <Route key="desk" path="/desk" element={<Desk />} />,
-//             <Route key="deskList" path="/deskList" element={<DeskList />} />,
-//             <Route
-//               key="authorredirect-deskList"
-//               path="*"
-//               element={<Navigate to="/deskList" />}
-//             />,
-//           ]}
-//     </Routes>
-//   ) : (
-//     <Loader />
-//   );
-// }

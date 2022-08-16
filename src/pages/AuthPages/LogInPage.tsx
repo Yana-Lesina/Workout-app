@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 
 import { logIn } from "../../firebase/authFuncs";
 import { useSelector } from "react-redux";
@@ -19,8 +19,9 @@ const LogInPage: React.FC = () => {
     (state: RootState) => state.isButtonDisabled,
   );
 
-  const handleLogIn = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleLogIn = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
     logIn(email, password);
   };
 

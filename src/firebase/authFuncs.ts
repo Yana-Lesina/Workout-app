@@ -207,23 +207,3 @@ export const changePassword = async (
   }
 };
 
-// export const changeEmail = async (email: string, password: string) => {
-//   try {
-//     await reauthentication(password).then(() => {
-
-//       sendPasswordResetEmail(auth, email!).then(() => {
-//         store.dispatch(
-//           callModalWindow({
-//             message: `Check ${email} for further instructions`,
-//           }),
-//         );
-//       });
-//     });
-//   } catch (error) {
-//     if (error instanceof Error) {
-//       handleAuthError(error);
-//     } else handleAuthError(new Error("Unexpected type of error!!!"));
-//   }
-
-//   if (auth.currentUser !== null) return updateEmail(auth.currentUser, email);
-// };
