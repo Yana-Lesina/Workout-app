@@ -1,0 +1,4 @@
+[[redirects]]
+from = "/*"
+to = "/overview-page"
+status = 200
