@@ -1,11 +1,3 @@
-// module.exports = {
-//   webpack: (config, env) => {
-//     return config;
-//   },
-
-//   // ...
-// };
-
 const path = require("path");
 
 module.exports = {
