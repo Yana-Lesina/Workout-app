@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./TickImage.module.scss";
-import CompletedImage from "../../../assets/images/completed-img.svg";
+import CompletedImage from "src/assets/images/completed-img.svg";
 
 const TickImage = () => {
   return (

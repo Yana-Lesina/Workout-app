@@ -2,12 +2,11 @@ import React from "react";
 import styles from "./ProfilePopup.module.scss";
 import { Link, useNavigate } from "react-router-dom";
 
-import { checkUser, logOut } from "../../../../firebase/authFuncs";
+import { logOut } from "../../../../firebase/authFuncs";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../../redux-store/store";
-import { removeUser } from "../../../../redux-store/slices/userSlice";
 
-import crossImg from "../../../../assets/images/cross.svg";
+import crossImg from "src/assets/images/cross.svg";
 
 type ProfilePopupType = {
   onClick: any;

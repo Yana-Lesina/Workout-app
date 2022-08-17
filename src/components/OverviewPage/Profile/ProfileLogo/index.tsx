@@ -1,6 +1,6 @@
 import React from "react";
 
-import userImg from "../../../../assets/images/user.svg";
+import userImg from "src/assets/images/user.svg";
 import styles from "./ProfileLogo.module.scss";
 
 type ProfileLogoType = {

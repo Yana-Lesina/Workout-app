@@ -10,7 +10,10 @@ import { getServerData } from "../firebase/databaseFuncs";
 import Profile from "../components/OverviewPage/Profile";
 import CardsWrapper from "../components/OverviewPage/CardsWrapper";
 
+import testImage from "src/assets/images/add.svg";
+
 const OverviewPage: React.FC = () => {
+  console.log(testImage);
   const isDataLoaded = useSelector(
     (state: RootState) => state.loaders.ifOverviewPageLoaded,
   );

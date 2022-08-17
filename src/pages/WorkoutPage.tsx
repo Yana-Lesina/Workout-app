@@ -4,10 +4,8 @@ import { RootState } from "../redux-store/store";
 
 import WelcomeImage from "../components/WorkoutPage/WelcomeImage";
 
-import { DataType, WorkoutPartType } from "../globalTypes.js";
-import introImg from "../assets/images/intro-img.png";
+import introImg from "src/assets/images/intro-img.png";
 
-// import Profile from "../components/WorkoutPage/Profile";
 import Headers from "../components/WorkoutPage/Headers";
 
 import Button from "../components/general/ActionButton";
@@ -16,7 +14,7 @@ import ItemsLoader from "../components/WorkoutPage/Skeletons/ItemsLoader";
 import ImageLoader from "../components/WorkoutPage/Skeletons/ImageLoader";
 import HeadersLoader from "../components/WorkoutPage/Skeletons/HeadersLoader";
 import GoBackButton from "../components/general/GoBackButton";
-import { setWorkout } from "../redux-store/slices/workoutSlice";
+
 import Section from "../components/WorkoutPage/Section";
 import { useLocation } from "react-router-dom";
 

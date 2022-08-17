@@ -14,8 +14,15 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+
+    "baseUrl": ".",
+    "paths": {
+      // define these based on your needs
+      "@globalStyles/*": ["src/styles/*"],
+      "@assets/images/*": ["src/assets/images/*"]
+    }
   },
   "include": ["src"],
-  "exclude": ["build"]
+  "exclude": ["build", "node_modules"]
 }
