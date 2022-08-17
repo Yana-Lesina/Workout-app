@@ -1,6 +1,7 @@
 [build]
 command = "CI= npm run build"
-publish="/public"
+publish="/build"
+base="/"
 
 [[redirects]]
 from = "/*"
