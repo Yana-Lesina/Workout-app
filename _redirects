@@ -1,0 +1,5 @@
+# Redirects from what the browser requests to what we serve
+
+/overview-page /overview-page
+/workout/:name /workout/:name
+/log-in /log-in
