@@ -4,26 +4,33 @@ import { ExerciseType, WorkoutPartType } from "../../globalTypes";
 
 type WorkoutSliceType = {
   workoutItem: WorkoutPartType;
-  // exercisesArray: ExerciseType[];
-  // isWorkoutCompleted: boolean;
-  // startCounter: number;
 };
 
 const initialState: WorkoutSliceType = {
   workoutItem: {} as WorkoutPartType,
-  // exercisesArray: [] as ExerciseType[],
-  // isWorkoutCompleted: false,
-  // startCounter: 0,
 };
 
 export const workoutSlice = createSlice({
   name: "workouts",
   initialState,
   reducers: {
-    setWorkout: (state, action: PayloadAction<WorkoutPartType>) => {
+    setWorkoutData: (state, action: PayloadAction<WorkoutPartType>) => {
       state.workoutItem = action.payload;
+      state.workoutItem.exerciseList = [] as ExerciseType[];
+      let countedDuration = 0;
 
-      console.log("setWorkout");
+      state.workoutItem.questions.forEach((section) => {
+        section.exercises.forEach((exercise) => {
+          // add exercise element
+          state.workoutItem.exerciseList.push(exercise);
+
+          //count workout duration (total, in seconds)
+          countedDuration += exercise.duration;
+        });
+      });
+
+      // convert workout duration into minutes & write it down
+      state.workoutItem.workoutDuration = Math.round(countedDuration / 60);
     },
 
     setStartCounter: (state) => {
@@ -52,7 +59,7 @@ export const workoutSlice = createSlice({
 });
 
 export const {
-  setWorkout,
+  setWorkoutData,
   setStartCounter,
   setCompletedWorkout,
   setUncompletedWorkout,

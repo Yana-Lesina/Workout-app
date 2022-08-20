@@ -206,4 +206,3 @@ export const changePassword = async (
     store.dispatch(setDisabledButton(false));
   }
 };
-

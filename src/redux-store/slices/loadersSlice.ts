@@ -3,6 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 const initialState = {
   ifOverviewPageLoaded: false,
   ifWelcomePageLoaded: false,
+  ifWorkoutPageLoaded: false,
 };
 
 export const loadersSlice = createSlice({
@@ -15,9 +16,15 @@ export const loadersSlice = createSlice({
     setWelcomePageLoaded: (state, action: PayloadAction<boolean>) => {
       state.ifWelcomePageLoaded = action.payload;
     },
+    setWorkoutPageLoaded: (state, action: PayloadAction<boolean>) => {
+      state.ifWorkoutPageLoaded = action.payload;
+    },
   },
 });
 
-export const { setOverviewPageLoaded, setWelcomePageLoaded } =
-  loadersSlice.actions;
+export const {
+  setOverviewPageLoaded,
+  setWelcomePageLoaded,
+  setWorkoutPageLoaded,
+} = loadersSlice.actions;
 export default loadersSlice.reducer;

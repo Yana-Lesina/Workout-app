@@ -5,15 +5,12 @@ import WorkoutShortcut from "../components/OverviewPage/WorkoutShortcut/WorkoutS
 import { RootState } from "../redux-store/store";
 import { useSelector } from "react-redux";
 
-import { getServerData } from "../firebase/databaseFuncs";
+import { getWorkoutLists } from "../firebase/databaseFuncs";
 
 import Profile from "../components/OverviewPage/Profile";
 import CardsWrapper from "../components/OverviewPage/CardsWrapper";
 
-import testImage from "src/assets/images/add.svg";
-
 const OverviewPage: React.FC = () => {
-  console.log(testImage);
   const isDataLoaded = useSelector(
     (state: RootState) => state.loaders.ifOverviewPageLoaded,
   );
@@ -22,15 +19,17 @@ const OverviewPage: React.FC = () => {
   );
 
   React.useEffect(() => {
-    getServerData();
+    getWorkoutLists();
   }, []);
 
   return isDataLoaded ? (
     <CardsWrapper>
       <>
         <Profile />
-        {items?.map((item) => {
-          return <WorkoutpagePreview key={item.name} workout={item} />;
+        {items?.map((item, id) => {
+          return (
+            <WorkoutpagePreview key={item.name} workout={item} workoutID={id} />
+          );
         })}
         <WorkoutShortcut />
       </>

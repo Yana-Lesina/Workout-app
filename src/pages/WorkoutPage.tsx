@@ -16,31 +16,32 @@ import HeadersLoader from "../components/WorkoutPage/Skeletons/HeadersLoader";
 import GoBackButton from "../components/general/GoBackButton";
 
 import Section from "../components/WorkoutPage/Section";
+import { getTheWorkout } from "src/firebase/databaseFuncs";
 import { useLocation } from "react-router-dom";
 
-type WorkoutPageType = {
-  // workout: WorkoutPartType | undefined;
-};
+interface CustomizedState {
+  id: number;
+}
 
-const WorkoutPage: React.FC<WorkoutPageType> = () => {
-  // const isDataLoaded = useSelector(
-  //   (state: RootState) => state.isDataLoaded.value,
-  // );
-  const isDataLoaded = true;
+const WorkoutPage: React.FC = () => {
+  const ifWorkoutPageLoaded = useSelector(
+    (state: RootState) => state.loaders.ifWorkoutPageLoaded,
+  );
+
   const workout = useSelector((state: RootState) => state.workout.workoutItem);
 
   const location = useLocation();
-  console.log("location", location);
+  const state = location.state as CustomizedState;
 
-  // CHECK -------------------------------------
-  const dispatch = useDispatch();
   React.useEffect(() => {
-    console.log("WORKOUT FROM WorkoutPage", workout);
-  });
+    getTheWorkout(state.id);
+
+    console.log("workoutID", state.id);
+  }, []);
 
   return (
     <>
-      {isDataLoaded ? (
+      {ifWorkoutPageLoaded ? (
         <>
           {/* <Profile /> */}
           <GoBackButton path={`/overview-page`} />

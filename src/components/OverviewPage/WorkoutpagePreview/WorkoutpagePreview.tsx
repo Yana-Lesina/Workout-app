@@ -6,27 +6,24 @@ import IntroImg from "../../../assets/images/intro-img.png";
 import { Link, useNavigate } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
-import { setWorkout } from "../../../redux-store/slices/workoutSlice";
 
 type WorkoutpagePreviewType = {
   workout: WorkoutPartType;
+  workoutID: number;
 };
 
-const WorkoutpagePreview: React.FC<WorkoutpagePreviewType> = ({ workout }) => {
+const WorkoutpagePreview: React.FC<WorkoutpagePreviewType> = ({
+  workout,
+  workoutID,
+}) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleClick = (event: any) => {
     event.preventDefault();
 
-    dispatch(setWorkout(workout));
-    navigate(`/workout/${workout.name}`);
+    navigate(`/workout/${workout.name}`, { state: { id: workoutID } });
   };
-
-  // CHECK -------------------------------------
-  React.useEffect(() => {
-    console.log("WORKOUT FROM PREVIEW", workout);
-  });
 
   return (
     <>

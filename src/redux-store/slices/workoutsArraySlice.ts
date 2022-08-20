@@ -16,25 +16,6 @@ export const workoutsArraySlice = createSlice({
   reducers: {
     setWorkoutsList: (state, action: PayloadAction<WorkoutPartType[]>) => {
       state.workoutsList = action.payload;
-
-      // createExerciseLists:
-      state.workoutsList.forEach((workout) => {
-        workout.exerciseList = [] as ExerciseType[];
-        let countedDuration = 0;
-
-        workout.questions.forEach((section) => {
-          section.exercises.forEach((exercise) => {
-            // push exercise element
-            workout.exerciseList?.push(exercise);
-
-            //count workout duration (total, in seconds)
-            countedDuration += exercise.duration;
-          });
-
-          // convert workout duration into minutes & write it down
-          workout.workoutDuration = Math.round(countedDuration / 60);
-        });
-      });
     },
   },
 });

@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./VideoFooter.module.scss";
-import PlayImg from "../../../assets/images/play.svg";
-import PauseImg from "../../../assets/images/pause.svg";
+import PlayImg from "src/assets/images/play.svg";
+import PauseImg from "src/assets/images/pause.svg";
 
 type VideoFooterType = {
   ifPaused: boolean;
