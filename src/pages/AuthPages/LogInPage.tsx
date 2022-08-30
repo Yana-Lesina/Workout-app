@@ -35,18 +35,22 @@ const LogInPage: React.FC = () => {
           id="email"
           type="text"
           labelText="Email:"
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-            setEmail(event.target.value)
-          }
+          onChange={useCallback(
+            (event: React.ChangeEvent<HTMLInputElement>) =>
+              setEmail(event.target.value),
+            [email],
+          )}
         />
 
         <Input
           id="password"
           type="password"
           labelText="Password:"
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-            setPassword(event.target.value)
-          }
+          onChange={useCallback(
+            (event: React.ChangeEvent<HTMLInputElement>) =>
+              setPassword(event.target.value),
+            [password],
+          )}
         />
         <AnotherTargetLink
           targetText="Forgot password? "

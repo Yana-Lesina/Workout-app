@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import styles from "./Input.module.scss";
 
 type InputType = {
@@ -27,4 +27,4 @@ const Input: React.FC<InputType> = ({ id, type, labelText, onChange }) => {
   );
 };
 
-export default Input;
+export default React.memo(Input);

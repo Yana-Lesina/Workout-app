@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux-store/store";
@@ -38,25 +38,31 @@ const ChangePasswordPage: React.FC = () => {
           id="password"
           type="password"
           labelText="Password:"
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-            setPassword(event.target.value)
-          }
+          onChange={useCallback(
+            (event: React.ChangeEvent<HTMLInputElement>) =>
+              setPassword(event.target.value),
+            [password],
+          )}
         />
         <Input
           id="newPassword"
           type="password"
           labelText="New Password:"
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-            setNewPassword(event.target.value)
-          }
+          onChange={useCallback(
+            (event: React.ChangeEvent<HTMLInputElement>) =>
+              setNewPassword(event.target.value),
+            [newPassword],
+          )}
         />
         <Input
           id="confirmation"
           type="password"
           labelText="New Password Confirmation:"
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-            setConfirmation(event.target.value)
-          }
+          onChange={useCallback(
+            (event: React.ChangeEvent<HTMLInputElement>) =>
+              setConfirmation(event.target.value),
+            [confirmation],
+          )}
         />
 
         <SubmitButton

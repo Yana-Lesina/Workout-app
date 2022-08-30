@@ -45,8 +45,7 @@ const ExercisePage: React.FC<ExercisePageType> = () => {
   const navigate = useNavigate();
   const [counter, setCounter] = React.useState<number>(startCounter!);
 
-  dispatch(setExerciseState(0));
-  console.log("WORKOUT FROM EXERCISE PAGE", workout);
+  // console.log("WORKOUT FROM EXERCISE PAGE", workout);
 
   const switchToGetReady = (direction: -1 | 1) => {
     if (
@@ -84,6 +83,10 @@ const ExercisePage: React.FC<ExercisePageType> = () => {
       navigate("/workout-completed");
     }
   }, [isWorkoutCompleted]);
+
+  React.useEffect(() => {
+    dispatch(setExerciseState(0));
+  }, []);
 
   return (
     <>

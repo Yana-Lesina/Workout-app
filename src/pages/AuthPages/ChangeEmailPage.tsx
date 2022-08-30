@@ -54,7 +54,7 @@ const ChangeEmailPage: React.FC = () => {
 
   return (
     <Form legendText="Changing email.." onSubmit={handleChangeEmail}>
-      <ErrorMessage />
+      {/* <ErrorMessage />
 
       <Input
         id="password"
@@ -75,7 +75,7 @@ const ChangeEmailPage: React.FC = () => {
 
       <SubmitButton innerText="Change email" disabled={buttonDisabled} />
 
-      <AnotherTargetLink path="//main-page" linkText="Go back to Main page" />
+      <AnotherTargetLink path="//main-page" linkText="Go back to Main page" /> */}
     </Form>
   );
 };

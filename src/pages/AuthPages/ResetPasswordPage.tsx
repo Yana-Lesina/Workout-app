@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 
 import { RootState } from "../../redux-store/store";
 import { useSelector } from "react-redux";
@@ -38,9 +38,11 @@ const ResetPasswordPage: React.FC = () => {
           id="email"
           type="text"
           labelText="Email:"
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-            setEmail(event.target.value)
-          }
+          onChange={useCallback(
+            (event: React.ChangeEvent<HTMLInputElement>) =>
+              setEmail(event.target.value),
+            [email],
+          )}
         />
 
         <SubmitButton
